@@ -1,0 +1,1820 @@
+{
+ "schema_version": 1,
+ "kinds": {
+  "proposer": {
+   "interface_version": "1.0.0",
+   "summary": "Self-improvement: proposes harness edits and mines weaknesses. Needs a model.",
+   "trust": "untrusted_output",
+   "min_profile": "core",
+   "grants": [
+    "model_calls"
+   ],
+   "methods": {
+    "describe": {
+     "input": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "kind": {
+        "type": "string"
+       },
+       "version": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "id",
+       "kind",
+       "version"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {},
+     "timeout_s": 5,
+     "effect": "read_only",
+     "purpose": "Say who the plugin is.",
+     "returns_doc": "id, kind and version, which must equal the manifest's.",
+     "errors": []
+    },
+    "health": {
+     "input": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "ok": {
+        "type": "boolean"
+       }
+      },
+      "required": [
+       "ok"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {},
+     "timeout_s": 5,
+     "effect": "read_only",
+     "purpose": "Say whether the plugin can serve calls now.",
+     "returns_doc": "ok: false when the plugin cannot serve calls. Health reports a problem and never raises one.",
+     "errors": []
+    },
+    "propose": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "round": {
+        "type": "integer"
+       },
+       "n": {
+        "type": "integer"
+       },
+       "base": {
+        "type": "string"
+       },
+       "ctx": {
+        "type": "object"
+       }
+      },
+      "required": [
+       "round",
+       "n",
+       "base",
+       "ctx"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "proposals": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "properties": {
+          "edits": {
+           "type": "array"
+          },
+          "manifest": {
+           "type": "object"
+          }
+         },
+         "required": [
+          "edits",
+          "manifest"
+         ],
+         "additionalProperties": true
+        }
+       }
+      },
+      "required": [
+       "proposals"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "round": 1,
+      "n": 1,
+      "base": "c0",
+      "ctx": {}
+     },
+     "timeout_s": 120,
+     "effect": "read_only",
+     "purpose": "Propose harness edits for a round of self-improvement.",
+     "returns_doc": "proposals: at most n, each with its edits and a manifest.",
+     "errors": [
+      {
+       "code": "invalid_argument",
+       "when": "n is below 1.",
+       "probe": {
+        "round": 1,
+        "n": 0,
+        "base": "c0",
+        "ctx": {}
+       }
+      },
+      {
+       "code": "unavailable",
+       "when": "The model is down.",
+       "probe": null
+      },
+      {
+       "code": "rate_limited",
+       "when": "The model refused the call for now.",
+       "probe": null
+      }
+     ]
+    },
+    "analyze_weakness": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "report": {
+        "type": "object"
+       }
+      },
+      "required": [
+       "report"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "findings": {
+        "type": "array"
+       }
+      },
+      "required": [
+       "findings"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "report": {}
+     },
+     "timeout_s": 120,
+     "effect": "read_only",
+     "purpose": "Find weaknesses in an evaluation report.",
+     "returns_doc": "findings: a list, possibly empty.",
+     "errors": [
+      {
+       "code": "unavailable",
+       "when": "The model is down.",
+       "probe": null
+      }
+     ]
+    }
+   }
+  },
+  "retrieval": {
+   "interface_version": "1.0.0",
+   "summary": "Knowledge retrieval over an index. Needs an embedding model and an index. Passages are untrusted; access control is enforced by the plugin and checked again by the harness.",
+   "trust": "untrusted_output",
+   "min_profile": "core",
+   "grants": [
+    "model_calls"
+   ],
+   "methods": {
+    "describe": {
+     "input": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "kind": {
+        "type": "string"
+       },
+       "version": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "id",
+       "kind",
+       "version"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {},
+     "timeout_s": 5,
+     "effect": "read_only",
+     "purpose": "Say who the plugin is.",
+     "returns_doc": "id, kind and version, which must equal the manifest's.",
+     "errors": []
+    },
+    "health": {
+     "input": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "ok": {
+        "type": "boolean"
+       }
+      },
+      "required": [
+       "ok"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {},
+     "timeout_s": 5,
+     "effect": "read_only",
+     "purpose": "Say whether the plugin can serve calls now.",
+     "returns_doc": "ok: false when the plugin cannot serve calls. Health reports a problem and never raises one.",
+     "errors": []
+    },
+    "index": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "documents": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "properties": {
+          "id": {
+           "type": "string"
+          },
+          "text": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "id",
+          "text"
+         ],
+         "additionalProperties": true
+        }
+       }
+      },
+      "required": [
+       "documents"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "indexed": {
+        "type": "integer"
+       },
+       "index_version": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "indexed",
+       "index_version"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "documents": [
+       {
+        "id": "__conformance_doc__",
+        "text": "conformance check"
+       }
+      ]
+     },
+     "timeout_s": 120,
+     "effect": "write",
+     "purpose": "Add or replace documents in the index.",
+     "returns_doc": "indexed (the number of documents now in the index from this call) and index_version (changes whenever the index content changes).",
+     "errors": [
+      {
+       "code": "invalid_argument",
+       "when": "A document has an empty id or empty text.",
+       "probe": {
+        "documents": [
+         {
+          "id": "",
+          "text": "x"
+         }
+        ]
+       }
+      },
+      {
+       "code": "unavailable",
+       "when": "The index backend is down.",
+       "probe": null
+      }
+     ]
+    },
+    "query": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "user": {
+        "type": "string"
+       },
+       "query": {
+        "type": "string"
+       },
+       "k": {
+        "type": "integer"
+       },
+       "filters": {
+        "type": "object"
+       }
+      },
+      "required": [
+       "user",
+       "query",
+       "k",
+       "filters"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "passages": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "properties": {
+          "id": {
+           "type": "string"
+          },
+          "text": {
+           "type": "string"
+          },
+          "score": {
+           "type": "number"
+          },
+          "source": {
+           "type": "string"
+          },
+          "permissions": {
+           "type": "object"
+          }
+         },
+         "required": [
+          "id",
+          "text",
+          "score",
+          "source",
+          "permissions"
+         ],
+         "additionalProperties": true
+        }
+       }
+      },
+      "required": [
+       "passages"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "user": "u",
+      "query": "hello",
+      "k": 3,
+      "filters": {}
+     },
+     "timeout_s": 30,
+     "effect": "read_only",
+     "purpose": "Search the index for what a user may read.",
+     "returns_doc": "passages: at most k, ordered by score from highest to lowest, each with its id, text, score, source and permissions. An empty list when nothing matches; that is not an error.",
+     "errors": [
+      {
+       "code": "invalid_argument",
+       "when": "k is below 1, or the query is empty.",
+       "probe": {
+        "user": "u",
+        "query": "q",
+        "k": 0,
+        "filters": {}
+       }
+      },
+      {
+       "code": "permission_denied",
+       "when": "The user may not read anything (the plugin, not the harness, enforces access).",
+       "probe": {
+        "user": "__no_access__",
+        "query": "q",
+        "k": 1,
+        "filters": {}
+       }
+      },
+      {
+       "code": "unavailable",
+       "when": "The index backend is down.",
+       "probe": null
+      },
+      {
+       "code": "rate_limited",
+       "when": "The embedding or index backend refused the call for now.",
+       "probe": null
+      }
+     ]
+    },
+    "forget": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      },
+      "required": [
+       "ids"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "removed": {
+        "type": "integer"
+       }
+      },
+      "required": [
+       "removed"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "ids": [
+       "__conformance_doc__"
+      ]
+     },
+     "timeout_s": 30,
+     "effect": "write",
+     "purpose": "Remove documents from the index. Idempotent.",
+     "returns_doc": "removed: how many of the ids were present. Removing an id that is not there is not an error.",
+     "errors": [
+      {
+       "code": "invalid_argument",
+       "when": "The list of ids is empty.",
+       "probe": {
+        "ids": []
+       }
+      },
+      {
+       "code": "unavailable",
+       "when": "The index backend is down.",
+       "probe": null
+      }
+     ]
+    }
+   }
+  },
+  "user_model": {
+   "interface_version": "1.0.0",
+   "summary": "User modeling and next-action prediction. User-owned; needs real user data and models.",
+   "trust": "untrusted_output",
+   "min_profile": "standard",
+   "grants": [
+    "model_calls"
+   ],
+   "methods": {
+    "describe": {
+     "input": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "kind": {
+        "type": "string"
+       },
+       "version": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "id",
+       "kind",
+       "version"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {},
+     "timeout_s": 5,
+     "effect": "read_only",
+     "purpose": "Say who the plugin is.",
+     "returns_doc": "id, kind and version, which must equal the manifest's.",
+     "errors": []
+    },
+    "health": {
+     "input": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "ok": {
+        "type": "boolean"
+       }
+      },
+      "required": [
+       "ok"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {},
+     "timeout_s": 5,
+     "effect": "read_only",
+     "purpose": "Say whether the plugin can serve calls now.",
+     "returns_doc": "ok: false when the plugin cannot serve calls. Health reports a problem and never raises one.",
+     "errors": []
+    },
+    "observe": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "user": {
+        "type": "string"
+       },
+       "event": {
+        "type": "object"
+       }
+      },
+      "required": [
+       "user",
+       "event"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "recorded": {
+        "type": "boolean"
+       }
+      },
+      "required": [
+       "recorded"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "user": "__conformance_user__",
+      "event": {}
+     },
+     "timeout_s": 10,
+     "effect": "write",
+     "purpose": "Record one event about a user.",
+     "returns_doc": "recorded: true when the event was stored.",
+     "errors": [
+      {
+       "code": "invalid_argument",
+       "when": "The user id is empty.",
+       "probe": {
+        "user": "",
+        "event": {}
+       }
+      },
+      {
+       "code": "unavailable",
+       "when": "The store is down.",
+       "probe": null
+      }
+     ]
+    },
+    "predict": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "user": {
+        "type": "string"
+       },
+       "context": {
+        "type": "object"
+       }
+      },
+      "required": [
+       "user",
+       "context"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "prediction": {
+        "type": "object"
+       },
+       "confidence": {
+        "type": "number"
+       }
+      },
+      "required": [
+       "prediction",
+       "confidence"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "user": "__conformance_user__",
+      "context": {}
+     },
+     "timeout_s": 30,
+     "effect": "read_only",
+     "purpose": "Predict the user's next action from the context.",
+     "returns_doc": "prediction (any object) and confidence in [0, 1]. A user with no observations gets confidence 0, not an error.",
+     "errors": [
+      {
+       "code": "invalid_argument",
+       "when": "The user id is empty.",
+       "probe": {
+        "user": "",
+        "context": {}
+       }
+      },
+      {
+       "code": "unavailable",
+       "when": "The model is down.",
+       "probe": null
+      }
+     ]
+    },
+    "forget": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "user": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "user"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "removed": {
+        "type": "integer"
+       }
+      },
+      "required": [
+       "removed"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "user": "__conformance_user__"
+     },
+     "timeout_s": 30,
+     "effect": "write",
+     "purpose": "Delete everything held about a user. Idempotent.",
+     "returns_doc": "removed: how many records were deleted (0 if there were none).",
+     "errors": [
+      {
+       "code": "invalid_argument",
+       "when": "The user id is empty.",
+       "probe": {
+        "user": ""
+       }
+      },
+      {
+       "code": "unavailable",
+       "when": "The store is down.",
+       "probe": null
+      }
+     ]
+    }
+   }
+  },
+  "computer_use": {
+   "interface_version": "1.0.0",
+   "summary": "Operates a virtual display. Needs a browser or desktop environment and a vision model.",
+   "trust": "untrusted_output",
+   "min_profile": "standard",
+   "grants": [
+    "model_calls",
+    "network"
+   ],
+   "methods": {
+    "describe": {
+     "input": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "kind": {
+        "type": "string"
+       },
+       "version": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "id",
+       "kind",
+       "version"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {},
+     "timeout_s": 5,
+     "effect": "read_only",
+     "purpose": "Say who the plugin is.",
+     "returns_doc": "id, kind and version, which must equal the manifest's.",
+     "errors": []
+    },
+    "health": {
+     "input": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "ok": {
+        "type": "boolean"
+       }
+      },
+      "required": [
+       "ok"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {},
+     "timeout_s": 5,
+     "effect": "read_only",
+     "purpose": "Say whether the plugin can serve calls now.",
+     "returns_doc": "ok: false when the plugin cannot serve calls. Health reports a problem and never raises one.",
+     "errors": []
+    },
+    "open": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "spec": {
+        "type": "object"
+       }
+      },
+      "required": [
+       "spec"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "session": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "session"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "spec": {}
+     },
+     "timeout_s": 60,
+     "effect": "write",
+     "purpose": "Open a session on a virtual display.",
+     "returns_doc": "session: an id that observe, act and close accept until the session is closed.",
+     "errors": [
+      {
+       "code": "unsupported",
+       "when": "The environment named in the spec is not available.",
+       "probe": {
+        "spec": {
+         "environment": "__unsupported__"
+        }
+       }
+      },
+      {
+       "code": "unavailable",
+       "when": "No display could be started.",
+       "probe": null
+      }
+     ]
+    },
+    "observe": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "session": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "session"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "observation": {
+        "type": "object"
+       }
+      },
+      "required": [
+       "observation"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "session": "s1"
+     },
+     "timeout_s": 30,
+     "effect": "read_only",
+     "purpose": "Read the current screen of a session.",
+     "returns_doc": "observation: what is on the screen, as an object.",
+     "errors": [
+      {
+       "code": "not_found",
+       "when": "The session does not exist or was closed.",
+       "probe": {
+        "session": "__no_such_session__"
+       }
+      },
+      {
+       "code": "unavailable",
+       "when": "The display is not reachable.",
+       "probe": null
+      }
+     ]
+    },
+    "act": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "session": {
+        "type": "string"
+       },
+       "action": {
+        "type": "object"
+       }
+      },
+      "required": [
+       "session",
+       "action"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "observation": {
+        "type": "object"
+       }
+      },
+      "required": [
+       "observation"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "session": "s1",
+      "action": {
+       "type": "noop"
+      }
+     },
+     "timeout_s": 30,
+     "effect": "write",
+     "purpose": "Perform one action (a click, a key, a scroll) in a session.",
+     "returns_doc": "observation: the screen after the action. The action must have a `type`.",
+     "errors": [
+      {
+       "code": "invalid_argument",
+       "when": "The action has no type. This is checked before the session is looked up.",
+       "probe": {
+        "session": "__no_such_session__",
+        "action": {}
+       }
+      },
+      {
+       "code": "not_found",
+       "when": "The session does not exist or was closed.",
+       "probe": {
+        "session": "__no_such_session__",
+        "action": {
+         "type": "noop"
+        }
+       }
+      },
+      {
+       "code": "unavailable",
+       "when": "The display is not reachable.",
+       "probe": null
+      }
+     ]
+    },
+    "close": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "session": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "session"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "closed": {
+        "type": "boolean"
+       }
+      },
+      "required": [
+       "closed"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "session": "s1"
+     },
+     "timeout_s": 30,
+     "effect": "write",
+     "purpose": "Close a session.",
+     "returns_doc": "closed: true. Closing releases the display, and the session id is not valid afterwards.",
+     "errors": [
+      {
+       "code": "not_found",
+       "when": "The session does not exist.",
+       "probe": {
+        "session": "__no_such_session__"
+       }
+      }
+     ]
+    }
+   }
+  },
+  "research": {
+   "interface_version": "1.0.0",
+   "summary": "Research mode in an isolated fork. Needs real models and isolated forks.",
+   "trust": "untrusted_output",
+   "min_profile": "high",
+   "grants": [
+    "model_calls"
+   ],
+   "methods": {
+    "describe": {
+     "input": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "kind": {
+        "type": "string"
+       },
+       "version": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "id",
+       "kind",
+       "version"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {},
+     "timeout_s": 5,
+     "effect": "read_only",
+     "purpose": "Say who the plugin is.",
+     "returns_doc": "id, kind and version, which must equal the manifest's.",
+     "errors": []
+    },
+    "health": {
+     "input": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "ok": {
+        "type": "boolean"
+       }
+      },
+      "required": [
+       "ok"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {},
+     "timeout_s": 5,
+     "effect": "read_only",
+     "purpose": "Say whether the plugin can serve calls now.",
+     "returns_doc": "ok: false when the plugin cannot serve calls. Health reports a problem and never raises one.",
+     "errors": []
+    },
+    "fork": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "spec": {
+        "type": "object"
+       }
+      },
+      "required": [
+       "spec"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "fork_id": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "fork_id"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "spec": {}
+     },
+     "timeout_s": 120,
+     "effect": "write",
+     "purpose": "Start an isolated fork for research.",
+     "returns_doc": "fork_id: an id that step and stop accept.",
+     "errors": [
+      {
+       "code": "unsupported",
+       "when": "The spec asks for something the plugin cannot isolate.",
+       "probe": {
+        "spec": {
+         "__unsupported__": true
+        }
+       }
+      },
+      {
+       "code": "unavailable",
+       "when": "No fork could be started.",
+       "probe": null
+      }
+     ]
+    },
+    "step": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "fork_id": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "fork_id"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "state": {
+        "type": "object"
+       }
+      },
+      "required": [
+       "state"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "fork_id": "f1"
+     },
+     "timeout_s": 300,
+     "effect": "write",
+     "purpose": "Advance the research in a fork by one step.",
+     "returns_doc": "state: the fork's state after the step, as an object.",
+     "errors": [
+      {
+       "code": "not_found",
+       "when": "The fork does not exist.",
+       "probe": {
+        "fork_id": "__no_such_fork__"
+       }
+      },
+      {
+       "code": "unavailable",
+       "when": "The fork is not reachable.",
+       "probe": null
+      }
+     ]
+    },
+    "stop": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "fork_id": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "fork_id"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "stopped": {
+        "type": "boolean"
+       }
+      },
+      "required": [
+       "stopped"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "fork_id": "f1"
+     },
+     "timeout_s": 60,
+     "effect": "write",
+     "purpose": "Stop a fork. Idempotent.",
+     "returns_doc": "stopped: true, also when the fork was already stopped.",
+     "errors": [
+      {
+       "code": "not_found",
+       "when": "The fork never existed.",
+       "probe": {
+        "fork_id": "__no_such_fork__"
+       }
+      }
+     ]
+    }
+   }
+  },
+  "isolation": {
+   "interface_version": "1.0.0",
+   "summary": "A container, microVM or other isolation backend. The harness requires the effective settings to match the tier before a workload starts.",
+   "trust": "trusted_output",
+   "min_profile": "core",
+   "grants": [
+    "host"
+   ],
+   "methods": {
+    "describe": {
+     "input": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "kind": {
+        "type": "string"
+       },
+       "version": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "id",
+       "kind",
+       "version"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {},
+     "timeout_s": 5,
+     "effect": "read_only",
+     "purpose": "Say who the plugin is.",
+     "returns_doc": "id, kind and version, which must equal the manifest's.",
+     "errors": []
+    },
+    "health": {
+     "input": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "ok": {
+        "type": "boolean"
+       }
+      },
+      "required": [
+       "ok"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {},
+     "timeout_s": 5,
+     "effect": "read_only",
+     "purpose": "Say whether the plugin can serve calls now.",
+     "returns_doc": "ok: false when the plugin cannot serve calls. Health reports a problem and never raises one.",
+     "errors": []
+    },
+    "provision": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "spec": {
+        "type": "object"
+       }
+      },
+      "required": [
+       "spec"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "sandbox_id": {
+        "type": "string"
+       },
+       "effective": {
+        "type": "object"
+       }
+      },
+      "required": [
+       "sandbox_id",
+       "effective"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "spec": {}
+     },
+     "timeout_s": 120,
+     "effect": "write",
+     "purpose": "Create a sandbox for a tier.",
+     "returns_doc": "sandbox_id, and effective: every setting that is actually in force (not the settings that were requested).",
+     "errors": [
+      {
+       "code": "unsupported",
+       "when": "The tier or an option in the spec is not supported by this backend.",
+       "probe": {
+        "spec": {
+         "tier": "__unsupported__"
+        }
+       }
+      },
+      {
+       "code": "unavailable",
+       "when": "The container host is not reachable.",
+       "probe": null
+      }
+     ]
+    },
+    "verify": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "sandbox_id": {
+        "type": "string"
+       },
+       "required": {
+        "type": "object"
+       }
+      },
+      "required": [
+       "sandbox_id",
+       "required"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "ok": {
+        "type": "boolean"
+       },
+       "observed": {
+        "type": "object"
+       }
+      },
+      "required": [
+       "ok",
+       "observed"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "sandbox_id": "sb1",
+      "required": {}
+     },
+     "timeout_s": 60,
+     "effect": "read_only",
+     "purpose": "Check a sandbox against the settings a tier requires.",
+     "returns_doc": "ok: true only if every required setting is present in observed with the required value; observed: the settings in force, including any `egress_inspection` record (design \u00a710.6). It never reports ok for a setting it did not observe.",
+     "errors": [
+      {
+       "code": "not_found",
+       "when": "The sandbox does not exist.",
+       "probe": {
+        "sandbox_id": "__no_such_sandbox__",
+        "required": {}
+       }
+      },
+      {
+       "code": "unavailable",
+       "when": "The container host is not reachable.",
+       "probe": null
+      }
+     ]
+    },
+    "destroy": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "sandbox_id": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "sandbox_id"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "destroyed": {
+        "type": "boolean"
+       }
+      },
+      "required": [
+       "destroyed"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "sandbox_id": "sb1"
+     },
+     "timeout_s": 60,
+     "effect": "write",
+     "purpose": "Remove a sandbox. Idempotent.",
+     "returns_doc": "destroyed: true if a sandbox was removed, false if there was none. Not an error.",
+     "errors": [
+      {
+       "code": "unavailable",
+       "when": "The container host is not reachable.",
+       "probe": null
+      }
+     ]
+    }
+   }
+  },
+  "assurance": {
+   "interface_version": "1.0.0",
+   "summary": "High-assurance services: attestation and brokered child sandboxes. Needs microVMs, brokered children and an attested review plane.",
+   "trust": "trusted_output",
+   "min_profile": "high",
+   "grants": [
+    "host"
+   ],
+   "methods": {
+    "describe": {
+     "input": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "kind": {
+        "type": "string"
+       },
+       "version": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "id",
+       "kind",
+       "version"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {},
+     "timeout_s": 5,
+     "effect": "read_only",
+     "purpose": "Say who the plugin is.",
+     "returns_doc": "id, kind and version, which must equal the manifest's.",
+     "errors": []
+    },
+    "health": {
+     "input": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "ok": {
+        "type": "boolean"
+       }
+      },
+      "required": [
+       "ok"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {},
+     "timeout_s": 5,
+     "effect": "read_only",
+     "purpose": "Say whether the plugin can serve calls now.",
+     "returns_doc": "ok: false when the plugin cannot serve calls. Health reports a problem and never raises one.",
+     "errors": []
+    },
+    "attest": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "subject": {
+        "type": "string"
+       },
+       "evidence": {
+        "type": "object"
+       }
+      },
+      "required": [
+       "subject",
+       "evidence"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "attestation": {
+        "type": "object"
+       }
+      },
+      "required": [
+       "attestation"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "subject": "s",
+      "evidence": {}
+     },
+     "timeout_s": 60,
+     "effect": "read_only",
+     "purpose": "Produce an attestation about a subject from evidence.",
+     "returns_doc": "attestation: an object that identifies its issuer and the subject and binds the evidence (for example by digest).",
+     "errors": [
+      {
+       "code": "invalid_argument",
+       "when": "The subject is empty.",
+       "probe": {
+        "subject": "",
+        "evidence": {}
+       }
+      },
+      {
+       "code": "unavailable",
+       "when": "The attestation service is down.",
+       "probe": null
+      }
+     ]
+    },
+    "broker_child": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "spec": {
+        "type": "object"
+       }
+      },
+      "required": [
+       "spec"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "child_id": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "child_id"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "spec": {}
+     },
+     "timeout_s": 120,
+     "effect": "write",
+     "purpose": "Create a child sandbox through the broker.",
+     "returns_doc": "child_id: an id for the child.",
+     "errors": [
+      {
+       "code": "unsupported",
+       "when": "The spec asks for something the broker cannot provide.",
+       "probe": {
+        "spec": {
+         "__unsupported__": true
+        }
+       }
+      },
+      {
+       "code": "unavailable",
+       "when": "The broker is down.",
+       "probe": null
+      }
+     ]
+    }
+   }
+  },
+  "evaluator": {
+   "interface_version": "1.0.0",
+   "summary": "Evaluation of one criterion: a deterministic script (`code`), a language model scoring against a rubric (`llm_judge`), or a model whose output is a typed verdict (`typesafe_ai`). The harness derives its independence from the agent under test and decides whether it may gate.",
+   "trust": "untrusted_output",
+   "min_profile": "core",
+   "grants": [
+    "model_calls"
+   ],
+   "methods": {
+    "describe": {
+     "input": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "kind": {
+        "type": "string"
+       },
+       "version": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "id",
+       "kind",
+       "version"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {},
+     "timeout_s": 5,
+     "effect": "read_only",
+     "purpose": "Say who the plugin is.",
+     "returns_doc": "id, kind and version, which must equal the manifest's.",
+     "errors": []
+    },
+    "health": {
+     "input": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "ok": {
+        "type": "boolean"
+       }
+      },
+      "required": [
+       "ok"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {},
+     "timeout_s": 5,
+     "effect": "read_only",
+     "purpose": "Say whether the plugin can serve calls now.",
+     "returns_doc": "ok: false when the plugin cannot serve calls. Health reports a problem and never raises one.",
+     "errors": []
+    },
+    "evaluate": {
+     "input": {
+      "type": "object",
+      "properties": {
+       "criterion": {
+        "type": "object",
+        "required": [
+         "id"
+        ]
+       },
+       "subject": {
+        "type": "object"
+       },
+       "evidence": {
+        "type": "object"
+       }
+      },
+      "required": [
+       "criterion",
+       "subject",
+       "evidence"
+      ],
+      "additionalProperties": true
+     },
+     "output": {
+      "type": "object",
+      "properties": {
+       "verdict": {
+        "enum": [
+         "PASS",
+         "FAIL",
+         "PARTIAL",
+         "UNCERTAIN"
+        ]
+       },
+       "reason_codes": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       },
+       "evidence_refs": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       },
+       "confidence": {
+        "type": "number"
+       }
+      },
+      "required": [
+       "verdict",
+       "reason_codes",
+       "evidence_refs"
+      ],
+      "additionalProperties": true
+     },
+     "sample": {
+      "criterion": {
+       "id": "c1"
+      },
+      "subject": {},
+      "evidence": {}
+     },
+     "timeout_s": 120,
+     "effect": "read_only",
+     "purpose": "Judge one criterion against the evidence.",
+     "returns_doc": "verdict (PASS, FAIL, PARTIAL or UNCERTAIN), reason_codes, evidence_refs, and optionally confidence. UNCERTAIN, never PASS, when the evidence is missing or insufficient.",
+     "errors": [
+      {
+       "code": "invalid_argument",
+       "when": "The criterion has an empty id.",
+       "probe": {
+        "criterion": {
+         "id": ""
+        },
+        "subject": {},
+        "evidence": {}
+       }
+      },
+      {
+       "code": "unavailable",
+       "when": "The judge model is down.",
+       "probe": null
+      },
+      {
+       "code": "rate_limited",
+       "when": "The judge model refused the call for now.",
+       "probe": null
+      }
+     ]
+    }
+   }
+  }
+ },
+ "error_codes": {
+  "invalid_argument": {
+   "retryable": false,
+   "meaning": "The arguments are well-formed but not acceptable (an empty id, k below 1, an action without a type). Arguments are validated before any resource is looked up."
+  },
+  "not_found": {
+   "retryable": false,
+   "meaning": "The session, fork or sandbox that the call names does not exist."
+  },
+  "permission_denied": {
+   "retryable": false,
+   "meaning": "The caller may not do this. The plugin enforces it; the harness does not rely on the model to."
+  },
+  "conflict": {
+   "retryable": false,
+   "meaning": "The request conflicts with the current state."
+  },
+  "unsupported": {
+   "retryable": false,
+   "meaning": "The plugin does not support this request (an unknown tier or environment)."
+  },
+  "unavailable": {
+   "retryable": true,
+   "meaning": "A backend that the plugin depends on is down or cannot be reached."
+  },
+  "rate_limited": {
+   "retryable": true,
+   "meaning": "A limit of a backend was reached; try again later."
+  }
+ },
+ "probe_conventions": {
+  "reserved_ids": {
+   "user": "__no_access__ (has no permissions on anything)",
+   "session": "__no_such_session__",
+   "fork": "__no_such_fork__",
+   "sandbox": "__no_such_sandbox__"
+  },
+  "rule": "A probe is a safe input that must make the method raise exactly the named error without changing state. A plugin must treat each reserved id as nonexistent or unauthorized. Because probes are run when a plugin is loaded, they never touch real data."
+ },
+ "conformance_rule": "Conformance calls every method with its sample on the live plugin. A sample for a method with side effects uses a reserved id that no real data can have (__conformance_doc__, __conformance_user__). An id that a plugin creates (a session, a fork, a sandbox) is taken from the result of the creating call and used by the calls that follow it, so a plugin is never expected to hand out a particular id, and what it created is closed, stopped or destroyed by the end of the sequence."
+}

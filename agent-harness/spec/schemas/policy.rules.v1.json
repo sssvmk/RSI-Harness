@@ -1,0 +1,15 @@
+{ "$id": "policy.rules.v1", "type": "object", "required": ["schema_version","rules"],
+  "properties": { "schema_version": {"const":1},
+    "rules": {"type":"array","items":{"type":"object","required":["id","action"],"additionalProperties":false,
+      "properties":{
+        "id":{"type":"string"}, "description":{"type":"string"},
+        "match":{"type":"object","additionalProperties":false,"properties":{
+          "tool":{"type":"array","items":{"type":"string"}},
+          "effect_class":{"type":"array","items":{"enum":["read_only","reversible_write","irreversible","external_facing"]}},
+          "profile":{"type":"array","items":{"enum":["core","standard","high"]}},
+          "actor_role":{"type":"array","items":{"type":"string"}},
+          "args":{"type":"array","items":{"type":"object","required":["path","op"],
+            "properties":{"path":{"type":"string"},"op":{"enum":["eq","ne","in","glob","regex","lt","lte","gt","gte","exists"]},"value":{}}}}}},
+        "action":{"enum":["allow","deny","require_approval"]},
+        "approval":{"type":"object","properties":{"ttl_s":{"type":"integer"},"max_count":{"type":"integer"},
+          "allow_standing":{"type":"boolean"},"scope":{"type":"object"}}} } } } } }

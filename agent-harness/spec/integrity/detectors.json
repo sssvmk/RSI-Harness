@@ -1,0 +1,11 @@
+{
+ "schema_version": 1,
+ "classes": {
+  "tampering": {"required": [{"id": "protected_surface_hash", "version": "1", "severity": "critical", "automatic": true, "description": "The protected control and evaluation surface is unchanged by the code under evaluation (integrity hashes checked before each gate)"}]},
+  "state_carryover": {"required": [{"id": "fresh_environment_check", "version": "1", "severity": "high", "automatic": false, "description": "Each evaluation starts from a fresh environment with no state left by an earlier one"}]},
+  "over_granular_feedback": {"required": [{"id": "feedback_byte_cap", "version": "1", "severity": "medium", "automatic": true, "description": "The byte cap on feedback holds and records when it cuts text"}]},
+  "selection_bias": {"required": [{"id": "heldout_query_budget", "version": "1", "severity": "high", "automatic": true, "description": "The number of held-out queries a set has served stays below its cap"}]},
+  "clock_reset": {"required": [{"id": "post_recovery_counter_check", "version": "1", "severity": "high", "automatic": false, "description": "Budgets and the clock are not reset by a recovery"}]},
+  "stale_grants": {"required": [{"id": "post_run_grant_sweep", "version": "1", "severity": "high", "automatic": false, "description": "No network rule, credential, or sandbox is left behind after a run"}]}
+ }
+}

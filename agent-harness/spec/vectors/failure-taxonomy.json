@@ -1,0 +1,276 @@
+{
+ "base_fingerprint": "d75b6c7127d3cfacb2f7b6cc623a57b87f3d04cb1430459f9971ab227235250e",
+ "extended_fingerprint": "393bb7a9c1a0de639aab35766c9b0d36f362822f3c72286954c00a641df44022",
+ "extension": {
+  "layer": "app",
+  "classes": [
+   {
+    "code": "app.order_not_found"
+   },
+   {
+    "code": "app.refund_over_limit"
+   }
+  ],
+  "rules": [
+   {
+    "reason": "fatal_error",
+    "last_error": "app.order_not_found",
+    "class": "app",
+    "code": "app.order_not_found"
+   },
+   {
+    "reason": "fatal_error",
+    "last_error": "app.refund_over_limit",
+    "class": "app",
+    "code": "app.refund_over_limit"
+   }
+  ]
+ },
+ "codes": [
+  "app.order_not_found",
+  "app.refund_over_limit",
+  "arch.budget_exhausted",
+  "arch.recovery",
+  "arch.stuck_loop",
+  "arch.subagent_conflict",
+  "env.resource",
+  "env.sandbox_mismatch",
+  "eval_integrity.clock_reset",
+  "eval_integrity.over_granular_feedback",
+  "eval_integrity.selection_bias",
+  "eval_integrity.stale_grants",
+  "eval_integrity.state_carryover",
+  "eval_integrity.tampering",
+  "sec.policy_violation",
+  "sec.prompt_injection",
+  "sec.skill_regression",
+  "selfmod.diversity_collapse",
+  "selfmod.harness_adherence",
+  "selfmod.implementation_drift",
+  "selfmod.invalid_proposal",
+  "selfmod.over_optimism",
+  "selfmod.overfitting",
+  "selfmod.post_promotion_regression",
+  "selfmod.reward_hacking",
+  "state.compaction_loss",
+  "state.progress_lost",
+  "tool.contract",
+  "tool.noisy_observation",
+  "tool.selection"
+ ],
+ "cases": [
+  {
+   "name": "terminated by budget",
+   "reason": "budget_exhausted:tokens",
+   "last_error": null,
+   "error_codes": [],
+   "base": {
+    "class": "architecture",
+    "code": "arch.budget_exhausted",
+    "secondary": [],
+    "taxonomy_version": 2,
+    "taxonomy_fingerprint": "d75b6c7127d3cfacb2f7b6cc623a57b87f3d04cb1430459f9971ab227235250e"
+   },
+   "extended": {
+    "class": "architecture",
+    "code": "arch.budget_exhausted",
+    "secondary": [],
+    "taxonomy_version": 2,
+    "taxonomy_fingerprint": "393bb7a9c1a0de639aab35766c9b0d36f362822f3c72286954c00a641df44022"
+   }
+  },
+  {
+   "name": "tool error",
+   "reason": "fatal_error",
+   "last_error": "tool.unknown",
+   "error_codes": [],
+   "base": {
+    "class": "tool",
+    "code": "tool.selection",
+    "secondary": [],
+    "taxonomy_version": 2,
+    "taxonomy_fingerprint": "d75b6c7127d3cfacb2f7b6cc623a57b87f3d04cb1430459f9971ab227235250e"
+   },
+   "extended": {
+    "class": "tool",
+    "code": "tool.selection",
+    "secondary": [],
+    "taxonomy_version": 2,
+    "taxonomy_fingerprint": "393bb7a9c1a0de639aab35766c9b0d36f362822f3c72286954c00a641df44022"
+   }
+  },
+  {
+   "name": "secondary tags",
+   "reason": "budget_exhausted:turns",
+   "last_error": null,
+   "error_codes": [
+    "tool.unknown",
+    "fs.read_failed",
+    "app.order_not_found"
+   ],
+   "base": {
+    "class": "architecture",
+    "code": "arch.budget_exhausted",
+    "secondary": [
+     "tool.selection",
+     "tool.contract"
+    ],
+    "taxonomy_version": 2,
+    "taxonomy_fingerprint": "d75b6c7127d3cfacb2f7b6cc623a57b87f3d04cb1430459f9971ab227235250e"
+   },
+   "extended": {
+    "class": "architecture",
+    "code": "arch.budget_exhausted",
+    "secondary": [
+     "tool.selection",
+     "tool.contract",
+     "app.order_not_found"
+    ],
+    "taxonomy_version": 2,
+    "taxonomy_fingerprint": "393bb7a9c1a0de639aab35766c9b0d36f362822f3c72286954c00a641df44022"
+   }
+  },
+  {
+   "name": "app error",
+   "reason": "fatal_error",
+   "last_error": "app.order_not_found",
+   "error_codes": [
+    "app.refund_over_limit"
+   ],
+   "base": {
+    "class": "environment",
+    "code": "env.sandbox_mismatch",
+    "secondary": [],
+    "taxonomy_version": 2,
+    "taxonomy_fingerprint": "d75b6c7127d3cfacb2f7b6cc623a57b87f3d04cb1430459f9971ab227235250e"
+   },
+   "extended": {
+    "class": "app",
+    "code": "app.order_not_found",
+    "secondary": [
+     "app.refund_over_limit"
+    ],
+    "taxonomy_version": 2,
+    "taxonomy_fingerprint": "393bb7a9c1a0de639aab35766c9b0d36f362822f3c72286954c00a641df44022"
+   }
+  },
+  {
+   "name": "core beats app",
+   "reason": "fatal_error",
+   "last_error": "tool.invalid_arguments",
+   "error_codes": [
+    "app.order_not_found"
+   ],
+   "base": {
+    "class": "tool",
+    "code": "tool.contract",
+    "secondary": [],
+    "taxonomy_version": 2,
+    "taxonomy_fingerprint": "d75b6c7127d3cfacb2f7b6cc623a57b87f3d04cb1430459f9971ab227235250e"
+   },
+   "extended": {
+    "class": "tool",
+    "code": "tool.contract",
+    "secondary": [
+     "app.order_not_found"
+    ],
+    "taxonomy_version": 2,
+    "taxonomy_fingerprint": "393bb7a9c1a0de639aab35766c9b0d36f362822f3c72286954c00a641df44022"
+   }
+  },
+  {
+   "name": "fallback",
+   "reason": "fatal_error",
+   "last_error": null,
+   "error_codes": [],
+   "base": {
+    "class": "environment",
+    "code": "env.sandbox_mismatch",
+    "secondary": [],
+    "taxonomy_version": 2,
+    "taxonomy_fingerprint": "d75b6c7127d3cfacb2f7b6cc623a57b87f3d04cb1430459f9971ab227235250e"
+   },
+   "extended": {
+    "class": "environment",
+    "code": "env.sandbox_mismatch",
+    "secondary": [],
+    "taxonomy_version": 2,
+    "taxonomy_fingerprint": "393bb7a9c1a0de639aab35766c9b0d36f362822f3c72286954c00a641df44022"
+   }
+  },
+  {
+   "name": "operator kill",
+   "reason": "operator_kill",
+   "last_error": null,
+   "error_codes": [],
+   "base": null,
+   "extended": null
+  },
+  {
+   "name": "unknown reason",
+   "reason": "mystery",
+   "last_error": null,
+   "error_codes": [],
+   "base": {
+    "class": "architecture",
+    "code": "arch.recovery",
+    "secondary": [],
+    "taxonomy_version": 2,
+    "taxonomy_fingerprint": "d75b6c7127d3cfacb2f7b6cc623a57b87f3d04cb1430459f9971ab227235250e"
+   },
+   "extended": {
+    "class": "architecture",
+    "code": "arch.recovery",
+    "secondary": [],
+    "taxonomy_version": 2,
+    "taxonomy_fingerprint": "393bb7a9c1a0de639aab35766c9b0d36f362822f3c72286954c00a641df44022"
+   }
+  }
+ ],
+ "refused_extensions": [
+  {
+   "name": "core name",
+   "extension": {
+    "layer": "tool",
+    "classes": [],
+    "rules": []
+   }
+  },
+  {
+   "name": "bad class",
+   "extension": {
+    "layer": "app",
+    "classes": [
+     {
+      "code": "tool.x"
+     }
+    ]
+   }
+  },
+  {
+   "name": "foreign rule",
+   "extension": {
+    "layer": "app",
+    "classes": [
+     {
+      "code": "app.a"
+     }
+    ],
+    "rules": [
+     {
+      "reason": "x",
+      "class": "tool",
+      "code": "tool.selection"
+     }
+    ]
+   }
+  },
+  {
+   "name": "unknown key",
+   "extension": {
+    "layer": "app",
+    "extra": 1
+   }
+  }
+ ]
+}

@@ -1,0 +1,103 @@
+{
+ "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+ "genesis": "71d6807b7d35ebb71aecf30d850c09927238f977090ae2b30a58a621b0ca3ad2",
+ "events": [
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 1,
+   "ts": "2026-10-19T08:53:20.137Z",
+   "type": "run.created",
+   "actor": {
+    "kind": "user",
+    "id": "u"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "owner": "u",
+    "profile": "core",
+    "config_commit": "c"
+   },
+   "prev_hash": "71d6807b7d35ebb71aecf30d850c09927238f977090ae2b30a58a621b0ca3ad2",
+   "hash": "f09aefccaa947438d392ae247164400be444d81812a4da6c58f74ea20bbde58c"
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 2,
+   "ts": "2026-10-19T08:53:20.274Z",
+   "type": "model.responded",
+   "actor": {
+    "kind": "agent",
+    "id": "a"
+   },
+   "causation_seq": 1,
+   "correlation_id": "corr1",
+   "schema_version": 1,
+   "payload": {
+    "usage": {
+     "input_tokens": 1,
+     "output_tokens": 2
+    },
+    "f": [
+     0.1,
+     100.0,
+     1e+21,
+     1e-07,
+     -0.0,
+     123456789.125,
+     9007199254740991
+    ],
+    "s": "é😀\u0000\n\"\\"
+   },
+   "prev_hash": "f09aefccaa947438d392ae247164400be444d81812a4da6c58f74ea20bbde58c",
+   "hash": "c9436d092812dedd253cd3a61aa30704c9c989e893f65747977b4c883bea637a"
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 3,
+   "ts": "2026-10-19T08:53:20.411Z",
+   "type": "tool.call.completed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": 2,
+   "correlation_id": "corr1",
+   "schema_version": 1,
+   "payload": {
+    "z": 1,
+    "a": {
+     "y": [],
+     "b": null
+    },
+    "t": true
+   },
+   "prev_hash": "c9436d092812dedd253cd3a61aa30704c9c989e893f65747977b4c883bea637a",
+   "hash": "2d01392630b535e23fd9c42cb406b5e1c51707b946c010ec9c9374cd8f4178e3"
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 4,
+   "ts": "2026-10-19T08:53:20.548Z",
+   "type": "unicode.keys",
+   "actor": {
+    "kind": "system",
+    "id": "s"
+   },
+   "causation_seq": 3,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "é": 1,
+    "e": 2,
+    "😀": 3,
+    "퟿": 4,
+    "～": 5
+   },
+   "prev_hash": "2d01392630b535e23fd9c42cb406b5e1c51707b946c010ec9c9374cd8f4178e3",
+   "hash": "43f9deee238d80b5eec6ea041bd6ea507afe5243879f61b337f1137296c6eb8e"
+  }
+ ],
+ "note": "payload floats are JSON numbers; 100.0 canonicalizes to 100"
+}

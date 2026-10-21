@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Run provenance manifest (design §13.9)",
+  "type": "object", "additionalProperties": false,
+  "required": ["manifest_schema_version", "run_id", "fields"],
+  "properties": {
+    "manifest_schema_version": {"const": "1.0"},
+    "run_id": {"type": "string"},
+    "fields": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object", "additionalProperties": false, "required": ["status", "value"],
+        "properties": {"status": {"enum": ["recorded", "unavailable", "not_applicable"]}, "value": {}, "reason": {"type": "string"}},
+        "allOf": [{"if": {"properties": {"status": {"enum": ["unavailable", "not_applicable"]}}}, "then": {"required": ["reason"], "properties": {"value": {"type": "null"}}}}]
+      }
+    }
+  }
+}

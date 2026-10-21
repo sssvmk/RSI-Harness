@@ -1,0 +1,1412 @@
+{
+ "spec": {
+  "schema_version": 1,
+  "classes": {
+   "c1": {
+    "required": [
+     {
+      "id": "d1",
+      "version": "1",
+      "severity": "critical",
+      "automatic": true,
+      "description": ""
+     },
+     {
+      "id": "d2",
+      "version": "1",
+      "severity": "high",
+      "automatic": false,
+      "description": ""
+     }
+    ]
+   },
+   "c2": {
+    "required": [
+     {
+      "id": "d3",
+      "version": "2",
+      "severity": "high",
+      "automatic": true,
+      "description": ""
+     }
+    ]
+   },
+   "c3": {
+    "required": [
+     {
+      "id": "d4",
+      "version": "1",
+      "severity": "medium",
+      "automatic": false,
+      "description": ""
+     }
+    ]
+   }
+  }
+ },
+ "scenarios": [
+  {
+   "name": "nothing has run",
+   "events": [],
+   "now": "2026-10-21T09:00:00Z",
+   "max_age_s": null,
+   "expect": {
+    "classes": {
+     "c1": "OPEN",
+     "c2": "OPEN",
+     "c3": "OPEN"
+    },
+    "rejected": [],
+    "effective": {
+     "d1": "open",
+     "d2": "open",
+     "d3": "open",
+     "d4": "open"
+    },
+    "history": {
+     "d1": 0,
+     "d2": 0,
+     "d3": 0,
+     "d4": 0
+    },
+    "blocking": {
+     "c1": [
+      "d1 is NOT_RUN",
+      "d2 is NOT_RUN"
+     ],
+     "c2": [
+      "d3 is NOT_RUN"
+     ],
+     "c3": [
+      "d4 is NOT_RUN"
+     ]
+    },
+    "waivers": {
+     "c1": [],
+     "c2": [],
+     "c3": []
+    }
+   }
+  },
+  {
+   "name": "everything passes",
+   "events": [
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d1",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "ev:d1",
+      "evidence_version": "1",
+      "run_id": "r1"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d2",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "ev:d2",
+      "evidence_version": "1",
+      "run_id": "r1"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d3",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "ev:d3",
+      "evidence_version": "2",
+      "run_id": "r1"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d4",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "ev:d4",
+      "evidence_version": "1",
+      "run_id": "r1"
+     }
+    }
+   ],
+   "now": "2026-10-21T09:00:00Z",
+   "max_age_s": null,
+   "expect": {
+    "classes": {
+     "c1": "CLOSED",
+     "c2": "CLOSED",
+     "c3": "CLOSED"
+    },
+    "rejected": [],
+    "effective": {
+     "d1": "pass",
+     "d2": "pass",
+     "d3": "pass",
+     "d4": "pass"
+    },
+    "history": {
+     "d1": 1,
+     "d2": 1,
+     "d3": 1,
+     "d4": 1
+    },
+    "blocking": {
+     "c1": [],
+     "c2": [],
+     "c3": []
+    },
+    "waivers": {
+     "c1": [],
+     "c2": [],
+     "c3": []
+    }
+   }
+  },
+  {
+   "name": "one failing detector keeps the class open",
+   "events": [
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d1",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "ev:d1",
+      "evidence_version": "1",
+      "run_id": "r1"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d2",
+      "status": "FAIL",
+      "by": "ann"
+     }
+    }
+   ],
+   "now": "2026-10-21T09:00:00Z",
+   "max_age_s": null,
+   "expect": {
+    "classes": {
+     "c1": "OPEN",
+     "c2": "OPEN",
+     "c3": "OPEN"
+    },
+    "rejected": [],
+    "effective": {
+     "d1": "pass",
+     "d2": "open",
+     "d3": "open",
+     "d4": "open"
+    },
+    "history": {
+     "d1": 1,
+     "d2": 1,
+     "d3": 0,
+     "d4": 0
+    },
+    "blocking": {
+     "c1": [
+      "d2 is FAIL"
+     ],
+     "c2": [
+      "d3 is NOT_RUN"
+     ],
+     "c3": [
+      "d4 is NOT_RUN"
+     ]
+    },
+    "waivers": {
+     "c1": [],
+     "c2": [],
+     "c3": []
+    }
+   }
+  },
+  {
+   "name": "a fix is verified by someone other than the person who made it",
+   "events": [
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d2",
+      "status": "FAIL",
+      "by": "ann"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d2",
+      "status": "FIXED_PENDING_VERIFICATION",
+      "by": "ann",
+      "note": "patched"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d2",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "ev:d2",
+      "evidence_version": "1",
+      "run_id": "r1"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d2",
+      "status": "PASS",
+      "by": "bob",
+      "evidence_ref": "ev:d2",
+      "evidence_version": "1",
+      "run_id": "r1"
+     }
+    }
+   ],
+   "now": "2026-10-21T09:00:00Z",
+   "max_age_s": null,
+   "expect": {
+    "classes": {
+     "c1": "OPEN",
+     "c2": "OPEN",
+     "c3": "OPEN"
+    },
+    "rejected": [
+     2
+    ],
+    "effective": {
+     "d1": "open",
+     "d2": "pass",
+     "d3": "open",
+     "d4": "open"
+    },
+    "history": {
+     "d1": 0,
+     "d2": 3,
+     "d3": 0,
+     "d4": 0
+    },
+    "blocking": {
+     "c1": [
+      "d1 is NOT_RUN"
+     ],
+     "c2": [
+      "d3 is NOT_RUN"
+     ],
+     "c3": [
+      "d4 is NOT_RUN"
+     ]
+    },
+    "waivers": {
+     "c1": [],
+     "c2": [],
+     "c3": []
+    }
+   }
+  },
+  {
+   "name": "evidence for an old version is refused",
+   "events": [
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d3",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "ev:d3",
+      "evidence_version": "1",
+      "run_id": "r1"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d3",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "ev:d3",
+      "evidence_version": "2",
+      "run_id": "r1"
+     }
+    }
+   ],
+   "now": "2026-10-21T09:00:00Z",
+   "max_age_s": null,
+   "expect": {
+    "classes": {
+     "c1": "OPEN",
+     "c2": "CLOSED",
+     "c3": "OPEN"
+    },
+    "rejected": [
+     0
+    ],
+    "effective": {
+     "d1": "open",
+     "d2": "open",
+     "d3": "pass",
+     "d4": "open"
+    },
+    "history": {
+     "d1": 0,
+     "d2": 0,
+     "d3": 1,
+     "d4": 0
+    },
+    "blocking": {
+     "c1": [
+      "d1 is NOT_RUN",
+      "d2 is NOT_RUN"
+     ],
+     "c2": [],
+     "c3": [
+      "d4 is NOT_RUN"
+     ]
+    },
+    "waivers": {
+     "c1": [],
+     "c2": [],
+     "c3": []
+    }
+   }
+  },
+  {
+   "name": "evidence that has aged is not current",
+   "events": [
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d1",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "ev:d1",
+      "evidence_version": "1",
+      "run_id": "r1"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d2",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "ev:d2",
+      "evidence_version": "1",
+      "run_id": "r1"
+     }
+    }
+   ],
+   "now": "2026-10-21T11:00:00Z",
+   "max_age_s": 3600,
+   "expect": {
+    "classes": {
+     "c1": "OPEN",
+     "c2": "OPEN",
+     "c3": "OPEN"
+    },
+    "rejected": [],
+    "effective": {
+     "d1": "open",
+     "d2": "open",
+     "d3": "open",
+     "d4": "open"
+    },
+    "history": {
+     "d1": 1,
+     "d2": 1,
+     "d3": 0,
+     "d4": 0
+    },
+    "blocking": {
+     "c1": [
+      "d1 is PASS but its evidence is not current",
+      "d2 is PASS but its evidence is not current"
+     ],
+     "c2": [
+      "d3 is NOT_RUN"
+     ],
+     "c3": [
+      "d4 is NOT_RUN"
+     ]
+    },
+    "waivers": {
+     "c1": [],
+     "c2": [],
+     "c3": []
+    }
+   }
+  },
+  {
+   "name": "evidence that has aged is current when no age limit is set",
+   "events": [
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d1",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "ev:d1",
+      "evidence_version": "1",
+      "run_id": "r1"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d2",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "ev:d2",
+      "evidence_version": "1",
+      "run_id": "r1"
+     }
+    }
+   ],
+   "now": "2026-10-21T11:00:00Z",
+   "max_age_s": null,
+   "expect": {
+    "classes": {
+     "c1": "CLOSED",
+     "c2": "OPEN",
+     "c3": "OPEN"
+    },
+    "rejected": [],
+    "effective": {
+     "d1": "pass",
+     "d2": "pass",
+     "d3": "open",
+     "d4": "open"
+    },
+    "history": {
+     "d1": 1,
+     "d2": 1,
+     "d3": 0,
+     "d4": 0
+    },
+    "blocking": {
+     "c1": [],
+     "c2": [
+      "d3 is NOT_RUN"
+     ],
+     "c3": [
+      "d4 is NOT_RUN"
+     ]
+    },
+    "waivers": {
+     "c1": [],
+     "c2": [],
+     "c3": []
+    }
+   }
+  },
+  {
+   "name": "an unexpired waiver closes the class with waivers",
+   "events": [
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d1",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "ev:d1",
+      "evidence_version": "1",
+      "run_id": "r1"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d2",
+      "status": "WAIVED",
+      "by": "ann",
+      "owner": "ann",
+      "waiver": {
+       "approved_by": "bob",
+       "rationale": "accepted risk",
+       "expires_at": "2026-11-21T08:00:00Z"
+      }
+     }
+    }
+   ],
+   "now": "2026-10-21T09:00:00Z",
+   "max_age_s": null,
+   "expect": {
+    "classes": {
+     "c1": "CLOSED_WITH_WAIVERS",
+     "c2": "OPEN",
+     "c3": "OPEN"
+    },
+    "rejected": [],
+    "effective": {
+     "d1": "pass",
+     "d2": "waived",
+     "d3": "open",
+     "d4": "open"
+    },
+    "history": {
+     "d1": 1,
+     "d2": 1,
+     "d3": 0,
+     "d4": 0
+    },
+    "blocking": {
+     "c1": [],
+     "c2": [
+      "d3 is NOT_RUN"
+     ],
+     "c3": [
+      "d4 is NOT_RUN"
+     ]
+    },
+    "waivers": {
+     "c1": [
+      "d2"
+     ],
+     "c2": [],
+     "c3": []
+    }
+   }
+  },
+  {
+   "name": "an expired waiver reopens the class",
+   "events": [
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d1",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "ev:d1",
+      "evidence_version": "1",
+      "run_id": "r1"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d2",
+      "status": "WAIVED",
+      "by": "ann",
+      "owner": "ann",
+      "waiver": {
+       "approved_by": "bob",
+       "rationale": "accepted risk",
+       "expires_at": "2026-10-21T10:00:00Z"
+      }
+     }
+    }
+   ],
+   "now": "2026-10-21T11:00:00Z",
+   "max_age_s": null,
+   "expect": {
+    "classes": {
+     "c1": "OPEN",
+     "c2": "OPEN",
+     "c3": "OPEN"
+    },
+    "rejected": [],
+    "effective": {
+     "d1": "pass",
+     "d2": "open",
+     "d3": "open",
+     "d4": "open"
+    },
+    "history": {
+     "d1": 1,
+     "d2": 1,
+     "d3": 0,
+     "d4": 0
+    },
+    "blocking": {
+     "c1": [
+      "d2 is WAIVED"
+     ],
+     "c2": [
+      "d3 is NOT_RUN"
+     ],
+     "c3": [
+      "d4 is NOT_RUN"
+     ]
+    },
+    "waivers": {
+     "c1": [
+      "d2"
+     ],
+     "c2": [],
+     "c3": []
+    }
+   }
+  },
+  {
+   "name": "the owner cannot approve their own waiver",
+   "events": [
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d2",
+      "status": "FAIL",
+      "by": "ann",
+      "owner": "ann"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d2",
+      "status": "WAIVED",
+      "by": "ann",
+      "waiver": {
+       "approved_by": "ann",
+       "rationale": "x",
+       "expires_at": "2026-11-21T08:00:00Z"
+      }
+     }
+    }
+   ],
+   "now": "2026-10-21T09:00:00Z",
+   "max_age_s": null,
+   "expect": {
+    "classes": {
+     "c1": "OPEN",
+     "c2": "OPEN",
+     "c3": "OPEN"
+    },
+    "rejected": [
+     1
+    ],
+    "effective": {
+     "d1": "open",
+     "d2": "open",
+     "d3": "open",
+     "d4": "open"
+    },
+    "history": {
+     "d1": 0,
+     "d2": 1,
+     "d3": 0,
+     "d4": 0
+    },
+    "blocking": {
+     "c1": [
+      "d1 is NOT_RUN",
+      "d2 is FAIL"
+     ],
+     "c2": [
+      "d3 is NOT_RUN"
+     ],
+     "c3": [
+      "d4 is NOT_RUN"
+     ]
+    },
+    "waivers": {
+     "c1": [],
+     "c2": [],
+     "c3": []
+    }
+   }
+  },
+  {
+   "name": "a waiver that has already expired is refused",
+   "events": [
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d2",
+      "status": "WAIVED",
+      "by": "ann",
+      "waiver": {
+       "approved_by": "bob",
+       "rationale": "x",
+       "expires_at": "2026-10-01T08:00:00Z"
+      }
+     }
+    }
+   ],
+   "now": "2026-10-21T09:00:00Z",
+   "max_age_s": null,
+   "expect": {
+    "classes": {
+     "c1": "OPEN",
+     "c2": "OPEN",
+     "c3": "OPEN"
+    },
+    "rejected": [
+     0
+    ],
+    "effective": {
+     "d1": "open",
+     "d2": "open",
+     "d3": "open",
+     "d4": "open"
+    },
+    "history": {
+     "d1": 0,
+     "d2": 0,
+     "d3": 0,
+     "d4": 0
+    },
+    "blocking": {
+     "c1": [
+      "d1 is NOT_RUN",
+      "d2 is NOT_RUN"
+     ],
+     "c2": [
+      "d3 is NOT_RUN"
+     ],
+     "c3": [
+      "d4 is NOT_RUN"
+     ]
+    },
+    "waivers": {
+     "c1": [],
+     "c2": [],
+     "c3": []
+    }
+   }
+  },
+  {
+   "name": "a waiver needs a rationale",
+   "events": [
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d2",
+      "status": "WAIVED",
+      "by": "ann",
+      "waiver": {
+       "approved_by": "bob",
+       "expires_at": "2026-11-21T08:00:00Z"
+      }
+     }
+    }
+   ],
+   "now": "2026-10-21T09:00:00Z",
+   "max_age_s": null,
+   "expect": {
+    "classes": {
+     "c1": "OPEN",
+     "c2": "OPEN",
+     "c3": "OPEN"
+    },
+    "rejected": [
+     0
+    ],
+    "effective": {
+     "d1": "open",
+     "d2": "open",
+     "d3": "open",
+     "d4": "open"
+    },
+    "history": {
+     "d1": 0,
+     "d2": 0,
+     "d3": 0,
+     "d4": 0
+    },
+    "blocking": {
+     "c1": [
+      "d1 is NOT_RUN",
+      "d2 is NOT_RUN"
+     ],
+     "c2": [
+      "d3 is NOT_RUN"
+     ],
+     "c3": [
+      "d4 is NOT_RUN"
+     ]
+    },
+    "waivers": {
+     "c1": [],
+     "c2": [],
+     "c3": []
+    }
+   }
+  },
+  {
+   "name": "not applicable needs a reason",
+   "events": [
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d4",
+      "status": "NOT_APPLICABLE",
+      "by": "ann"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d4",
+      "status": "NOT_APPLICABLE",
+      "by": "ann",
+      "note": "no feedback is produced in this evaluation"
+     }
+    }
+   ],
+   "now": "2026-10-21T09:00:00Z",
+   "max_age_s": null,
+   "expect": {
+    "classes": {
+     "c1": "OPEN",
+     "c2": "OPEN",
+     "c3": "OPEN"
+    },
+    "rejected": [
+     0
+    ],
+    "effective": {
+     "d1": "open",
+     "d2": "open",
+     "d3": "open",
+     "d4": "not_applicable"
+    },
+    "history": {
+     "d1": 0,
+     "d2": 0,
+     "d3": 0,
+     "d4": 1
+    },
+    "blocking": {
+     "c1": [
+      "d1 is NOT_RUN",
+      "d2 is NOT_RUN"
+     ],
+     "c2": [
+      "d3 is NOT_RUN"
+     ],
+     "c3": []
+    },
+    "waivers": {
+     "c1": [],
+     "c2": [],
+     "c3": []
+    }
+   }
+  },
+  {
+   "name": "a class where nothing applies has demonstrated nothing",
+   "events": [
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d4",
+      "status": "NOT_APPLICABLE",
+      "by": "ann",
+      "note": "irrelevant here"
+     }
+    }
+   ],
+   "now": "2026-10-21T09:00:00Z",
+   "max_age_s": null,
+   "expect": {
+    "classes": {
+     "c1": "OPEN",
+     "c2": "OPEN",
+     "c3": "OPEN"
+    },
+    "rejected": [],
+    "effective": {
+     "d1": "open",
+     "d2": "open",
+     "d3": "open",
+     "d4": "not_applicable"
+    },
+    "history": {
+     "d1": 0,
+     "d2": 0,
+     "d3": 0,
+     "d4": 1
+    },
+    "blocking": {
+     "c1": [
+      "d1 is NOT_RUN",
+      "d2 is NOT_RUN"
+     ],
+     "c2": [
+      "d3 is NOT_RUN"
+     ],
+     "c3": []
+    },
+    "waivers": {
+     "c1": [],
+     "c2": [],
+     "c3": []
+    }
+   }
+  },
+  {
+   "name": "a not-applicable detector is set aside when another passes",
+   "events": [
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d1",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "ev:d1",
+      "evidence_version": "1",
+      "run_id": "r1"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d2",
+      "status": "NOT_APPLICABLE",
+      "by": "ann",
+      "note": "no feedback is produced in this evaluation"
+     }
+    }
+   ],
+   "now": "2026-10-21T09:00:00Z",
+   "max_age_s": null,
+   "expect": {
+    "classes": {
+     "c1": "CLOSED",
+     "c2": "OPEN",
+     "c3": "OPEN"
+    },
+    "rejected": [],
+    "effective": {
+     "d1": "pass",
+     "d2": "not_applicable",
+     "d3": "open",
+     "d4": "open"
+    },
+    "history": {
+     "d1": 1,
+     "d2": 1,
+     "d3": 0,
+     "d4": 0
+    },
+    "blocking": {
+     "c1": [],
+     "c2": [
+      "d3 is NOT_RUN"
+     ],
+     "c3": [
+      "d4 is NOT_RUN"
+     ]
+    },
+    "waivers": {
+     "c1": [],
+     "c2": [],
+     "c3": []
+    }
+   }
+  },
+  {
+   "name": "an illegal transition is refused",
+   "events": [
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d2",
+      "status": "FIXED_PENDING_VERIFICATION",
+      "by": "ann",
+      "note": "x"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d1",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "ev:d1",
+      "evidence_version": "1",
+      "run_id": "r1"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d1",
+      "status": "OPEN",
+      "by": "ann"
+     }
+    }
+   ],
+   "now": "2026-10-21T09:00:00Z",
+   "max_age_s": null,
+   "expect": {
+    "classes": {
+     "c1": "OPEN",
+     "c2": "OPEN",
+     "c3": "OPEN"
+    },
+    "rejected": [
+     0,
+     2
+    ],
+    "effective": {
+     "d1": "pass",
+     "d2": "open",
+     "d3": "open",
+     "d4": "open"
+    },
+    "history": {
+     "d1": 1,
+     "d2": 0,
+     "d3": 0,
+     "d4": 0
+    },
+    "blocking": {
+     "c1": [
+      "d2 is NOT_RUN"
+     ],
+     "c2": [
+      "d3 is NOT_RUN"
+     ],
+     "c3": [
+      "d4 is NOT_RUN"
+     ]
+    },
+    "waivers": {
+     "c1": [],
+     "c2": [],
+     "c3": []
+    }
+   }
+  },
+  {
+   "name": "a regression reopens a class",
+   "events": [
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d1",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "ev:d1",
+      "evidence_version": "1",
+      "run_id": "r1"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d2",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "ev:d2",
+      "evidence_version": "1",
+      "run_id": "r1"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T09:00:00Z",
+     "payload": {
+      "detector_id": "d1",
+      "status": "FAIL",
+      "by": "ann"
+     }
+    }
+   ],
+   "now": "2026-10-21T11:00:00Z",
+   "max_age_s": null,
+   "expect": {
+    "classes": {
+     "c1": "OPEN",
+     "c2": "OPEN",
+     "c3": "OPEN"
+    },
+    "rejected": [],
+    "effective": {
+     "d1": "open",
+     "d2": "pass",
+     "d3": "open",
+     "d4": "open"
+    },
+    "history": {
+     "d1": 2,
+     "d2": 1,
+     "d3": 0,
+     "d4": 0
+    },
+    "blocking": {
+     "c1": [
+      "d1 is FAIL"
+     ],
+     "c2": [
+      "d3 is NOT_RUN"
+     ],
+     "c3": [
+      "d4 is NOT_RUN"
+     ]
+    },
+    "waivers": {
+     "c1": [],
+     "c2": [],
+     "c3": []
+    }
+   }
+  },
+  {
+   "name": "history is preserved after the class closes",
+   "events": [
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d1",
+      "status": "FAIL",
+      "by": "ann"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d1",
+      "status": "FIXED_PENDING_VERIFICATION",
+      "by": "ann",
+      "note": "patched"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d1",
+      "status": "PASS",
+      "by": "bob",
+      "evidence_ref": "ev:d1",
+      "evidence_version": "1",
+      "run_id": "r1"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d2",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "ev:d2",
+      "evidence_version": "1",
+      "run_id": "r1"
+     }
+    }
+   ],
+   "now": "2026-10-21T09:00:00Z",
+   "max_age_s": null,
+   "expect": {
+    "classes": {
+     "c1": "CLOSED",
+     "c2": "OPEN",
+     "c3": "OPEN"
+    },
+    "rejected": [],
+    "effective": {
+     "d1": "pass",
+     "d2": "pass",
+     "d3": "open",
+     "d4": "open"
+    },
+    "history": {
+     "d1": 3,
+     "d2": 1,
+     "d3": 0,
+     "d4": 0
+    },
+    "blocking": {
+     "c1": [],
+     "c2": [
+      "d3 is NOT_RUN"
+     ],
+     "c3": [
+      "d4 is NOT_RUN"
+     ]
+    },
+    "waivers": {
+     "c1": [],
+     "c2": [],
+     "c3": []
+    }
+   }
+  },
+  {
+   "name": "a pass needs evidence and a run",
+   "events": [
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d1",
+      "status": "PASS",
+      "by": "ann"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d1",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "e",
+      "evidence_version": "1"
+     }
+    },
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "d1",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "ev:d1",
+      "evidence_version": "1",
+      "run_id": "r1"
+     }
+    }
+   ],
+   "now": "2026-10-21T09:00:00Z",
+   "max_age_s": null,
+   "expect": {
+    "classes": {
+     "c1": "OPEN",
+     "c2": "OPEN",
+     "c3": "OPEN"
+    },
+    "rejected": [
+     0,
+     1
+    ],
+    "effective": {
+     "d1": "pass",
+     "d2": "open",
+     "d3": "open",
+     "d4": "open"
+    },
+    "history": {
+     "d1": 1,
+     "d2": 0,
+     "d3": 0,
+     "d4": 0
+    },
+    "blocking": {
+     "c1": [
+      "d2 is NOT_RUN"
+     ],
+     "c2": [
+      "d3 is NOT_RUN"
+     ],
+     "c3": [
+      "d4 is NOT_RUN"
+     ]
+    },
+    "waivers": {
+     "c1": [],
+     "c2": [],
+     "c3": []
+    }
+   }
+  },
+  {
+   "name": "an unknown detector is refused",
+   "events": [
+    {
+     "type": "integrity.detector_status",
+     "ts": "2026-10-21T08:00:00Z",
+     "payload": {
+      "detector_id": "nope",
+      "status": "PASS",
+      "by": "ann",
+      "evidence_ref": "e",
+      "evidence_version": "1",
+      "run_id": "r"
+     }
+    }
+   ],
+   "now": "2026-10-21T09:00:00Z",
+   "max_age_s": null,
+   "expect": {
+    "classes": {
+     "c1": "OPEN",
+     "c2": "OPEN",
+     "c3": "OPEN"
+    },
+    "rejected": [
+     0
+    ],
+    "effective": {
+     "d1": "open",
+     "d2": "open",
+     "d3": "open",
+     "d4": "open"
+    },
+    "history": {
+     "d1": 0,
+     "d2": 0,
+     "d3": 0,
+     "d4": 0
+    },
+    "blocking": {
+     "c1": [
+      "d1 is NOT_RUN",
+      "d2 is NOT_RUN"
+     ],
+     "c2": [
+      "d3 is NOT_RUN"
+     ],
+     "c3": [
+      "d4 is NOT_RUN"
+     ]
+    },
+    "waivers": {
+     "c1": [],
+     "c2": [],
+     "c3": []
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,265 @@
+{
+ "rejection": [
+  [
+   [
+    {
+     "code": "screen.answer_echo"
+    },
+    {
+     "code": "path.unregistered"
+    }
+   ],
+   [
+    [
+     "selfmod.reward_hacking",
+     {
+      "screens": [
+       "screen.answer_echo"
+      ]
+     }
+    ],
+    [
+     "selfmod.invalid_proposal",
+     {
+      "reasons": [
+       "path.unregistered"
+      ]
+     }
+    ]
+   ]
+  ],
+  [
+   [
+    {
+     "code": "manifest.incomplete"
+    }
+   ],
+   [
+    [
+     "selfmod.invalid_proposal",
+     {
+      "reasons": [
+       "manifest.incomplete"
+      ]
+     }
+    ]
+   ]
+  ]
+ ],
+ "decisions": [
+  {
+   "decision": {
+    "accepted": true,
+    "target": {
+     "delta": 0.3,
+     "lower": 0.05,
+     "upper": 0.4
+    },
+    "models": {
+     "main": {
+      "heldout": {
+       "delta": 0.15,
+       "pass": true
+      }
+     }
+    }
+   },
+   "result": [
+    [
+     "selfmod.overfitting",
+     {
+      "scoring_delta": 0.3,
+      "heldout_delta": 0.15,
+      "gap": 0.15,
+      "threshold": 0.1
+     }
+    ]
+   ]
+  },
+  {
+   "decision": {
+    "accepted": true,
+    "target": {
+     "delta": 0.3,
+     "lower": 0.05,
+     "upper": 0.4
+    },
+    "models": {
+     "main": {
+      "heldout": {
+       "delta": 0.25,
+       "pass": true
+      }
+     }
+    }
+   },
+   "result": []
+  },
+  {
+   "decision": {
+    "accepted": true,
+    "target": {
+     "delta": 0.2,
+     "lower": 0.05,
+     "upper": 0.30000000000000004
+    },
+    "models": {
+     "main": {
+      "heldout": {
+       "delta": 0.19,
+       "pass": false
+      }
+     }
+    }
+   },
+   "result": [
+    [
+     "selfmod.overfitting",
+     {
+      "scoring_delta": 0.2,
+      "heldout_delta": 0.19,
+      "gap": 0.010000000000000009,
+      "threshold": 0.1
+     }
+    ]
+   ]
+  },
+  {
+   "decision": {
+    "accepted": true,
+    "target": {
+     "delta": 0.2,
+     "lower": 0.004,
+     "upper": 0.30000000000000004
+    },
+    "models": {
+     "main": {
+      "heldout": {
+       "delta": 0.19,
+       "pass": true
+      }
+     }
+    }
+   },
+   "result": [
+    [
+     "selfmod.over_optimism",
+     {
+      "lower": 0.004,
+      "threshold": 0.005
+     }
+    ]
+   ]
+  },
+  {
+   "decision": {
+    "accepted": true,
+    "target": {
+     "delta": 0.2,
+     "lower": 0.006,
+     "upper": 0.30000000000000004
+    },
+    "models": {
+     "main": {
+      "heldout": {
+       "delta": 0.19,
+       "pass": true
+      }
+     }
+    }
+   },
+   "result": []
+  },
+  {
+   "decision": {
+    "accepted": false,
+    "target": {
+     "delta": 0.2,
+     "lower": 0.004,
+     "upper": 0.30000000000000004
+    },
+    "models": {
+     "main": {
+      "heldout": {
+       "delta": 0.19,
+       "pass": true
+      }
+     }
+    }
+   },
+   "result": []
+  }
+ ],
+ "rounds": [
+  {
+   "texts": [
+    "always verify the tool output carefully before you answer",
+    "always verify the tool output carefully before you answer"
+   ],
+   "result": [
+    [
+     "selfmod.diversity_collapse",
+     {
+      "mean_pairwise_similarity": 1.0,
+      "threshold": 0.6,
+      "candidates": 2
+     }
+    ]
+   ]
+  },
+  {
+   "texts": [
+    "always verify the tool output carefully before you answer",
+    "totally unrelated words about spreadsheets formulas and pivots here"
+   ],
+   "result": []
+  },
+  {
+   "texts": [
+    "always verify the tool output carefully before you answer"
+   ],
+   "result": []
+  }
+ ],
+ "selection_bias": [
+  {
+   "usage": 15,
+   "cap": 20,
+   "result": null
+  },
+  {
+   "usage": 16,
+   "cap": 20,
+   "result": [
+    "eval_integrity.selection_bias",
+    {
+     "queries": 16,
+     "cap": 20,
+     "fraction": 0.8
+    }
+   ]
+  },
+  {
+   "usage": 2,
+   "cap": 3,
+   "result": null
+  },
+  {
+   "usage": 3,
+   "cap": 3,
+   "result": [
+    "eval_integrity.selection_bias",
+    {
+     "queries": 3,
+     "cap": 3,
+     "fraction": 1.0
+    }
+   ]
+  },
+  {
+   "usage": 0,
+   "cap": 20,
+   "result": null
+  }
+ ]
+}

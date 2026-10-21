@@ -1,0 +1,49 @@
+# Failure taxonomy (PRD §3.7, design §15.3). taxonomy_version 2.
+# Evaluation order: the specific rules below, then extension layers (spec/failure-rules.d/*.yaml, namespaced <layer>.<class>), then the rules marked `fallback`.
+# A run gets one primary class (the rule that matches how it ended) and optional secondary tags (other rules that match error codes seen earlier in the run).
+taxonomy_version: 2
+classes: [tool, state, environment, architecture, security, eval_integrity, selfmod]
+# Every code the harness can attach, whether or not an automatic rule exists for it. `auto: false` codes are set by a detector elsewhere, or by a human reviewer.
+codes:
+  tool.selection:            {class: tool}
+  tool.contract:             {class: tool}
+  tool.noisy_observation:    {class: tool}
+  state.compaction_loss:     {class: state}
+  state.progress_lost:       {class: state}
+  env.sandbox_mismatch:      {class: environment}
+  env.resource:              {class: environment}
+  arch.recovery:             {class: architecture}
+  arch.subagent_conflict:    {class: architecture}
+  arch.budget_exhausted:     {class: architecture}
+  arch.stuck_loop:           {class: architecture}
+  sec.policy_violation:      {class: security}
+  sec.prompt_injection:      {class: security}
+  sec.skill_regression:      {class: security}
+  eval_integrity.tampering:             {class: eval_integrity}
+  eval_integrity.state_carryover:       {class: eval_integrity}
+  eval_integrity.over_granular_feedback: {class: eval_integrity}
+  eval_integrity.selection_bias:        {class: eval_integrity}
+  eval_integrity.clock_reset:           {class: eval_integrity}
+  eval_integrity.stale_grants:          {class: eval_integrity}
+  selfmod.invalid_proposal:             {class: selfmod}
+  selfmod.post_promotion_regression:    {class: selfmod}
+  selfmod.overfitting:                  {class: selfmod}
+  selfmod.reward_hacking:               {class: selfmod}
+  selfmod.diversity_collapse:           {class: selfmod}
+  selfmod.implementation_drift:         {class: selfmod, reviewer_labelled: true}
+  selfmod.over_optimism:                {class: selfmod}
+  selfmod.harness_adherence:            {class: selfmod, reviewer_labelled: true}
+rules:
+  - {reason: "budget_exhausted:*", class: architecture, code: arch.budget_exhausted}
+  - {reason: stuck_loop, class: architecture, code: arch.stuck_loop}
+  - {reason: policy_violation, class: security, code: sec.policy_violation}
+  - {reason: integrity_failure, class: eval_integrity, code: eval_integrity.tampering}
+  - {reason: recovery_uncertain_abandoned, class: architecture, code: arch.recovery}
+  - {reason: verification_failed_limit, class: state, code: state.progress_lost}
+  - {reason: timeout, class: architecture, code: arch.budget_exhausted}
+  - {reason: operator_kill, class: null, code: null}
+  - {reason: fatal_error, last_error: "tool.unknown", class: tool, code: tool.selection}
+  - {reason: fatal_error, last_error: "tool.invalid_arguments", class: tool, code: tool.contract}
+  - {reason: fatal_error, last_error: "gateway.*", class: environment, code: env.resource}
+  - {reason: fatal_error, last_error: "fs.*", class: tool, code: tool.contract}
+  - {reason: fatal_error, class: environment, code: env.sandbox_mismatch, fallback: true}

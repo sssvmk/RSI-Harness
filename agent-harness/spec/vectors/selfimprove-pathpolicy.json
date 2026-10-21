@@ -1,0 +1,90 @@
+{
+ "registry_yaml": "\nschema_version: 1\ncomponents:\n  - {path: \"prompts/**\", component: system_prompt, tier: T1, owner: platform, origin: human}\n  - {path: \"memory/playbook.jsonl\", component: playbook, tier: T0, owner: platform, origin: learned}\n  - {path: \"tools/**\", component: tool_description, tier: T1, owner: platform, origin: human}\n  - {path: \"skills/triage/**\", component: skill, tier: T2, owner: ops, origin: learned, provides: [skill.triage]}\n  - {path: \"workflows/**\", component: workflow, tier: T2, owner: ops, origin: learned, requires: [skill.triage]}\n",
+ "cases": [
+  {
+   "path": "prompts/system.md",
+   "tier": "T1",
+   "reason": null
+  },
+  {
+   "path": "./prompts/system.md",
+   "tier": "T1",
+   "reason": null
+  },
+  {
+   "path": "memory/playbook.jsonl",
+   "tier": "T0",
+   "reason": null
+  },
+  {
+   "path": "skills/triage/run.sh",
+   "tier": "T2",
+   "reason": null
+  },
+  {
+   "path": "tools/a/b/c.md",
+   "tier": "T1",
+   "reason": null
+  },
+  {
+   "path": "prompts/../harness-control/x",
+   "tier": null,
+   "reason": "path.traversal"
+  },
+  {
+   "path": "/etc/passwd",
+   "tier": null,
+   "reason": "path.absolute"
+  },
+  {
+   "path": "prompts\\x",
+   "tier": null,
+   "reason": "path.invalid"
+  },
+  {
+   "path": "components.yaml",
+   "tier": null,
+   "reason": "path.protected"
+  },
+  {
+   "path": "harness-improver/prompts/proposer.md",
+   "tier": null,
+   "reason": "path.unregistered"
+  },
+  {
+   "path": "unregistered.txt",
+   "tier": null,
+   "reason": "path.unregistered"
+  },
+  {
+   "path": "prompts/",
+   "tier": null,
+   "reason": "path.invalid"
+  },
+  {
+   "path": "",
+   "tier": null,
+   "reason": "path.invalid"
+  },
+  {
+   "path": "memory/playbook.jsonl/../../x",
+   "tier": null,
+   "reason": "path.traversal"
+  },
+  {
+   "path": "skills/other/x",
+   "tier": null,
+   "reason": "path.unregistered"
+  },
+  {
+   "path": "workflows/flow.yaml",
+   "tier": "T2",
+   "reason": null
+  },
+  {
+   "path": "prompts",
+   "tier": null,
+   "reason": "path.unregistered"
+  }
+ ]
+}

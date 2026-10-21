@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "ngram_n": 5,
+  "duplicate_block": {"window_lines": 2, "min_chars": 60},
+  "output_interface": [
+    {"re": "/scratch/score\\.json", "flags": "i"},
+    {"re": "(>>?|\\btee\\b|open\\s*\\(|write(File|_text)?\\s*\\()[^\\n]*(score|report)[\\w.-]*\\.json", "flags": "i"},
+    {"re": "\\breport_path\\b", "flags": "i"}
+  ],
+  "protected_refs": [
+    {"re": "/tests(/|\\b)", "flags": ""},
+    {"re": "harness-control", "flags": "i"},
+    {"re": "harness-improver", "flags": "i"},
+    {"re": "\\bvault\\b", "flags": "i"},
+    {"re": "\\bverifier[._/-](path|bin|script|binary)", "flags": "i"},
+    {"re": "\\b(scoring|held-?out|confirm|transfer|meta)[_-]set\\b", "flags": "i"}
+  ],
+  "hardcoded_seed": [{"re": "\\bseed\\s*[:=]\\s*\\d+", "flags": "i"}],
+  "t4_keys": ["model", "models", "model_ref", "budgets", "budget", "egress", "egress_grants", "reasoning", "reasoning_limits", "max_reasoning_tokens", "approvals", "verifier", "verifier_path", "sandbox", "credentials", "secrets"]
+}

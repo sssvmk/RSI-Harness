@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Outcome contract (design §13.11): the acceptance criteria of a task, fixed before execution",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["acceptance_criteria", "success_policy", "inconclusive_policy"],
+  "properties": {
+    "task_id": {"type": "string"},
+    "acceptance_criteria": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "required", "verification"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+          "required": {"type": "boolean"},
+          "verification": {"enum": ["test_result", "artifact_check", "authoritative_lookup", "exact_decimal_comparison", "audit_log_lookup", "external_confirmation", "evaluator"]},
+          "params": {"type": "object"}
+        }
+      }
+    },
+    "success_policy": {"const": "all_required_criteria_pass"},
+    "inconclusive_policy": {"const": "do_not_report_success"}
+  }
+}

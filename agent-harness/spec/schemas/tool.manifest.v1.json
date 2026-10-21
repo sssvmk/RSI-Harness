@@ -1,0 +1,100 @@
+{
+ "$id": "tool.manifest.v1",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "name",
+  "version",
+  "description",
+  "input_schema",
+  "location"
+ ],
+ "properties": {
+  "name": {
+   "type": "string",
+   "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$"
+  },
+  "version": {
+   "type": "string"
+  },
+  "description": {
+   "type": "string"
+  },
+  "input_schema": {
+   "type": "object"
+  },
+  "location": {
+   "enum": [
+    "control_plane",
+    "sandbox",
+    "mcp"
+   ]
+  },
+  "idempotency": {
+   "enum": [
+    "idempotent",
+    "keyed",
+    "non_idempotent"
+   ]
+  },
+  "effect_class": {
+   "enum": [
+    "read_only",
+    "reversible_write",
+    "irreversible",
+    "external_facing"
+   ]
+  },
+  "result_cap_tokens": {
+   "type": "integer",
+   "minimum": 1
+  },
+  "timeout_s": {
+   "type": "integer",
+   "minimum": 1
+  },
+  "parallel_safe": {
+   "type": "boolean"
+  },
+  "content_hash": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{64}$"
+  },
+  "world": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "adapter",
+    "resource_arg"
+   ],
+   "properties": {
+    "adapter": {
+     "type": "string"
+    },
+    "resource_arg": {
+     "type": "string"
+    },
+    "preconditions": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "expected_effects": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "risk": {
+     "enum": [
+      "low",
+      "medium",
+      "high",
+      "critical"
+     ]
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,9 @@
+{ "$id": "score.report.v1", "type": "object", "additionalProperties": false,
+  "required": ["schema_version","valid","primary","metrics","evaluator"],
+  "properties": { "schema_version":{"const":1}, "valid":{"type":"boolean"}, "primary":{"type":"number"},
+    "metrics":{"type":"object","additionalProperties":{"type":"number"}},
+    "feedback_text":{"type":"string"},
+    "evaluator":{"type":"object","required":["kind"],"properties":{
+      "kind":{"enum":["deterministic","independent_model","same_model_low_independence"]},"model_ref":{"type":["string","null"]}}},
+    "instances_scored":{"type":"integer","minimum":0},
+    "errors":{"type":"array","items":{"type":"string"}} } }

@@ -1,0 +1,2151 @@
+{
+ "transitions": [
+  {
+   "state": null,
+   "event": "verified",
+   "authoritative": false,
+   "next": "consistent",
+   "apply": "consistent"
+  },
+  {
+   "state": null,
+   "event": "verified",
+   "authoritative": true,
+   "next": "consistent",
+   "apply": "consistent"
+  },
+  {
+   "state": null,
+   "event": "mismatch",
+   "authoritative": false,
+   "next": "drift_detected",
+   "apply": "drift_detected"
+  },
+  {
+   "state": null,
+   "event": "mismatch",
+   "authoritative": true,
+   "next": "drift_detected",
+   "apply": "drift_detected"
+  },
+  {
+   "state": null,
+   "event": "start_reconcile",
+   "authoritative": false,
+   "next": "ILLEGAL",
+   "apply": null
+  },
+  {
+   "state": null,
+   "event": "start_reconcile",
+   "authoritative": true,
+   "next": "ILLEGAL",
+   "apply": null
+  },
+  {
+   "state": null,
+   "event": "denied",
+   "authoritative": false,
+   "next": "blocked",
+   "apply": "blocked"
+  },
+  {
+   "state": null,
+   "event": "denied",
+   "authoritative": true,
+   "next": "blocked",
+   "apply": "blocked"
+  },
+  {
+   "state": null,
+   "event": "unreadable",
+   "authoritative": false,
+   "next": "unknown",
+   "apply": "unknown"
+  },
+  {
+   "state": null,
+   "event": "unreadable",
+   "authoritative": true,
+   "next": "unknown",
+   "apply": "unknown"
+  },
+  {
+   "state": null,
+   "event": "repair_failed",
+   "authoritative": false,
+   "next": "ILLEGAL",
+   "apply": null
+  },
+  {
+   "state": null,
+   "event": "repair_failed",
+   "authoritative": true,
+   "next": "ILLEGAL",
+   "apply": null
+  },
+  {
+   "state": "consistent",
+   "event": "verified",
+   "authoritative": false,
+   "next": "consistent",
+   "apply": "consistent"
+  },
+  {
+   "state": "consistent",
+   "event": "verified",
+   "authoritative": true,
+   "next": "consistent",
+   "apply": "consistent"
+  },
+  {
+   "state": "consistent",
+   "event": "mismatch",
+   "authoritative": false,
+   "next": "drift_detected",
+   "apply": "drift_detected"
+  },
+  {
+   "state": "consistent",
+   "event": "mismatch",
+   "authoritative": true,
+   "next": "drift_detected",
+   "apply": "drift_detected"
+  },
+  {
+   "state": "consistent",
+   "event": "start_reconcile",
+   "authoritative": false,
+   "next": "ILLEGAL",
+   "apply": "consistent"
+  },
+  {
+   "state": "consistent",
+   "event": "start_reconcile",
+   "authoritative": true,
+   "next": "ILLEGAL",
+   "apply": "consistent"
+  },
+  {
+   "state": "consistent",
+   "event": "denied",
+   "authoritative": false,
+   "next": "blocked",
+   "apply": "blocked"
+  },
+  {
+   "state": "consistent",
+   "event": "denied",
+   "authoritative": true,
+   "next": "blocked",
+   "apply": "blocked"
+  },
+  {
+   "state": "consistent",
+   "event": "unreadable",
+   "authoritative": false,
+   "next": "unknown",
+   "apply": "unknown"
+  },
+  {
+   "state": "consistent",
+   "event": "unreadable",
+   "authoritative": true,
+   "next": "unknown",
+   "apply": "unknown"
+  },
+  {
+   "state": "consistent",
+   "event": "repair_failed",
+   "authoritative": false,
+   "next": "ILLEGAL",
+   "apply": "consistent"
+  },
+  {
+   "state": "consistent",
+   "event": "repair_failed",
+   "authoritative": true,
+   "next": "ILLEGAL",
+   "apply": "consistent"
+  },
+  {
+   "state": "drift_detected",
+   "event": "verified",
+   "authoritative": false,
+   "next": "ILLEGAL",
+   "apply": "reconciling"
+  },
+  {
+   "state": "drift_detected",
+   "event": "verified",
+   "authoritative": true,
+   "next": "ILLEGAL",
+   "apply": "consistent"
+  },
+  {
+   "state": "drift_detected",
+   "event": "mismatch",
+   "authoritative": false,
+   "next": "drift_detected",
+   "apply": "drift_detected"
+  },
+  {
+   "state": "drift_detected",
+   "event": "mismatch",
+   "authoritative": true,
+   "next": "drift_detected",
+   "apply": "drift_detected"
+  },
+  {
+   "state": "drift_detected",
+   "event": "start_reconcile",
+   "authoritative": false,
+   "next": "reconciling",
+   "apply": "reconciling"
+  },
+  {
+   "state": "drift_detected",
+   "event": "start_reconcile",
+   "authoritative": true,
+   "next": "reconciling",
+   "apply": "reconciling"
+  },
+  {
+   "state": "drift_detected",
+   "event": "denied",
+   "authoritative": false,
+   "next": "blocked",
+   "apply": "blocked"
+  },
+  {
+   "state": "drift_detected",
+   "event": "denied",
+   "authoritative": true,
+   "next": "blocked",
+   "apply": "blocked"
+  },
+  {
+   "state": "drift_detected",
+   "event": "unreadable",
+   "authoritative": false,
+   "next": "unknown",
+   "apply": "unknown"
+  },
+  {
+   "state": "drift_detected",
+   "event": "unreadable",
+   "authoritative": true,
+   "next": "unknown",
+   "apply": "unknown"
+  },
+  {
+   "state": "drift_detected",
+   "event": "repair_failed",
+   "authoritative": false,
+   "next": "ILLEGAL",
+   "apply": "drift_detected"
+  },
+  {
+   "state": "drift_detected",
+   "event": "repair_failed",
+   "authoritative": true,
+   "next": "ILLEGAL",
+   "apply": "drift_detected"
+  },
+  {
+   "state": "reconciling",
+   "event": "verified",
+   "authoritative": false,
+   "next": "reconciling",
+   "apply": "reconciling"
+  },
+  {
+   "state": "reconciling",
+   "event": "verified",
+   "authoritative": true,
+   "next": "consistent",
+   "apply": "consistent"
+  },
+  {
+   "state": "reconciling",
+   "event": "mismatch",
+   "authoritative": false,
+   "next": "drift_detected",
+   "apply": "drift_detected"
+  },
+  {
+   "state": "reconciling",
+   "event": "mismatch",
+   "authoritative": true,
+   "next": "drift_detected",
+   "apply": "drift_detected"
+  },
+  {
+   "state": "reconciling",
+   "event": "start_reconcile",
+   "authoritative": false,
+   "next": "ILLEGAL",
+   "apply": "reconciling"
+  },
+  {
+   "state": "reconciling",
+   "event": "start_reconcile",
+   "authoritative": true,
+   "next": "ILLEGAL",
+   "apply": "reconciling"
+  },
+  {
+   "state": "reconciling",
+   "event": "denied",
+   "authoritative": false,
+   "next": "ILLEGAL",
+   "apply": "reconciling"
+  },
+  {
+   "state": "reconciling",
+   "event": "denied",
+   "authoritative": true,
+   "next": "ILLEGAL",
+   "apply": "reconciling"
+  },
+  {
+   "state": "reconciling",
+   "event": "unreadable",
+   "authoritative": false,
+   "next": "unknown",
+   "apply": "unknown"
+  },
+  {
+   "state": "reconciling",
+   "event": "unreadable",
+   "authoritative": true,
+   "next": "unknown",
+   "apply": "unknown"
+  },
+  {
+   "state": "reconciling",
+   "event": "repair_failed",
+   "authoritative": false,
+   "next": "recovery_required",
+   "apply": "recovery_required"
+  },
+  {
+   "state": "reconciling",
+   "event": "repair_failed",
+   "authoritative": true,
+   "next": "recovery_required",
+   "apply": "recovery_required"
+  },
+  {
+   "state": "blocked",
+   "event": "verified",
+   "authoritative": false,
+   "next": "blocked",
+   "apply": "blocked"
+  },
+  {
+   "state": "blocked",
+   "event": "verified",
+   "authoritative": true,
+   "next": "consistent",
+   "apply": "consistent"
+  },
+  {
+   "state": "blocked",
+   "event": "mismatch",
+   "authoritative": false,
+   "next": "drift_detected",
+   "apply": "drift_detected"
+  },
+  {
+   "state": "blocked",
+   "event": "mismatch",
+   "authoritative": true,
+   "next": "drift_detected",
+   "apply": "drift_detected"
+  },
+  {
+   "state": "blocked",
+   "event": "start_reconcile",
+   "authoritative": false,
+   "next": "ILLEGAL",
+   "apply": "blocked"
+  },
+  {
+   "state": "blocked",
+   "event": "start_reconcile",
+   "authoritative": true,
+   "next": "ILLEGAL",
+   "apply": "blocked"
+  },
+  {
+   "state": "blocked",
+   "event": "denied",
+   "authoritative": false,
+   "next": "blocked",
+   "apply": "blocked"
+  },
+  {
+   "state": "blocked",
+   "event": "denied",
+   "authoritative": true,
+   "next": "blocked",
+   "apply": "blocked"
+  },
+  {
+   "state": "blocked",
+   "event": "unreadable",
+   "authoritative": false,
+   "next": "unknown",
+   "apply": "unknown"
+  },
+  {
+   "state": "blocked",
+   "event": "unreadable",
+   "authoritative": true,
+   "next": "unknown",
+   "apply": "unknown"
+  },
+  {
+   "state": "blocked",
+   "event": "repair_failed",
+   "authoritative": false,
+   "next": "ILLEGAL",
+   "apply": "blocked"
+  },
+  {
+   "state": "blocked",
+   "event": "repair_failed",
+   "authoritative": true,
+   "next": "ILLEGAL",
+   "apply": "blocked"
+  },
+  {
+   "state": "unknown",
+   "event": "verified",
+   "authoritative": false,
+   "next": "unknown",
+   "apply": "unknown"
+  },
+  {
+   "state": "unknown",
+   "event": "verified",
+   "authoritative": true,
+   "next": "consistent",
+   "apply": "consistent"
+  },
+  {
+   "state": "unknown",
+   "event": "mismatch",
+   "authoritative": false,
+   "next": "drift_detected",
+   "apply": "drift_detected"
+  },
+  {
+   "state": "unknown",
+   "event": "mismatch",
+   "authoritative": true,
+   "next": "drift_detected",
+   "apply": "drift_detected"
+  },
+  {
+   "state": "unknown",
+   "event": "start_reconcile",
+   "authoritative": false,
+   "next": "reconciling",
+   "apply": "reconciling"
+  },
+  {
+   "state": "unknown",
+   "event": "start_reconcile",
+   "authoritative": true,
+   "next": "reconciling",
+   "apply": "reconciling"
+  },
+  {
+   "state": "unknown",
+   "event": "denied",
+   "authoritative": false,
+   "next": "blocked",
+   "apply": "blocked"
+  },
+  {
+   "state": "unknown",
+   "event": "denied",
+   "authoritative": true,
+   "next": "blocked",
+   "apply": "blocked"
+  },
+  {
+   "state": "unknown",
+   "event": "unreadable",
+   "authoritative": false,
+   "next": "unknown",
+   "apply": "unknown"
+  },
+  {
+   "state": "unknown",
+   "event": "unreadable",
+   "authoritative": true,
+   "next": "unknown",
+   "apply": "unknown"
+  },
+  {
+   "state": "unknown",
+   "event": "repair_failed",
+   "authoritative": false,
+   "next": "ILLEGAL",
+   "apply": "unknown"
+  },
+  {
+   "state": "unknown",
+   "event": "repair_failed",
+   "authoritative": true,
+   "next": "ILLEGAL",
+   "apply": "unknown"
+  },
+  {
+   "state": "recovery_required",
+   "event": "verified",
+   "authoritative": false,
+   "next": "recovery_required",
+   "apply": "recovery_required"
+  },
+  {
+   "state": "recovery_required",
+   "event": "verified",
+   "authoritative": true,
+   "next": "consistent",
+   "apply": "consistent"
+  },
+  {
+   "state": "recovery_required",
+   "event": "mismatch",
+   "authoritative": false,
+   "next": "recovery_required",
+   "apply": "recovery_required"
+  },
+  {
+   "state": "recovery_required",
+   "event": "mismatch",
+   "authoritative": true,
+   "next": "recovery_required",
+   "apply": "recovery_required"
+  },
+  {
+   "state": "recovery_required",
+   "event": "start_reconcile",
+   "authoritative": false,
+   "next": "reconciling",
+   "apply": "reconciling"
+  },
+  {
+   "state": "recovery_required",
+   "event": "start_reconcile",
+   "authoritative": true,
+   "next": "reconciling",
+   "apply": "reconciling"
+  },
+  {
+   "state": "recovery_required",
+   "event": "denied",
+   "authoritative": false,
+   "next": "ILLEGAL",
+   "apply": "recovery_required"
+  },
+  {
+   "state": "recovery_required",
+   "event": "denied",
+   "authoritative": true,
+   "next": "ILLEGAL",
+   "apply": "recovery_required"
+  },
+  {
+   "state": "recovery_required",
+   "event": "unreadable",
+   "authoritative": false,
+   "next": "recovery_required",
+   "apply": "recovery_required"
+  },
+  {
+   "state": "recovery_required",
+   "event": "unreadable",
+   "authoritative": true,
+   "next": "recovery_required",
+   "apply": "recovery_required"
+  },
+  {
+   "state": "recovery_required",
+   "event": "repair_failed",
+   "authoritative": false,
+   "next": "ILLEGAL",
+   "apply": "recovery_required"
+  },
+  {
+   "state": "recovery_required",
+   "event": "repair_failed",
+   "authoritative": true,
+   "next": "ILLEGAL",
+   "apply": "recovery_required"
+  }
+ ],
+ "requirements": {
+  "low": {
+   "world_read": false,
+   "preconditions": false,
+   "version_check": false,
+   "readback": false,
+   "fresh_state": false,
+   "current_approval": false,
+   "idempotency_key": false,
+   "fail_closed": false,
+   "human": false
+  },
+  "medium": {
+   "world_read": true,
+   "preconditions": true,
+   "version_check": true,
+   "readback": true,
+   "fresh_state": false,
+   "current_approval": false,
+   "idempotency_key": false,
+   "fail_closed": false,
+   "human": false
+  },
+  "high": {
+   "world_read": true,
+   "preconditions": true,
+   "version_check": true,
+   "readback": true,
+   "fresh_state": true,
+   "current_approval": true,
+   "idempotency_key": true,
+   "fail_closed": true,
+   "human": false
+  },
+  "critical": {
+   "world_read": true,
+   "preconditions": true,
+   "version_check": true,
+   "readback": true,
+   "fresh_state": true,
+   "current_approval": true,
+   "idempotency_key": true,
+   "fail_closed": true,
+   "human": true
+  }
+ },
+ "risk_of": [
+  {
+   "effect_class": "read_only",
+   "declared": null,
+   "critical": false,
+   "risk": "low"
+  },
+  {
+   "effect_class": "reversible_write",
+   "declared": null,
+   "critical": false,
+   "risk": "medium"
+  },
+  {
+   "effect_class": "irreversible",
+   "declared": null,
+   "critical": false,
+   "risk": "high"
+  },
+  {
+   "effect_class": "external_facing",
+   "declared": null,
+   "critical": false,
+   "risk": "high"
+  },
+  {
+   "effect_class": "read_only",
+   "declared": "high",
+   "critical": false,
+   "risk": "high"
+  },
+  {
+   "effect_class": "reversible_write",
+   "declared": null,
+   "critical": true,
+   "risk": "critical"
+  },
+  {
+   "effect_class": null,
+   "declared": null,
+   "critical": false,
+   "risk": "low"
+  },
+  {
+   "effect_class": "irreversible",
+   "declared": "low",
+   "critical": false,
+   "risk": "low"
+  }
+ ],
+ "approval": [
+  {
+   "approval": {
+    "status": "granted",
+    "revoked": false,
+    "decided_at_s": 900.0
+   },
+   "now_s": 1000.0,
+   "max_age_s": 900,
+   "current": true
+  },
+  {
+   "approval": {
+    "status": "granted",
+    "revoked": false,
+    "decided_at_s": 900.0
+   },
+   "now_s": 1800.0,
+   "max_age_s": 900,
+   "current": true
+  },
+  {
+   "approval": {
+    "status": "granted",
+    "revoked": false,
+    "decided_at_s": 900.0
+   },
+   "now_s": 1801.0,
+   "max_age_s": 900,
+   "current": false
+  },
+  {
+   "approval": {
+    "status": "granted",
+    "revoked": true,
+    "decided_at_s": 900.0
+   },
+   "now_s": 1000.0,
+   "max_age_s": 900,
+   "current": false
+  },
+  {
+   "approval": {
+    "status": "denied",
+    "revoked": false,
+    "decided_at_s": 900.0
+   },
+   "now_s": 1000.0,
+   "max_age_s": 900,
+   "current": false
+  },
+  {
+   "approval": null,
+   "now_s": 1000.0,
+   "max_age_s": 900,
+   "current": false
+  },
+  {
+   "approval": {
+    "status": "granted",
+    "revoked": false,
+    "decided_at_s": 900.0
+   },
+   "now_s": 1000.0,
+   "max_age_s": 50,
+   "current": false
+  },
+  {
+   "approval": {
+    "status": "granted",
+    "revoked": false,
+    "decided_at_s": 1000.0
+   },
+   "now_s": 1000.0,
+   "max_age_s": 0,
+   "current": true
+  }
+ ],
+ "scenarios": [
+  {
+   "name": "low risk is internal only",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "low",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": false
+   },
+   "adapter": null,
+   "call": "pre",
+   "expect": {
+    "pre": {
+     "status": "ok",
+     "reason": null,
+     "actual": null
+    },
+    "events": [
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "low",
+       "result": "internal_only"
+      }
+     ]
+    ],
+    "reads": 0
+   }
+  },
+  {
+   "name": "unauthorized is blocked before any read",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "medium",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": false,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": false
+   },
+   "adapter": {
+    "reads": [
+     {
+      "version": "v1",
+      "value": "x"
+     }
+    ]
+   },
+   "call": "pre",
+   "expect": {
+    "pre": {
+     "status": "blocked",
+     "reason": "authorization_denied",
+     "actual": null
+    },
+    "events": [
+     [
+      "action.blocked",
+      {
+       "action_id": "a1",
+       "reason": "authorization_denied",
+       "risk": "medium"
+      }
+     ],
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "medium",
+       "result": "blocked",
+       "reason": "authorization_denied"
+      }
+     ],
+     [
+      "reconcile.state_changed",
+      {
+       "subject": "fake:r1",
+       "action_id": "a1",
+       "event": "denied",
+       "authoritative": false
+      }
+     ]
+    ],
+    "reads": 0
+   }
+  },
+  {
+   "name": "no adapter blocks a medium action",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "medium",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": false
+   },
+   "adapter": null,
+   "call": "pre",
+   "expect": {
+    "pre": {
+     "status": "blocked",
+     "reason": "world_state_unavailable",
+     "actual": null
+    },
+    "events": [
+     [
+      "action.blocked",
+      {
+       "action_id": "a1",
+       "reason": "world_state_unavailable",
+       "risk": "medium"
+      }
+     ],
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "medium",
+       "result": "blocked",
+       "reason": "world_state_unavailable"
+      }
+     ],
+     [
+      "reconcile.state_changed",
+      {
+       "subject": "fake:r1",
+       "action_id": "a1",
+       "event": "unreadable",
+       "authoritative": false
+      }
+     ]
+    ],
+    "reads": 0
+   }
+  },
+  {
+   "name": "an unreadable state blocks",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "medium",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": false
+   },
+   "adapter": {
+    "reads": []
+   },
+   "call": "pre",
+   "expect": {
+    "pre": {
+     "status": "blocked",
+     "reason": "world_state_unavailable",
+     "actual": null
+    },
+    "events": [
+     [
+      "action.blocked",
+      {
+       "action_id": "a1",
+       "reason": "world_state_unavailable",
+       "risk": "medium"
+      }
+     ],
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "medium",
+       "result": "blocked",
+       "reason": "world_state_unavailable"
+      }
+     ],
+     [
+      "reconcile.state_changed",
+      {
+       "subject": "fake:r1",
+       "action_id": "a1",
+       "event": "unreadable",
+       "authoritative": false
+      }
+     ]
+    ],
+    "reads": 1
+   }
+  },
+  {
+   "name": "a failing read blocks",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "medium",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": false
+   },
+   "adapter": {
+    "reads": [
+     "raise"
+    ]
+   },
+   "call": "pre",
+   "expect": {
+    "pre": {
+     "status": "blocked",
+     "reason": "world_state_unavailable",
+     "actual": null
+    },
+    "events": [
+     [
+      "action.blocked",
+      {
+       "action_id": "a1",
+       "reason": "world_state_unavailable",
+       "risk": "medium"
+      }
+     ],
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "medium",
+       "result": "blocked",
+       "reason": "world_state_unavailable"
+      }
+     ],
+     [
+      "reconcile.state_changed",
+      {
+       "subject": "fake:r1",
+       "action_id": "a1",
+       "event": "unreadable",
+       "authoritative": false
+      }
+     ]
+    ],
+    "reads": 1
+   }
+  },
+  {
+   "name": "a failed precondition blocks",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "medium",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": false
+   },
+   "adapter": {
+    "reads": [
+     {
+      "version": "v1",
+      "value": "x"
+     }
+    ],
+    "pre": false
+   },
+   "call": "pre",
+   "expect": {
+    "pre": {
+     "status": "blocked",
+     "reason": "precondition_failed",
+     "actual": null
+    },
+    "events": [
+     [
+      "action.blocked",
+      {
+       "action_id": "a1",
+       "reason": "precondition_failed",
+       "risk": "medium"
+      }
+     ],
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "medium",
+       "result": "blocked",
+       "reason": "precondition_failed"
+      }
+     ],
+     [
+      "reconcile.state_changed",
+      {
+       "subject": "fake:r1",
+       "action_id": "a1",
+       "event": "mismatch",
+       "authoritative": false
+      }
+     ]
+    ],
+    "reads": 1
+   }
+  },
+  {
+   "name": "a stale version blocks",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "medium",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": "v0",
+    "authorized": true,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": false
+   },
+   "adapter": {
+    "reads": [
+     {
+      "version": "v1",
+      "value": "x"
+     }
+    ]
+   },
+   "call": "pre",
+   "expect": {
+    "pre": {
+     "status": "blocked",
+     "reason": "stale_state",
+     "actual": null
+    },
+    "events": [
+     [
+      "action.blocked",
+      {
+       "action_id": "a1",
+       "reason": "stale_state",
+       "risk": "medium"
+      }
+     ],
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "medium",
+       "result": "blocked",
+       "reason": "stale_state"
+      }
+     ],
+     [
+      "reconcile.state_changed",
+      {
+       "subject": "fake:r1",
+       "action_id": "a1",
+       "event": "mismatch",
+       "authoritative": false
+      }
+     ]
+    ],
+    "reads": 1
+   }
+  },
+  {
+   "name": "a matching version passes",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "medium",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": "v1",
+    "authorized": true,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": false
+   },
+   "adapter": {
+    "reads": [
+     {
+      "version": "v1",
+      "value": "x"
+     }
+    ]
+   },
+   "call": "pre",
+   "expect": {
+    "pre": {
+     "status": "ok",
+     "reason": null,
+     "actual": {
+      "version": "v1",
+      "value": "x"
+     }
+    },
+    "events": [
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "medium",
+       "result": "ok_to_execute"
+      }
+     ]
+    ],
+    "reads": 1
+   }
+  },
+  {
+   "name": "high risk with a fresh approval passes",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "high",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": true,
+    "approval": {
+     "status": "granted",
+     "revoked": false,
+     "decided_at_s": 900.0
+    },
+    "human_approved": false
+   },
+   "adapter": {
+    "reads": [
+     {
+      "version": "v1",
+      "value": "x"
+     }
+    ]
+   },
+   "call": "pre",
+   "now_s": 1000.0,
+   "expect": {
+    "pre": {
+     "status": "ok",
+     "reason": null,
+     "actual": {
+      "version": "v1",
+      "value": "x"
+     }
+    },
+    "events": [
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "high",
+       "result": "ok_to_execute"
+      }
+     ]
+    ],
+    "reads": 1
+   }
+  },
+  {
+   "name": "high risk with a stale approval blocks",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "high",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": true,
+    "approval": {
+     "status": "granted",
+     "revoked": false,
+     "decided_at_s": 900.0
+    },
+    "human_approved": false
+   },
+   "adapter": {
+    "reads": [
+     {
+      "version": "v1",
+      "value": "x"
+     }
+    ]
+   },
+   "call": "pre",
+   "now_s": 5000.0,
+   "expect": {
+    "pre": {
+     "status": "blocked",
+     "reason": "approval_stale_or_revoked",
+     "actual": null
+    },
+    "events": [
+     [
+      "action.blocked",
+      {
+       "action_id": "a1",
+       "reason": "approval_stale_or_revoked",
+       "risk": "high"
+      }
+     ],
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "high",
+       "result": "blocked",
+       "reason": "approval_stale_or_revoked"
+      }
+     ],
+     [
+      "reconcile.state_changed",
+      {
+       "subject": "fake:r1",
+       "action_id": "a1",
+       "event": "denied",
+       "authoritative": false
+      }
+     ]
+    ],
+    "reads": 1
+   }
+  },
+  {
+   "name": "high risk with a revoked approval blocks",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "high",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": true,
+    "approval": {
+     "status": "granted",
+     "revoked": true,
+     "decided_at_s": 900.0
+    },
+    "human_approved": false
+   },
+   "adapter": {
+    "reads": [
+     {
+      "version": "v1",
+      "value": "x"
+     }
+    ]
+   },
+   "call": "pre",
+   "expect": {
+    "pre": {
+     "status": "blocked",
+     "reason": "approval_stale_or_revoked",
+     "actual": null
+    },
+    "events": [
+     [
+      "action.blocked",
+      {
+       "action_id": "a1",
+       "reason": "approval_stale_or_revoked",
+       "risk": "high"
+      }
+     ],
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "high",
+       "result": "blocked",
+       "reason": "approval_stale_or_revoked"
+      }
+     ],
+     [
+      "reconcile.state_changed",
+      {
+       "subject": "fake:r1",
+       "action_id": "a1",
+       "event": "denied",
+       "authoritative": false
+      }
+     ]
+    ],
+    "reads": 1
+   }
+  },
+  {
+   "name": "high risk that needs no approval passes",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "high",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": false
+   },
+   "adapter": {
+    "reads": [
+     {
+      "version": "v1",
+      "value": "x"
+     }
+    ]
+   },
+   "call": "pre",
+   "expect": {
+    "pre": {
+     "status": "ok",
+     "reason": null,
+     "actual": {
+      "version": "v1",
+      "value": "x"
+     }
+    },
+    "events": [
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "high",
+       "result": "ok_to_execute"
+      }
+     ]
+    ],
+    "reads": 1
+   }
+  },
+  {
+   "name": "critical needs a human",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "critical",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": false
+   },
+   "adapter": {
+    "reads": [
+     {
+      "version": "v1",
+      "value": "x"
+     }
+    ]
+   },
+   "call": "pre",
+   "expect": {
+    "pre": {
+     "status": "blocked",
+     "reason": "human_intervention_required",
+     "actual": null
+    },
+    "events": [
+     [
+      "action.blocked",
+      {
+       "action_id": "a1",
+       "reason": "human_intervention_required",
+       "risk": "critical"
+      }
+     ],
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "critical",
+       "result": "blocked",
+       "reason": "human_intervention_required"
+      }
+     ],
+     [
+      "reconcile.state_changed",
+      {
+       "subject": "fake:r1",
+       "action_id": "a1",
+       "event": "denied",
+       "authoritative": false
+      }
+     ]
+    ],
+    "reads": 1
+   }
+  },
+  {
+   "name": "critical with a human passes",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "critical",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": true
+   },
+   "adapter": {
+    "reads": [
+     {
+      "version": "v1",
+      "value": "x"
+     }
+    ]
+   },
+   "call": "pre",
+   "expect": {
+    "pre": {
+     "status": "ok",
+     "reason": null,
+     "actual": {
+      "version": "v1",
+      "value": "x"
+     }
+    },
+    "events": [
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "critical",
+       "result": "ok_to_execute"
+      }
+     ]
+    ],
+    "reads": 1
+   }
+  },
+  {
+   "name": "a verified effect",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "medium",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": false
+   },
+   "adapter": {
+    "reads": [
+     {
+      "version": "v1",
+      "value": "x"
+     },
+     {
+      "version": "v2",
+      "value": "y"
+     }
+    ]
+   },
+   "call": "pre_post",
+   "expect": {
+    "pre": {
+     "status": "ok",
+     "reason": null,
+     "actual": {
+      "version": "v1",
+      "value": "x"
+     }
+    },
+    "post": {
+     "status": "verified_success",
+     "reason": null,
+     "observed": {
+      "version": "v2",
+      "value": "y"
+     }
+    },
+    "events": [
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "medium",
+       "result": "ok_to_execute"
+      }
+     ],
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "medium",
+       "result": "verified"
+      }
+     ],
+     [
+      "reconcile.state_changed",
+      {
+       "subject": "fake:r1",
+       "action_id": "a1",
+       "event": "verified",
+       "authoritative": true
+      }
+     ]
+    ],
+    "reads": 2
+   }
+  },
+  {
+   "name": "an unreadable result is pending",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "medium",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": false
+   },
+   "adapter": {
+    "reads": [
+     {
+      "version": "v1",
+      "value": "x"
+     }
+    ]
+   },
+   "call": "pre_post",
+   "expect": {
+    "pre": {
+     "status": "ok",
+     "reason": null,
+     "actual": {
+      "version": "v1",
+      "value": "x"
+     }
+    },
+    "post": {
+     "status": "pending_reconciliation",
+     "reason": "outcome_unverified",
+     "observed": null
+    },
+    "events": [
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "medium",
+       "result": "ok_to_execute"
+      }
+     ],
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "medium",
+       "result": "outcome_unverified"
+      }
+     ],
+     [
+      "reconcile.state_changed",
+      {
+       "subject": "fake:r1",
+       "action_id": "a1",
+       "event": "unreadable",
+       "authoritative": false
+      }
+     ]
+    ],
+    "reads": 2
+   }
+  },
+  {
+   "name": "an effect that does not hold needs reconciliation",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "medium",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": false
+   },
+   "adapter": {
+    "reads": [
+     {
+      "version": "v1",
+      "value": "x"
+     },
+     {
+      "version": "v1",
+      "value": "x"
+     }
+    ],
+    "eff": false
+   },
+   "call": "pre_post",
+   "expect": {
+    "pre": {
+     "status": "ok",
+     "reason": null,
+     "actual": {
+      "version": "v1",
+      "value": "x"
+     }
+    },
+    "post": {
+     "status": "reconciliation_required",
+     "reason": "effect_mismatch",
+     "observed": {
+      "version": "v1",
+      "value": "x"
+     }
+    },
+    "events": [
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "medium",
+       "result": "ok_to_execute"
+      }
+     ],
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "medium",
+       "result": "effect_mismatch"
+      }
+     ],
+     [
+      "reconcile.state_changed",
+      {
+       "subject": "fake:r1",
+       "action_id": "a1",
+       "event": "mismatch",
+       "authoritative": true
+      }
+     ]
+    ],
+    "reads": 2
+   }
+  },
+  {
+   "name": "a low risk action is not read back",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "low",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": false
+   },
+   "adapter": null,
+   "call": "pre_post",
+   "expect": {
+    "pre": {
+     "status": "ok",
+     "reason": null,
+     "actual": null
+    },
+    "post": {
+     "status": "not_checked",
+     "reason": null,
+     "observed": null
+    },
+    "events": [
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "low",
+       "result": "internal_only"
+      }
+     ]
+    ],
+    "reads": 0
+   }
+  },
+  {
+   "name": "the resource changes between check and act",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "medium",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": false
+   },
+   "adapter": {
+    "reads": [
+     {
+      "version": "v1",
+      "value": "x"
+     },
+     {
+      "version": "v2",
+      "value": "x"
+     }
+    ]
+   },
+   "call": "guarded",
+   "expect": {
+    "pre": {
+     "status": "ok",
+     "reason": null,
+     "actual": {
+      "version": "v1",
+      "value": "x"
+     }
+    },
+    "guarded": {
+     "conflict": true,
+     "executed": 0
+    },
+    "events": [
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "medium",
+       "result": "ok_to_execute"
+      }
+     ]
+    ],
+    "reads": 2
+   }
+  },
+  {
+   "name": "the resource is unchanged between check and act",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "medium",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": false
+   },
+   "adapter": {
+    "reads": [
+     {
+      "version": "v1",
+      "value": "x"
+     },
+     {
+      "version": "v1",
+      "value": "x"
+     }
+    ]
+   },
+   "call": "guarded",
+   "expect": {
+    "pre": {
+     "status": "ok",
+     "reason": null,
+     "actual": {
+      "version": "v1",
+      "value": "x"
+     }
+    },
+    "guarded": {
+     "conflict": false,
+     "executed": 1
+    },
+    "events": [
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "medium",
+       "result": "ok_to_execute"
+      }
+     ]
+    ],
+    "reads": 2
+   }
+  },
+  {
+   "name": "a timeout whose effect took hold",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "medium",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": false
+   },
+   "adapter": {
+    "reads": [
+     {
+      "version": "v2",
+      "value": "y"
+     }
+    ]
+   },
+   "call": "establish",
+   "before": {
+    "version": "v1",
+    "value": "x"
+   },
+   "expect": {
+    "establish": {
+     "outcome": "applied",
+     "observed": {
+      "version": "v2",
+      "value": "y"
+     }
+    },
+    "events": [
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "medium",
+       "result": "applied_before_retry",
+       "lifecycle": "retry"
+      }
+     ],
+     [
+      "reconcile.state_changed",
+      {
+       "subject": "fake:r1",
+       "action_id": "a1",
+       "event": "verified",
+       "authoritative": true
+      }
+     ]
+    ],
+    "reads": 1
+   }
+  },
+  {
+   "name": "a timeout whose effect did not take hold",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "medium",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": false
+   },
+   "adapter": {
+    "reads": [
+     {
+      "version": "v1",
+      "value": "x"
+     }
+    ],
+    "eff": false
+   },
+   "call": "establish",
+   "before": {
+    "version": "v1",
+    "value": "x"
+   },
+   "expect": {
+    "establish": {
+     "outcome": "not_applied",
+     "observed": {
+      "version": "v1",
+      "value": "x"
+     }
+    },
+    "events": [
+     [
+      "reconcile.checked",
+      {
+       "action_id": "a1",
+       "risk": "medium",
+       "result": "not_applied",
+       "lifecycle": "retry"
+      }
+     ],
+     [
+      "reconcile.state_changed",
+      {
+       "subject": "fake:r1",
+       "action_id": "a1",
+       "event": "mismatch",
+       "authoritative": true
+      }
+     ]
+    ],
+    "reads": 1
+   }
+  },
+  {
+   "name": "a timeout with unreadable state stays unknown",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "medium",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": false
+   },
+   "adapter": {
+    "reads": []
+   },
+   "call": "establish",
+   "before": {
+    "version": "v1",
+    "value": "x"
+   },
+   "expect": {
+    "establish": {
+     "outcome": "unknown",
+     "observed": null
+    },
+    "events": [
+     [
+      "reconcile.state_changed",
+      {
+       "subject": "fake:r1",
+       "action_id": "a1",
+       "event": "unreadable",
+       "authoritative": false
+      }
+     ]
+    ],
+    "reads": 1
+   }
+  },
+  {
+   "name": "a timeout with no adapter stays unknown",
+   "action": {
+    "id": "a1",
+    "tool": "t",
+    "risk": "medium",
+    "adapter": "fake",
+    "resource": "r1",
+    "args": {},
+    "preconditions": [],
+    "expected_effects": [],
+    "expected_version": null,
+    "authorized": true,
+    "approval_required": false,
+    "approval": null,
+    "human_approved": false
+   },
+   "adapter": null,
+   "call": "establish",
+   "before": null,
+   "expect": {
+    "establish": {
+     "outcome": "unknown",
+     "observed": null
+    },
+    "events": [
+     [
+      "reconcile.state_changed",
+      {
+       "subject": "fake:r1",
+       "action_id": "a1",
+       "event": "unreadable",
+       "authoritative": false
+      }
+     ]
+    ],
+    "reads": 0
+   }
+  }
+ ]
+}

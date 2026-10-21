@@ -1,0 +1,206 @@
+{
+ "declarations": [
+  {
+   "name": "hidden default",
+   "spec": {
+    "visibility": "hidden"
+   },
+   "declaration": {
+    "purpose": "evaluation",
+    "held_out_use": false,
+    "generalization_claim": false,
+    "public_tests": {
+     "mount_mode": "read_only"
+    }
+   },
+   "errors": []
+  },
+  {
+   "name": "hidden with heldout confirmation",
+   "spec": {
+    "visibility": "hidden",
+    "confirmation": {
+     "mode": "heldout_set"
+    }
+   },
+   "declaration": {
+    "purpose": "evaluation",
+    "held_out_use": true,
+    "generalization_claim": false,
+    "public_tests": {
+     "mount_mode": "read_only"
+    }
+   },
+   "errors": []
+  },
+  {
+   "name": "public default",
+   "spec": {
+    "visibility": "public",
+    "purpose": "development"
+   },
+   "declaration": {
+    "purpose": "development_only",
+    "held_out_use": false,
+    "generalization_claim": false,
+    "public_tests": {
+     "mount_mode": "read_only"
+    }
+   },
+   "errors": []
+  },
+  {
+   "name": "explicit evaluation",
+   "spec": {
+    "visibility": "hidden",
+    "test_visibility": {
+     "purpose": "evaluation",
+     "held_out_use": true,
+     "generalization_claim": true
+    }
+   },
+   "declaration": {
+    "purpose": "evaluation",
+    "held_out_use": true,
+    "generalization_claim": true,
+    "public_tests": {
+     "mount_mode": "read_only"
+    }
+   },
+   "errors": []
+  },
+  {
+   "name": "public with a generalization claim",
+   "spec": {
+    "visibility": "public",
+    "purpose": "development",
+    "test_visibility": {
+     "purpose": "development_only",
+     "held_out_use": false,
+     "generalization_claim": true
+    }
+   },
+   "declaration": {
+    "purpose": "development_only",
+    "held_out_use": false,
+    "generalization_claim": true,
+    "public_tests": {
+     "mount_mode": "read_only"
+    }
+   },
+   "errors": [
+    "test_visibility: public-test results cannot authorize a generalization claim (generalization_claim must be false)"
+   ]
+  },
+  {
+   "name": "development_only with held-out use",
+   "spec": {
+    "visibility": "hidden",
+    "test_visibility": {
+     "purpose": "development_only",
+     "held_out_use": true,
+     "generalization_claim": false
+    }
+   },
+   "declaration": {
+    "purpose": "development_only",
+    "held_out_use": true,
+    "generalization_claim": false,
+    "public_tests": {
+     "mount_mode": "read_only"
+    }
+   },
+   "errors": [
+    "test_visibility: development_only tests cannot be used as held-out data (held_out_use must be false)"
+   ]
+  },
+  {
+   "name": "public with held-out use",
+   "spec": {
+    "visibility": "public",
+    "purpose": "development",
+    "test_visibility": {
+     "purpose": "development_only",
+     "held_out_use": true,
+     "generalization_claim": false
+    }
+   },
+   "declaration": {
+    "purpose": "development_only",
+    "held_out_use": true,
+    "generalization_claim": false,
+    "public_tests": {
+     "mount_mode": "read_only"
+    }
+   },
+   "errors": [
+    "test_visibility: development_only tests cannot be used as held-out data (held_out_use must be false)",
+    "test_visibility: public tests cannot be used as held-out data"
+   ]
+  },
+  {
+   "name": "public declared for evaluation",
+   "spec": {
+    "visibility": "public",
+    "purpose": "development",
+    "test_visibility": {
+     "purpose": "evaluation",
+     "held_out_use": false,
+     "generalization_claim": false
+    }
+   },
+   "declaration": {
+    "purpose": "evaluation",
+    "held_out_use": false,
+    "generalization_claim": false,
+    "public_tests": {
+     "mount_mode": "read_only"
+    }
+   },
+   "errors": [
+    "test_visibility: public tests are development aids and must declare purpose development_only"
+   ]
+  },
+  {
+   "name": "development_only hidden with a claim",
+   "spec": {
+    "visibility": "hidden",
+    "test_visibility": {
+     "purpose": "development_only",
+     "held_out_use": false,
+     "generalization_claim": true
+    }
+   },
+   "declaration": {
+    "purpose": "development_only",
+    "held_out_use": false,
+    "generalization_claim": true,
+    "public_tests": {
+     "mount_mode": "read_only"
+    }
+   },
+   "errors": [
+    "test_visibility: development_only tests cannot support a generalization claim"
+   ]
+  }
+ ],
+ "tests_dir": {
+  "files": {
+   "grade.py": "print('grade')\n",
+   "prepare.sh": "echo prepared\n",
+   "confirm/grade.py": "print('held out')\n",
+   "confirm/heldout.marker": "1",
+   "data/a.txt": "alpha",
+   "data/sub/b.txt": "beta",
+   "Zed.txt": "upper"
+  },
+  "tests_hash": "d5f2deadd5d80245a64138b3b3cc3a5ec69bb01f78f106478780cbaa8c7549c5",
+  "public_files": [
+   "Zed.txt",
+   "data/a.txt",
+   "data/sub/b.txt",
+   "grade.py",
+   "prepare.sh"
+  ]
+ }
+}

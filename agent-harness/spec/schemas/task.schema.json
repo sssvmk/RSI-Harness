@@ -1,0 +1,281 @@
+{
+ "$id": "task.v1",
+ "type": "object",
+ "required": [
+  "schema_version",
+  "id",
+  "version",
+  "instruction",
+  "environment",
+  "scoring"
+ ],
+ "properties": {
+  "schema_version": {
+   "const": 1
+  },
+  "id": {
+   "type": "string"
+  },
+  "version": {
+   "type": "string"
+  },
+  "instruction": {
+   "type": "string"
+  },
+  "environment": {
+   "type": "object",
+   "required": [
+    "work_image"
+   ],
+   "properties": {
+    "work_image": {
+     "type": "object"
+    },
+    "judge_image": {
+     "type": "object"
+    },
+    "resources": {
+     "type": "object"
+    },
+    "users": {
+     "type": "object",
+     "properties": {
+      "agent": {
+       "type": "integer"
+      },
+      "candidate": {
+       "type": "integer"
+      },
+      "judge": {
+       "type": "integer"
+      }
+     }
+    },
+    "egress": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "required": [
+       "host_glob",
+       "ports"
+      ]
+     }
+    }
+   }
+  },
+  "visibility": {
+   "enum": [
+    "hidden",
+    "public"
+   ]
+  },
+  "purpose": {
+   "enum": [
+    "development",
+    "evaluation"
+   ]
+  },
+  "agent": {
+   "type": "object",
+   "properties": {
+    "budgets": {
+     "type": "object"
+    },
+    "tool_allowlist": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "candidate_outputs": {
+   "type": "string"
+  },
+  "scoring": {
+   "type": "object",
+   "required": [
+    "steps",
+    "report_path",
+    "primary"
+   ],
+   "properties": {
+    "steps": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "type": "object",
+      "required": [
+       "id",
+       "run_as",
+       "cmd",
+       "timeout_s"
+      ],
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "run_as": {
+        "enum": [
+         "judge",
+         "candidate"
+        ]
+       },
+       "cmd": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        },
+        "minItems": 1
+       },
+       "timeout_s": {
+        "type": "integer",
+        "minimum": 1
+       },
+       "cwd": {
+        "type": "string"
+       }
+      }
+     }
+    },
+    "report_path": {
+     "type": "string"
+    },
+    "primary": {
+     "type": "object",
+     "required": [
+      "metric",
+      "direction"
+     ],
+     "properties": {
+      "metric": {
+       "type": "string"
+      },
+      "direction": {
+       "enum": [
+        "maximize",
+        "minimize"
+       ]
+      }
+     }
+    },
+    "pass_threshold": {
+     "type": "number"
+    },
+    "guardrails": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "required": [
+       "metric",
+       "direction",
+       "margin"
+      ]
+     }
+    }
+   }
+  },
+  "submission": {
+   "type": "object",
+   "properties": {
+    "feedback": {
+     "type": "object",
+     "properties": {
+      "level": {
+       "enum": [
+        "none",
+        "score",
+        "score_and_summary"
+       ]
+      },
+      "max_bytes": {
+       "type": "integer",
+       "minimum": 0
+      }
+     }
+    }
+   }
+  },
+  "selection": {
+   "type": "object",
+   "properties": {
+    "rule": {
+     "enum": [
+      "best_primary"
+     ]
+    },
+    "tie_break": {
+     "enum": [
+      "earliest",
+      "latest"
+     ]
+    }
+   }
+  },
+  "confirmation": {
+   "type": "object",
+   "properties": {
+    "mode": {
+     "enum": [
+      "reseed",
+      "heldout_set"
+     ]
+    },
+    "trials": {
+     "type": "integer",
+     "minimum": 1
+    }
+   }
+  },
+  "replication": {
+   "type": "object",
+   "properties": {
+    "pilot_trials": {
+     "type": "integer"
+    },
+    "min_trials": {
+     "type": "integer",
+     "minimum": 3
+    },
+    "confidence": {
+     "type": "number"
+    }
+   }
+  },
+  "outcome": {
+   "type": "object"
+  },
+  "test_visibility": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "purpose",
+    "held_out_use",
+    "generalization_claim"
+   ],
+   "properties": {
+    "purpose": {
+     "enum": [
+      "development_only",
+      "evaluation"
+     ]
+    },
+    "held_out_use": {
+     "type": "boolean"
+    },
+    "generalization_claim": {
+     "type": "boolean"
+    },
+    "public_tests": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "mount_mode": {
+       "const": "read_only"
+      }
+     }
+    }
+   }
+  }
+ }
+}

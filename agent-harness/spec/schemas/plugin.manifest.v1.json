@@ -1,0 +1,110 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "Plugin manifest",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "id",
+  "kind",
+  "version",
+  "interface_version",
+  "trust",
+  "entry"
+ ],
+ "properties": {
+  "id": {
+   "type": "string",
+   "pattern": "^[a-z][a-z0-9_.\\-]*$"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "version": {
+   "type": "string",
+   "pattern": "^\\d+\\.\\d+\\.\\d+$"
+  },
+  "interface_version": {
+   "type": "string",
+   "pattern": "^\\d+\\.\\d+\\.\\d+$"
+  },
+  "trust": {
+   "enum": [
+    "in_process",
+    "subprocess"
+   ]
+  },
+  "grants": {
+   "type": "array",
+   "items": {
+    "enum": [
+     "model_calls",
+     "network",
+     "host",
+     "filesystem",
+     "tool_calls"
+    ]
+   }
+  },
+  "entry": {
+   "type": "object",
+   "properties": {
+    "module": {
+     "type": "string"
+    },
+    "factory": {
+     "type": "string"
+    },
+    "command": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "minItems": 1
+    },
+    "code_sha256": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "class": {
+     "type": "string",
+     "pattern": "^[^:\\s]+:[A-Za-z_][A-Za-z0-9_]*$"
+    },
+    "config": {
+     "type": "object"
+    }
+   },
+   "additionalProperties": false
+  },
+  "description": {
+   "type": "string"
+  },
+  "evaluator": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type"
+   ],
+   "properties": {
+    "type": {
+     "enum": [
+      "code",
+      "llm_judge",
+      "typesafe_ai"
+     ]
+    },
+    "model_ref": {
+     "type": "string"
+    },
+    "credential_ref": {
+     "type": "string"
+    },
+    "context": {
+     "enum": [
+      "fresh",
+      "shared"
+     ]
+    }
+   }
+  }
+ }
+}

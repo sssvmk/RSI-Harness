@@ -1,0 +1,28 @@
+{
+ "files": {
+  "components.yaml": "\nschema_version: 1\ncomponents:\n  - {path: \"prompts/**\", component: system_prompt, tier: T1, owner: platform, origin: human}\n  - {path: \"memory/playbook.jsonl\", component: playbook, tier: T0, owner: platform, origin: learned}\n  - {path: \"tools/**\", component: tool_description, tier: T1, owner: platform, origin: human}\n  - {path: \"skills/triage/**\", component: skill, tier: T2, owner: ops, origin: learned, provides: [skill.triage]}\n  - {path: \"workflows/**\", component: workflow, tier: T2, owner: ops, origin: learned, requires: [skill.triage]}\n",
+  "prompts/system.md": "You are an agent.\nBe careful.\n",
+  "prompts/settings.yaml": "temperature: 0.2\nbudgets:\n  turns: 10\nmodel: base\n",
+  "memory/playbook.jsonl": "",
+  "tools/search.md": "Search the web.\n",
+  "skills/triage/SKILL.md": "Triage.\n",
+  "workflows/flow.yaml": "steps: []\n"
+ },
+ "edit": {
+  "path": "prompts/system.md",
+  "op": "replace",
+  "search": "Be careful.\n",
+  "replace": "Be careful.\nHINT+ x\n"
+ },
+ "message": "proposal P1\n\nmanifest-hash: abc",
+ "base_commit": "dd893afb02d1bf2787db4c160611b7a89a82fd6e",
+ "expected": {
+  "commit": "6bd66137ef30838411a18f4cdd4760808fd94f2f",
+  "tier": "T1",
+  "tree": "c447a28bbe1c3762e7f0e62bcfdd9dd6af94c98e",
+  "changed": [
+   "prompts/system.md"
+  ],
+  "changed_lines": 5
+ }
+}

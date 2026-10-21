@@ -1,0 +1,503 @@
+{
+ "keys": [
+  {
+   "created": {
+    "config_commit": "c1",
+    "task_id": "t1",
+    "profile": "core",
+    "agent": {},
+    "provenance": {
+     "models": [
+      "m-a"
+     ],
+     "grader_hash": "g1",
+     "task_version": "1.0.0"
+    }
+   },
+   "key": {
+    "config_commit": "c1",
+    "models": [
+     "m-a"
+    ],
+    "task_id": "t1",
+    "task_version": "1.0.0",
+    "grader_hash": "g1",
+    "harness_version": null,
+    "profile": "core"
+   }
+  },
+  {
+   "created": {
+    "config_commit": "c1",
+    "task_id": "t1",
+    "profile": "core",
+    "agent": {},
+    "provenance": {
+     "models": [
+      "b",
+      "a"
+     ],
+     "grader_hash": "g1",
+     "task_version": "1.0.0"
+    }
+   },
+   "key": {
+    "config_commit": "c1",
+    "models": [
+     "a",
+     "b"
+    ],
+    "task_id": "t1",
+    "task_version": "1.0.0",
+    "grader_hash": "g1",
+    "harness_version": null,
+    "profile": "core"
+   }
+  }
+ ],
+ "pairs": [
+  {
+   "name": "identical",
+   "a": {
+    "config_commit": "c1",
+    "task_id": "t1",
+    "profile": "core",
+    "agent": {},
+    "provenance": {
+     "models": [
+      "m-a"
+     ],
+     "grader_hash": "g1",
+     "task_version": "1.0.0"
+    }
+   },
+   "b": {
+    "config_commit": "c1",
+    "task_id": "t1",
+    "profile": "core",
+    "agent": {},
+    "provenance": {
+     "models": [
+      "m-a"
+     ],
+     "grader_hash": "g1",
+     "task_version": "1.0.0"
+    }
+   },
+   "result": {
+    "comparable": true,
+    "differences": []
+   }
+  },
+  {
+   "name": "model order",
+   "a": {
+    "config_commit": "c1",
+    "task_id": "t1",
+    "profile": "core",
+    "agent": {},
+    "provenance": {
+     "models": [
+      "b",
+      "a"
+     ],
+     "grader_hash": "g1",
+     "task_version": "1.0.0"
+    }
+   },
+   "b": {
+    "config_commit": "c1",
+    "task_id": "t1",
+    "profile": "core",
+    "agent": {},
+    "provenance": {
+     "models": [
+      "a",
+      "b"
+     ],
+     "grader_hash": "g1",
+     "task_version": "1.0.0"
+    }
+   },
+   "result": {
+    "comparable": true,
+    "differences": []
+   }
+  },
+  {
+   "name": "commit and grader",
+   "a": {
+    "config_commit": "c1",
+    "task_id": "t1",
+    "profile": "core",
+    "agent": {},
+    "provenance": {
+     "models": [
+      "m-a"
+     ],
+     "grader_hash": "g1",
+     "task_version": "1.0.0"
+    }
+   },
+   "b": {
+    "config_commit": "c2",
+    "task_id": "t1",
+    "profile": "core",
+    "agent": {},
+    "provenance": {
+     "models": [
+      "m-a"
+     ],
+     "grader_hash": "g2",
+     "task_version": "1.0.0"
+    }
+   },
+   "result": {
+    "comparable": false,
+    "differences": [
+     {
+      "field": "config_commit",
+      "a": "c1",
+      "b": "c2"
+     },
+     {
+      "field": "grader_hash",
+      "a": "g1",
+      "b": "g2"
+     }
+    ]
+   }
+  },
+  {
+   "name": "dirty",
+   "a": {
+    "config_commit": "c1",
+    "task_id": "t1",
+    "profile": "core",
+    "agent": {},
+    "provenance": {
+     "models": [
+      "m-a"
+     ],
+     "grader_hash": "g1",
+     "task_version": "1.0.0"
+    }
+   },
+   "b": {
+    "config_commit": "c1+dirty",
+    "task_id": "t1",
+    "profile": "core",
+    "agent": {},
+    "provenance": {
+     "models": [
+      "m-a"
+     ],
+     "grader_hash": "g1",
+     "task_version": "1.0.0"
+    }
+   },
+   "result": {
+    "comparable": false,
+    "differences": [
+     {
+      "field": "config_commit",
+      "a": "c1",
+      "b": "c1+dirty"
+     }
+    ]
+   }
+  },
+  {
+   "name": "other model",
+   "a": {
+    "config_commit": "c1",
+    "task_id": "t1",
+    "profile": "core",
+    "agent": {},
+    "provenance": {
+     "models": [
+      "m-a"
+     ],
+     "grader_hash": "g1",
+     "task_version": "1.0.0"
+    }
+   },
+   "b": {
+    "config_commit": "c1",
+    "task_id": "t1",
+    "profile": "core",
+    "agent": {},
+    "provenance": {
+     "models": [
+      "m-b"
+     ],
+     "grader_hash": "g1",
+     "task_version": "1.0.0"
+    }
+   },
+   "result": {
+    "comparable": false,
+    "differences": [
+     {
+      "field": "models",
+      "a": [
+       "m-a"
+      ],
+      "b": [
+       "m-b"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "name": "other task",
+   "a": {
+    "config_commit": "c1",
+    "task_id": "t1",
+    "profile": "core",
+    "agent": {},
+    "provenance": {
+     "models": [
+      "m-a"
+     ],
+     "grader_hash": "g1",
+     "task_version": "1.0.0"
+    }
+   },
+   "b": {
+    "config_commit": "c1",
+    "task_id": "t2",
+    "profile": "core",
+    "agent": {},
+    "provenance": {
+     "models": [
+      "m-a"
+     ],
+     "grader_hash": "g1",
+     "task_version": "1.0.0"
+    }
+   },
+   "result": {
+    "comparable": false,
+    "differences": [
+     {
+      "field": "task_id",
+      "a": "t1",
+      "b": "t2"
+     }
+    ]
+   }
+  },
+  {
+   "name": "unknown vs known",
+   "a": {
+    "config_commit": "c1",
+    "task_id": "t1",
+    "profile": "core",
+    "agent": {},
+    "provenance": {
+     "models": [
+      "m-a"
+     ],
+     "grader_hash": "g1",
+     "task_version": "1.0.0"
+    }
+   },
+   "b": {
+    "config_commit": "c1",
+    "task_id": "t1",
+    "profile": "core",
+    "agent": {},
+    "provenance": {
+     "models": [
+      "m-a"
+     ]
+    }
+   },
+   "result": {
+    "comparable": false,
+    "differences": [
+     {
+      "field": "task_version",
+      "a": "1.0.0",
+      "b": null
+     },
+     {
+      "field": "grader_hash",
+      "a": "g1",
+      "b": null
+     }
+    ]
+   }
+  }
+ ],
+ "aggregate_same": {
+  "runs": [
+   {
+    "run_id": "r0",
+    "created": {
+     "config_commit": "c1",
+     "task_id": "t1",
+     "profile": "core",
+     "agent": {},
+     "provenance": {
+      "models": [
+       "m-a"
+      ],
+      "grader_hash": "g1",
+      "task_version": "1.0.0"
+     }
+    },
+    "value": 0.6
+   },
+   {
+    "run_id": "r1",
+    "created": {
+     "config_commit": "c1",
+     "task_id": "t1",
+     "profile": "core",
+     "agent": {},
+     "provenance": {
+      "models": [
+       "m-a"
+      ],
+      "grader_hash": "g1",
+      "task_version": "1.0.0"
+     }
+    },
+    "value": 0.8
+   }
+  ],
+  "result": {
+   "comparable": true,
+   "groups": [
+    {
+     "key": {
+      "config_commit": "c1",
+      "models": [
+       "m-a"
+      ],
+      "task_id": "t1",
+      "task_version": "1.0.0",
+      "grader_hash": "g1",
+      "harness_version": null,
+      "profile": "core"
+     },
+     "fingerprint": "b7b6463369f37d87",
+     "runs": [
+      "r0",
+      "r1"
+     ],
+     "n": 2,
+     "mean": 0.7
+    }
+   ],
+   "non_comparable": false
+  }
+ },
+ "aggregate_mixed": {
+  "runs": [
+   {
+    "run_id": "r0",
+    "created": {
+     "config_commit": "c1",
+     "task_id": "t1",
+     "profile": "core",
+     "agent": {},
+     "provenance": {
+      "models": [
+       "m-a"
+      ],
+      "grader_hash": "g1",
+      "task_version": "1.0.0"
+     }
+    },
+    "value": 0.6
+   },
+   {
+    "run_id": "r1",
+    "created": {
+     "config_commit": "c1",
+     "task_id": "t1",
+     "profile": "core",
+     "agent": {},
+     "provenance": {
+      "models": [
+       "m-a"
+      ],
+      "grader_hash": "g1",
+      "task_version": "1.0.0"
+     }
+    },
+    "value": 0.8
+   },
+   {
+    "run_id": "r9",
+    "created": {
+     "config_commit": "c2",
+     "task_id": "t1",
+     "profile": "core",
+     "agent": {},
+     "provenance": {
+      "models": [
+       "m-a"
+      ],
+      "grader_hash": "g1",
+      "task_version": "1.0.0"
+     }
+    },
+    "value": 0.9
+   }
+  ],
+  "refused": true,
+  "forced": {
+   "comparable": false,
+   "groups": [
+    {
+     "key": {
+      "config_commit": "c1",
+      "models": [
+       "m-a"
+      ],
+      "task_id": "t1",
+      "task_version": "1.0.0",
+      "grader_hash": "g1",
+      "harness_version": null,
+      "profile": "core"
+     },
+     "fingerprint": "b7b6463369f37d87",
+     "runs": [
+      "r0",
+      "r1"
+     ],
+     "n": 2,
+     "mean": 0.7
+    },
+    {
+     "key": {
+      "config_commit": "c2",
+      "models": [
+       "m-a"
+      ],
+      "task_id": "t1",
+      "task_version": "1.0.0",
+      "grader_hash": "g1",
+      "harness_version": null,
+      "profile": "core"
+     },
+     "fingerprint": "bc28247fe204c176",
+     "runs": [
+      "r9"
+     ],
+     "n": 1,
+     "mean": 0.9,
+     "key_diff": [
+      "config_commit"
+     ]
+    }
+   ],
+   "non_comparable": true
+  }
+ }
+}

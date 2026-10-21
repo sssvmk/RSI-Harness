@@ -1,0 +1,668 @@
+{
+ "available": [
+  {
+   "name": "no allocations",
+   "state": {
+    "agent": {
+     "tokens": {
+      "limit": 1000,
+      "used": 0,
+      "reserved": 0,
+      "unreconciled": 0,
+      "warn_at": 800.0,
+      "warned": false,
+      "exhausted": false
+     }
+    },
+    "evaluator": {},
+    "reservations": {},
+    "allocations": {},
+    "unreconciled": {}
+   },
+   "dim": "tokens",
+   "agent_id": null,
+   "expect": [
+    1000,
+    null
+   ]
+  },
+  {
+   "name": "with used and reserved",
+   "state": {
+    "agent": {
+     "tokens": {
+      "limit": 1000,
+      "used": 200,
+      "reserved": 300,
+      "unreconciled": 0,
+      "warn_at": 800.0,
+      "warned": false,
+      "exhausted": false
+     }
+    },
+    "evaluator": {},
+    "reservations": {},
+    "allocations": {},
+    "unreconciled": {}
+   },
+   "dim": "tokens",
+   "agent_id": null,
+   "expect": [
+    500,
+    null
+   ]
+  },
+  {
+   "name": "one allocation guarantees its unspent part",
+   "state": {
+    "agent": {
+     "tokens": {
+      "limit": 1000,
+      "used": 0,
+      "reserved": 0,
+      "unreconciled": 0,
+      "warn_at": 800.0,
+      "warned": false,
+      "exhausted": false
+     }
+    },
+    "evaluator": {},
+    "reservations": {},
+    "allocations": {
+     "a": {
+      "set": "agent",
+      "ended": false,
+      "dims": {
+       "tokens": {
+        "limit": 600,
+        "used": 0,
+        "reserved": 0
+       }
+      }
+     }
+    },
+    "unreconciled": {}
+   },
+   "dim": "tokens",
+   "agent_id": null,
+   "expect": [
+    400,
+    null
+   ]
+  },
+  {
+   "name": "the allocated agent sees its own headroom",
+   "state": {
+    "agent": {
+     "tokens": {
+      "limit": 1000,
+      "used": 0,
+      "reserved": 0,
+      "unreconciled": 0,
+      "warn_at": 800.0,
+      "warned": false,
+      "exhausted": false
+     }
+    },
+    "evaluator": {},
+    "reservations": {},
+    "allocations": {
+     "a": {
+      "set": "agent",
+      "ended": false,
+      "dims": {
+       "tokens": {
+        "limit": 600,
+        "used": 0,
+        "reserved": 0
+       }
+      }
+     }
+    },
+    "unreconciled": {}
+   },
+   "dim": "tokens",
+   "agent_id": "a",
+   "expect": [
+    1000,
+    600
+   ]
+  },
+  {
+   "name": "allocation partly spent",
+   "state": {
+    "agent": {
+     "tokens": {
+      "limit": 1000,
+      "used": 250,
+      "reserved": 0,
+      "unreconciled": 0,
+      "warn_at": 800.0,
+      "warned": false,
+      "exhausted": false
+     }
+    },
+    "evaluator": {},
+    "reservations": {},
+    "allocations": {
+     "a": {
+      "set": "agent",
+      "ended": false,
+      "dims": {
+       "tokens": {
+        "limit": 600,
+        "used": 250,
+        "reserved": 0
+       }
+      }
+     }
+    },
+    "unreconciled": {}
+   },
+   "dim": "tokens",
+   "agent_id": "b",
+   "expect": [
+    400,
+    null
+   ]
+  },
+  {
+   "name": "an ended allocation guarantees nothing",
+   "state": {
+    "agent": {
+     "tokens": {
+      "limit": 1000,
+      "used": 0,
+      "reserved": 0,
+      "unreconciled": 0,
+      "warn_at": 800.0,
+      "warned": false,
+      "exhausted": false
+     }
+    },
+    "evaluator": {},
+    "reservations": {},
+    "allocations": {
+     "a": {
+      "set": "agent",
+      "ended": true,
+      "dims": {
+       "tokens": {
+        "limit": 600,
+        "used": 0,
+        "reserved": 0
+       }
+      }
+     }
+    },
+    "unreconciled": {}
+   },
+   "dim": "tokens",
+   "agent_id": null,
+   "expect": [
+    1000,
+    null
+   ]
+  },
+  {
+   "name": "two allocations",
+   "state": {
+    "agent": {
+     "tokens": {
+      "limit": 1000,
+      "used": 0,
+      "reserved": 0,
+      "unreconciled": 0,
+      "warn_at": 800.0,
+      "warned": false,
+      "exhausted": false
+     }
+    },
+    "evaluator": {},
+    "reservations": {},
+    "allocations": {
+     "a": {
+      "set": "agent",
+      "ended": false,
+      "dims": {
+       "tokens": {
+        "limit": 600,
+        "used": 0,
+        "reserved": 0
+       }
+      }
+     },
+     "b": {
+      "set": "agent",
+      "ended": false,
+      "dims": {
+       "tokens": {
+        "limit": 300,
+        "used": 0,
+        "reserved": 0
+       }
+      }
+     }
+    },
+    "unreconciled": {}
+   },
+   "dim": "tokens",
+   "agent_id": "a",
+   "expect": [
+    700,
+    600
+   ]
+  }
+ ],
+ "check_reserve": [
+  {
+   "name": "fits",
+   "state": {
+    "agent": {
+     "tokens": {
+      "limit": 1000,
+      "used": 0,
+      "reserved": 0,
+      "unreconciled": 0,
+      "warn_at": 800.0,
+      "warned": false,
+      "exhausted": false
+     }
+    },
+    "evaluator": {},
+    "reservations": {},
+    "allocations": {},
+    "unreconciled": {}
+   },
+   "deltas": {
+    "tokens": 1000
+   },
+   "agent_id": null,
+   "expect": null
+  },
+  {
+   "name": "one over",
+   "state": {
+    "agent": {
+     "tokens": {
+      "limit": 1000,
+      "used": 0,
+      "reserved": 0,
+      "unreconciled": 0,
+      "warn_at": 800.0,
+      "warned": false,
+      "exhausted": false
+     }
+    },
+    "evaluator": {},
+    "reservations": {},
+    "allocations": {},
+    "unreconciled": {}
+   },
+   "deltas": {
+    "tokens": 1001
+   },
+   "agent_id": null,
+   "expect": "tokens"
+  },
+  {
+   "name": "reserved counts",
+   "state": {
+    "agent": {
+     "tokens": {
+      "limit": 1000,
+      "used": 0,
+      "reserved": 700,
+      "unreconciled": 0,
+      "warn_at": 800.0,
+      "warned": false,
+      "exhausted": false
+     }
+    },
+    "evaluator": {},
+    "reservations": {},
+    "allocations": {},
+    "unreconciled": {}
+   },
+   "deltas": {
+    "tokens": 400
+   },
+   "agent_id": null,
+   "expect": "tokens"
+  },
+  {
+   "name": "used counts",
+   "state": {
+    "agent": {
+     "tokens": {
+      "limit": 1000,
+      "used": 800,
+      "reserved": 0,
+      "unreconciled": 0,
+      "warn_at": 800.0,
+      "warned": false,
+      "exhausted": false
+     }
+    },
+    "evaluator": {},
+    "reservations": {},
+    "allocations": {},
+    "unreconciled": {}
+   },
+   "deltas": {
+    "tokens": 201
+   },
+   "agent_id": null,
+   "expect": "tokens"
+  },
+  {
+   "name": "another agent's guarantee is protected",
+   "state": {
+    "agent": {
+     "tokens": {
+      "limit": 1000,
+      "used": 0,
+      "reserved": 0,
+      "unreconciled": 0,
+      "warn_at": 800.0,
+      "warned": false,
+      "exhausted": false
+     }
+    },
+    "evaluator": {},
+    "reservations": {},
+    "allocations": {
+     "a": {
+      "set": "agent",
+      "ended": false,
+      "dims": {
+       "tokens": {
+        "limit": 600,
+        "used": 0,
+        "reserved": 0
+       }
+      }
+     }
+    },
+    "unreconciled": {}
+   },
+   "deltas": {
+    "tokens": 401
+   },
+   "agent_id": null,
+   "expect": "tokens"
+  },
+  {
+   "name": "own allocation is the cap",
+   "state": {
+    "agent": {
+     "tokens": {
+      "limit": 1000,
+      "used": 0,
+      "reserved": 0,
+      "unreconciled": 0,
+      "warn_at": 800.0,
+      "warned": false,
+      "exhausted": false
+     }
+    },
+    "evaluator": {},
+    "reservations": {},
+    "allocations": {
+     "a": {
+      "set": "agent",
+      "ended": false,
+      "dims": {
+       "tokens": {
+        "limit": 600,
+        "used": 0,
+        "reserved": 0
+       }
+      }
+     }
+    },
+    "unreconciled": {}
+   },
+   "deltas": {
+    "tokens": 601
+   },
+   "agent_id": "a",
+   "expect": "tokens"
+  },
+  {
+   "name": "dimension not reservable is skipped",
+   "state": {
+    "agent": {
+     "tokens": {
+      "limit": 1000,
+      "used": 0,
+      "reserved": 0,
+      "unreconciled": 0,
+      "warn_at": 800.0,
+      "warned": false,
+      "exhausted": false
+     }
+    },
+    "evaluator": {},
+    "reservations": {},
+    "allocations": {},
+    "unreconciled": {}
+   },
+   "deltas": {
+    "time_ms": 9000000000.0
+   },
+   "agent_id": null,
+   "expect": null
+  },
+  {
+   "name": "unknown dimension is skipped",
+   "state": {
+    "agent": {
+     "tokens": {
+      "limit": 1000,
+      "used": 0,
+      "reserved": 0,
+      "unreconciled": 0,
+      "warn_at": 800.0,
+      "warned": false,
+      "exhausted": false
+     }
+    },
+    "evaluator": {},
+    "reservations": {},
+    "allocations": {},
+    "unreconciled": {}
+   },
+   "deltas": {
+    "widgets": 5
+   },
+   "agent_id": null,
+   "expect": null
+  }
+ ],
+ "check_allocation": [
+  {
+   "name": "fits",
+   "state": {
+    "agent": {
+     "tokens": {
+      "limit": 1000,
+      "used": 0,
+      "reserved": 0,
+      "unreconciled": 0,
+      "warn_at": 800.0,
+      "warned": false,
+      "exhausted": false
+     }
+    },
+    "evaluator": {},
+    "reservations": {},
+    "allocations": {},
+    "unreconciled": {}
+   },
+   "limits": {
+    "tokens": 1000
+   },
+   "expect": null
+  },
+  {
+   "name": "too big",
+   "state": {
+    "agent": {
+     "tokens": {
+      "limit": 1000,
+      "used": 0,
+      "reserved": 0,
+      "unreconciled": 0,
+      "warn_at": 800.0,
+      "warned": false,
+      "exhausted": false
+     }
+    },
+    "evaluator": {},
+    "reservations": {},
+    "allocations": {},
+    "unreconciled": {}
+   },
+   "limits": {
+    "tokens": 1001
+   },
+   "expect": "tokens"
+  },
+  {
+   "name": "after another allocation",
+   "state": {
+    "agent": {
+     "tokens": {
+      "limit": 1000,
+      "used": 0,
+      "reserved": 0,
+      "unreconciled": 0,
+      "warn_at": 800.0,
+      "warned": false,
+      "exhausted": false
+     }
+    },
+    "evaluator": {},
+    "reservations": {},
+    "allocations": {
+     "a": {
+      "set": "agent",
+      "ended": false,
+      "dims": {
+       "tokens": {
+        "limit": 600,
+        "used": 0,
+        "reserved": 0
+       }
+      }
+     }
+    },
+    "unreconciled": {}
+   },
+   "limits": {
+    "tokens": 400
+   },
+   "expect": null
+  },
+  {
+   "name": "over after another allocation",
+   "state": {
+    "agent": {
+     "tokens": {
+      "limit": 1000,
+      "used": 0,
+      "reserved": 0,
+      "unreconciled": 0,
+      "warn_at": 800.0,
+      "warned": false,
+      "exhausted": false
+     }
+    },
+    "evaluator": {},
+    "reservations": {},
+    "allocations": {
+     "a": {
+      "set": "agent",
+      "ended": false,
+      "dims": {
+       "tokens": {
+        "limit": 600,
+        "used": 0,
+        "reserved": 0
+       }
+      }
+     }
+    },
+    "unreconciled": {}
+   },
+   "limits": {
+    "tokens": 401
+   },
+   "expect": "tokens"
+  },
+  {
+   "name": "unknown dimension",
+   "state": {
+    "agent": {
+     "tokens": {
+      "limit": 1000,
+      "used": 0,
+      "reserved": 0,
+      "unreconciled": 0,
+      "warn_at": 800.0,
+      "warned": false,
+      "exhausted": false
+     }
+    },
+    "evaluator": {},
+    "reservations": {},
+    "allocations": {},
+    "unreconciled": {}
+   },
+   "limits": {
+    "widgets": 1
+   },
+   "expect": "widgets"
+  }
+ ],
+ "reserve_cost": [
+  {
+   "in": 1000000,
+   "out": 4096,
+   "price": {
+    "in": 3.0,
+    "out": 15.0
+   },
+   "margin": 0.05,
+   "expect": 3.2145120000000005
+  },
+  {
+   "in": 5000,
+   "out": 4096,
+   "price": {
+    "in": 3.0,
+    "out": 15.0
+   },
+   "margin": 0.0,
+   "expect": 0.07644
+  },
+  {
+   "in": 1000,
+   "out": 1000,
+   "price": null,
+   "margin": 0.05,
+   "expect": 0.0
+  },
+  {
+   "in": 250000,
+   "out": 8192,
+   "price": {
+    "in": 0.25,
+    "out": 1.25
+   },
+   "margin": 0.1,
+   "expect": 0.080014
+  }
+ ]
+}

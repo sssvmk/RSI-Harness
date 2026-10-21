@@ -1,0 +1,934 @@
+{
+ "derive": [
+  {
+   "name": "all pass",
+   "results": [
+    {
+     "id": "c0",
+     "required": true,
+     "status": "pass"
+    },
+    {
+     "id": "c1",
+     "required": true,
+     "status": "pass"
+    }
+   ],
+   "expect": "SUCCESS"
+  },
+  {
+   "name": "some pass, one failed",
+   "results": [
+    {
+     "id": "c0",
+     "required": true,
+     "status": "pass"
+    },
+    {
+     "id": "c1",
+     "required": true,
+     "status": "fail"
+    }
+   ],
+   "expect": "PARTIAL"
+  },
+  {
+   "name": "only a failure",
+   "results": [
+    {
+     "id": "c0",
+     "required": true,
+     "status": "fail"
+    }
+   ],
+   "expect": "FAILURE"
+  },
+  {
+   "name": "two failures",
+   "results": [
+    {
+     "id": "c0",
+     "required": true,
+     "status": "fail"
+    },
+    {
+     "id": "c1",
+     "required": true,
+     "status": "fail"
+    }
+   ],
+   "expect": "FAILURE"
+  },
+  {
+   "name": "passed but one unavailable",
+   "results": [
+    {
+     "id": "c0",
+     "required": true,
+     "status": "pass"
+    },
+    {
+     "id": "c1",
+     "required": true,
+     "status": "unavailable"
+    }
+   ],
+   "expect": "INCONCLUSIVE"
+  },
+  {
+   "name": "nothing verified",
+   "results": [
+    {
+     "id": "c0",
+     "required": true,
+     "status": "unavailable"
+    }
+   ],
+   "expect": "INCONCLUSIVE"
+  },
+  {
+   "name": "stale evidence",
+   "results": [
+    {
+     "id": "c0",
+     "required": true,
+     "status": "pass"
+    },
+    {
+     "id": "c1",
+     "required": true,
+     "status": "stale"
+    }
+   ],
+   "expect": "INCONCLUSIVE"
+  },
+  {
+   "name": "conflicting evidence",
+   "results": [
+    {
+     "id": "c0",
+     "required": true,
+     "status": "pass"
+    },
+    {
+     "id": "c1",
+     "required": true,
+     "status": "conflict"
+    }
+   ],
+   "expect": "INCONCLUSIVE"
+  },
+  {
+   "name": "a failure outranks missing evidence",
+   "results": [
+    {
+     "id": "c0",
+     "required": true,
+     "status": "fail"
+    },
+    {
+     "id": "c1",
+     "required": true,
+     "status": "unavailable"
+    }
+   ],
+   "expect": "FAILURE"
+  },
+  {
+   "name": "a failed optional criterion does not count",
+   "results": [
+    {
+     "id": "c0",
+     "required": true,
+     "status": "pass"
+    },
+    {
+     "id": "c1",
+     "required": false,
+     "status": "fail"
+    }
+   ],
+   "expect": "SUCCESS"
+  },
+  {
+   "name": "an optional pass does not help",
+   "results": [
+    {
+     "id": "c0",
+     "required": true,
+     "status": "unavailable"
+    },
+    {
+     "id": "c1",
+     "required": false,
+     "status": "pass"
+    }
+   ],
+   "expect": "INCONCLUSIVE"
+  },
+  {
+   "name": "no required criteria",
+   "results": [
+    {
+     "id": "c0",
+     "required": false,
+     "status": "pass"
+    }
+   ],
+   "expect": "INCONCLUSIVE"
+  },
+  {
+   "name": "one required pass",
+   "results": [
+    {
+     "id": "c0",
+     "required": true,
+     "status": "pass"
+    }
+   ],
+   "expect": "SUCCESS"
+  }
+ ],
+ "evaluate": [
+  {
+   "name": "invoice with no authoritative adapter",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "amount_matches",
+      "required": true,
+      "verification": "exact_decimal_comparison",
+      "params": {
+       "actual": "12.50",
+       "expected": "12.5"
+      }
+     },
+     {
+      "id": "record_updated",
+      "required": true,
+      "verification": "authoritative_lookup"
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "ctx": {},
+   "verdict": "INCONCLUSIVE",
+   "statuses": [
+    "pass",
+    "unavailable"
+   ],
+   "refs": [
+    "decimal:12.50==12.5",
+    "no verifier for authoritative_lookup"
+   ],
+   "contract_hash": "f9e133b614fbb923ddc865c79b2e00d6944510946e9009f150bce1a398520401"
+  },
+  {
+   "name": "threshold met",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "score",
+      "required": true,
+      "verification": "test_result",
+      "params": {
+       "metric": "value",
+       "op": ">=",
+       "value": 0.8
+      }
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "ctx": {
+    "value": 0.85
+   },
+   "verdict": "SUCCESS",
+   "statuses": [
+    "pass"
+   ],
+   "refs": [
+    "metric:value=0.85"
+   ],
+   "contract_hash": "17c78e9eb2819ddf61a93aeb393b65638d1befbedd871f4ff32c3cc9c7666edd"
+  },
+  {
+   "name": "threshold missed",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "score",
+      "required": true,
+      "verification": "test_result",
+      "params": {
+       "metric": "value",
+       "op": ">=",
+       "value": 0.8
+      }
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "ctx": {
+    "value": 0.5
+   },
+   "verdict": "FAILURE",
+   "statuses": [
+    "fail"
+   ],
+   "refs": [
+    "metric:value=0.5"
+   ],
+   "contract_hash": "17c78e9eb2819ddf61a93aeb393b65638d1befbedd871f4ff32c3cc9c7666edd"
+  },
+  {
+   "name": "no value measured",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "score",
+      "required": true,
+      "verification": "test_result",
+      "params": {
+       "metric": "value",
+       "op": ">=",
+       "value": 0.8
+      }
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "ctx": {},
+   "verdict": "INCONCLUSIVE",
+   "statuses": [
+    "unavailable"
+   ],
+   "refs": [
+    "metric:value"
+   ],
+   "contract_hash": "17c78e9eb2819ddf61a93aeb393b65638d1befbedd871f4ff32c3cc9c7666edd"
+  },
+  {
+   "name": "minimize",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "cost",
+      "required": true,
+      "verification": "test_result",
+      "params": {
+       "metric": "value",
+       "op": "<=",
+       "value": 10
+      }
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "ctx": {
+    "value": 9.5
+   },
+   "verdict": "SUCCESS",
+   "statuses": [
+    "pass"
+   ],
+   "refs": [
+    "metric:value=9.5"
+   ],
+   "contract_hash": "d9808e5648d71b0e8e0663dc451f4f21d9b44d5a6a70d77bc9ee6fc29b61d41c"
+  },
+  {
+   "name": "named metric",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "recall",
+      "required": true,
+      "verification": "test_result",
+      "params": {
+       "metric": "recall",
+       "op": ">=",
+       "value": 0.9
+      }
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "ctx": {
+    "report": {
+     "valid": true,
+     "primary": 0.7,
+     "metrics": {
+      "recall": 0.93
+     }
+    }
+   },
+   "verdict": "SUCCESS",
+   "statuses": [
+    "pass"
+   ],
+   "refs": [
+    "metric:recall=0.93"
+   ],
+   "contract_hash": "e1e91a23b0a2273a0a98ffd1a9d0ca569dc68c446b96a6289568df210ed9e5f5"
+  },
+  {
+   "name": "decimal mismatch",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "amount",
+      "required": true,
+      "verification": "exact_decimal_comparison",
+      "params": {
+       "actual": "12.51",
+       "expected": "12.5"
+      }
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "ctx": {},
+   "verdict": "FAILURE",
+   "statuses": [
+    "fail"
+   ],
+   "refs": [
+    "decimal:12.51==12.5"
+   ],
+   "contract_hash": "0839f3946c7bf0bbd91ed9ac8a4a21aeed545a87dfc93c669e7be86da0968656"
+  },
+  {
+   "name": "decimals are exact",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "amount",
+      "required": true,
+      "verification": "exact_decimal_comparison",
+      "params": {
+       "actual": "0.30",
+       "expected": "0.3"
+      }
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "ctx": {},
+   "verdict": "SUCCESS",
+   "statuses": [
+    "pass"
+   ],
+   "refs": [
+    "decimal:0.30==0.3"
+   ],
+   "contract_hash": "1ed881df73ce215b0d6bb1ba078882d9dcf681f0c7c168e16d5a8921a986bcb3"
+  },
+  {
+   "name": "decimal from facts",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "amount",
+      "required": true,
+      "verification": "exact_decimal_comparison",
+      "params": {
+       "actual_from": "invoice_total",
+       "expected": "99.99"
+      }
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "ctx": {
+    "facts": {
+     "invoice_total": "99.99"
+    }
+   },
+   "verdict": "SUCCESS",
+   "statuses": [
+    "pass"
+   ],
+   "refs": [
+    "decimal:99.99==99.99"
+   ],
+   "contract_hash": "c91410cde9a1314118fdc027e5d8a7dd0beca0cb2eab2f471237b68e6e4a504e"
+  },
+  {
+   "name": "artifact present",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "report",
+      "required": true,
+      "verification": "artifact_check",
+      "params": {
+       "path": "/workspace/report.md"
+      }
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "ctx": {
+    "files": {
+     "/workspace/report.md": "hello"
+    }
+   },
+   "verdict": "SUCCESS",
+   "statuses": [
+    "pass"
+   ],
+   "refs": [
+    "artifact:/workspace/report.md"
+   ],
+   "contract_hash": "aec3c6bc632ee3dfe2d2f7d148bce6d1709fd75c0a44f1d71b8872a7d44a2643"
+  },
+  {
+   "name": "artifact missing",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "report",
+      "required": true,
+      "verification": "artifact_check",
+      "params": {
+       "path": "/workspace/report.md"
+      }
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "ctx": {
+    "files": {}
+   },
+   "verdict": "FAILURE",
+   "statuses": [
+    "fail"
+   ],
+   "refs": [
+    "missing:/workspace/report.md"
+   ],
+   "contract_hash": "aec3c6bc632ee3dfe2d2f7d148bce6d1709fd75c0a44f1d71b8872a7d44a2643"
+  },
+  {
+   "name": "artifact hash ok",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "report",
+      "required": true,
+      "verification": "artifact_check",
+      "params": {
+       "path": "/workspace/r",
+       "sha256": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
+      }
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "ctx": {
+    "files": {
+     "/workspace/r": "hello"
+    }
+   },
+   "verdict": "SUCCESS",
+   "statuses": [
+    "pass"
+   ],
+   "refs": [
+    "artifact:/workspace/r"
+   ],
+   "contract_hash": "6aeafbf9773dcfe933c2ce8d0f2c5cc3caf89da7d7f4673cceab246b669bf4b6"
+  },
+  {
+   "name": "artifact hash differs",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "report",
+      "required": true,
+      "verification": "artifact_check",
+      "params": {
+       "path": "/workspace/r",
+       "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      }
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "ctx": {
+    "files": {
+     "/workspace/r": "hello"
+    }
+   },
+   "verdict": "FAILURE",
+   "statuses": [
+    "fail"
+   ],
+   "refs": [
+    "hash_mismatch:/workspace/r"
+   ],
+   "contract_hash": "0fa52b46267dba5d99ff71366243416a51fb378c97ab1a3cd91172b8258e7500"
+  },
+  {
+   "name": "artifact with no workspace",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "report",
+      "required": true,
+      "verification": "artifact_check",
+      "params": {
+       "path": "/workspace/r"
+      }
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "ctx": {},
+   "verdict": "INCONCLUSIVE",
+   "statuses": [
+    "unavailable"
+   ],
+   "refs": [
+    "/workspace/r"
+   ],
+   "contract_hash": "6dde8607c7a9ebae5cace9753c94ed175c88df6519a8927f6542f53e5815e624"
+  },
+  {
+   "name": "partial",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "a",
+      "required": true,
+      "verification": "exact_decimal_comparison",
+      "params": {
+       "actual": "1",
+       "expected": "1"
+      }
+     },
+     {
+      "id": "b",
+      "required": true,
+      "verification": "exact_decimal_comparison",
+      "params": {
+       "actual": "1",
+       "expected": "2"
+      }
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "ctx": {},
+   "verdict": "PARTIAL",
+   "statuses": [
+    "pass",
+    "fail"
+   ],
+   "refs": [
+    "decimal:1==1",
+    "decimal:1==2"
+   ],
+   "contract_hash": "6918f5f5b29912d9776f6d576fb28fbcf8002b905331e929d6f66830d68ff519"
+  },
+  {
+   "name": "optional unavailable does not block",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "a",
+      "required": true,
+      "verification": "exact_decimal_comparison",
+      "params": {
+       "actual": "1",
+       "expected": "1"
+      }
+     },
+     {
+      "id": "b",
+      "required": false,
+      "verification": "audit_log_lookup"
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "ctx": {},
+   "verdict": "SUCCESS",
+   "statuses": [
+    "pass",
+    "unavailable"
+   ],
+   "refs": [
+    "decimal:1==1",
+    "no verifier for audit_log_lookup"
+   ],
+   "contract_hash": "5accee4a6aca475a44e1fa8915fea1cfda815e77545c9684d27b031fcd0ad724"
+  }
+ ],
+ "invalid": [
+  {
+   "name": "duplicate ids",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "a",
+      "required": true,
+      "verification": "test_result"
+     },
+     {
+      "id": "a",
+      "required": true,
+      "verification": "test_result"
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "errors": true
+  },
+  {
+   "name": "no required criterion",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "a",
+      "required": false,
+      "verification": "test_result"
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "errors": true
+  },
+  {
+   "name": "unknown verification kind",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "a",
+      "required": true,
+      "verification": "telepathy"
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "errors": true
+  },
+  {
+   "name": "unknown operator",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "a",
+      "required": true,
+      "verification": "test_result",
+      "params": {
+       "op": "~="
+      }
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "errors": true
+  },
+  {
+   "name": "no criteria",
+   "contract": {
+    "acceptance_criteria": [],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "errors": true
+  },
+  {
+   "name": "wrong success policy",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "a",
+      "required": true,
+      "verification": "test_result"
+     }
+    ],
+    "success_policy": "any",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "errors": true
+  },
+  {
+   "name": "extra property",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "a",
+      "required": true,
+      "verification": "test_result"
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success",
+    "extra": 1
+   },
+   "errors": true
+  },
+  {
+   "name": "bad id",
+   "contract": {
+    "task_id": "t",
+    "acceptance_criteria": [
+     {
+      "id": "A b",
+      "required": true,
+      "verification": "test_result"
+     }
+    ],
+    "success_policy": "all_required_criteria_pass",
+    "inconclusive_policy": "do_not_report_success"
+   },
+   "errors": true
+  }
+ ],
+ "metrics": {
+  "records": [
+   {
+    "verdict": "SUCCESS",
+    "category": "code",
+    "risk": "low",
+    "required": 2,
+    "verified": 2
+   },
+   {
+    "verdict": "SUCCESS",
+    "category": "code",
+    "risk": "low",
+    "required": 2,
+    "verified": 2
+   },
+   {
+    "verdict": "FAILURE",
+    "category": "code",
+    "risk": "low",
+    "required": 2,
+    "verified": 2
+   },
+   {
+    "verdict": "INCONCLUSIVE",
+    "category": "db",
+    "risk": "high",
+    "required": 3,
+    "verified": 1,
+    "audited_verdict": "SUCCESS"
+   },
+   {
+    "verdict": "PARTIAL",
+    "category": "db",
+    "risk": "high",
+    "required": 3,
+    "verified": 3,
+    "audited_verdict": "PARTIAL"
+   }
+  ],
+  "all": {
+   "denominator": "all evaluated tasks",
+   "overall": {
+    "n": 5,
+    "success_rate": 0.4,
+    "failure_rate": 0.2,
+    "partial_rate": 0.2,
+    "inconclusive_rate": 0.2,
+    "verification_coverage": 0.8333333333333334,
+    "audited": 2,
+    "evaluation_error_rate": 0.5
+   },
+   "groups": {
+    "code|low": {
+     "n": 3,
+     "success_rate": 0.6666666666666666,
+     "failure_rate": 0.3333333333333333,
+     "partial_rate": 0.0,
+     "inconclusive_rate": 0.0,
+     "verification_coverage": 1.0,
+     "audited": 0,
+     "evaluation_error_rate": null
+    },
+    "db|high": {
+     "n": 2,
+     "success_rate": 0.0,
+     "failure_rate": 0.0,
+     "partial_rate": 0.5,
+     "inconclusive_rate": 0.5,
+     "verification_coverage": 0.6666666666666666,
+     "audited": 2,
+     "evaluation_error_rate": 0.5
+    }
+   }
+  },
+  "excluding": {
+   "denominator": "excluding: tasks without an authoritative system",
+   "overall": {
+    "n": 3,
+    "success_rate": 0.6666666666666666,
+    "failure_rate": 0.3333333333333333,
+    "partial_rate": 0.0,
+    "inconclusive_rate": 0.0,
+    "verification_coverage": 1.0,
+    "audited": 0,
+    "evaluation_error_rate": null
+   },
+   "groups": {
+    "code|low": {
+     "n": 3,
+     "success_rate": 0.6666666666666666,
+     "failure_rate": 0.3333333333333333,
+     "partial_rate": 0.0,
+     "inconclusive_rate": 0.0,
+     "verification_coverage": 1.0,
+     "audited": 0,
+     "evaluation_error_rate": null
+    }
+   }
+  }
+ }
+}

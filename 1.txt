@@ -1,0 +1,489 @@
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	deleted:    ../CashFlow Forecasting/ALIGNMENT_v10.md
+	deleted:    ../CashFlow Forecasting/GAP_STATUS.md
+	deleted:    ../CashFlow Forecasting/STC_prd.md
+	deleted:    ../CashFlow Forecasting/STC_prd_v10.md
+	deleted:    ../CashFlow Forecasting/TRACEABILITY.md
+	deleted:    ../CashFlow Forecasting/Time series.csv
+	deleted:    ../CashFlow Forecasting/__pycache__/admission.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/__pycache__/backtest.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/__pycache__/charts.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/__pycache__/config.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/__pycache__/contract.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/__pycache__/mlflow_logging.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/__pycache__/monitor.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/__pycache__/orchestrator.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/__pycache__/parallel.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/__pycache__/pipeline.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/__pycache__/pooling.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/__pycache__/ranking.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/__pycache__/registry.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/__pycache__/search.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/__pycache__/versioning.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/adapters/__init__.py
+	deleted:    ../CashFlow Forecasting/adapters/__pycache__/__init__.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/adapters/__pycache__/base.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/adapters/__pycache__/exchange_rate.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/adapters/base.py
+	deleted:    ../CashFlow Forecasting/adapters/csv_fixture.py
+	deleted:    ../CashFlow Forecasting/adapters/exchange_rate.py
+	deleted:    ../CashFlow Forecasting/adapters/exchange_rate_adapter.py
+	deleted:    ../CashFlow Forecasting/adapters/generic_multivariate.py
+	deleted:    ../CashFlow Forecasting/adapters/sap_stub.py
+	deleted:    ../CashFlow Forecasting/adapters/synthetic.py
+	deleted:    ../CashFlow Forecasting/admission.py
+	deleted:    ../CashFlow Forecasting/admission_reports/deepstate.json
+	deleted:    ../CashFlow Forecasting/admission_reports/deepvar.json
+	deleted:    ../CashFlow Forecasting/algorithms/__init__.py
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/__init__.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/_frames.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/_futr_required.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/_sklearn_template.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/_statsmodels_template.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/_vendor.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/_vendor_etsformer.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/arimax.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/autoformer.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/base.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/catalog.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/catboost_module.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/deepar.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/deepstate.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/deepvar.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/dynamic_regression.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/elastic_net.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/etsformer.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/extra_trees.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/fedformer.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/gru.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/informer.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/itransformer.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/knn_regression.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/lasso.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/lightgbm_module.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/linear_regression.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/lstm.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/naive_1.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/nbeats.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/nf_adapter.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/nf_pooled.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/nhits.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/polynomial_regression.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/prebuilt.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/prophet_model.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/random_forest.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/ridge.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/rnn.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/rolling_fallback.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/sarimax.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/seasonal_naive.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/state_space.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/structural_ts.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/svr.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/tcn.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/tft.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/tide.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/timesfm3.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/timesnet.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/torch_base.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/utils.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/varmax.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/wavenet.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/__pycache__/xgboost_module.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/algorithms/_frames.py
+	deleted:    ../CashFlow Forecasting/algorithms/_futr_required.py
+	deleted:    ../CashFlow Forecasting/algorithms/_generate_plain_neural.py
+	deleted:    ../CashFlow Forecasting/algorithms/_neural_template.py
+	deleted:    ../CashFlow Forecasting/algorithms/_sklearn_template.py
+	deleted:    ../CashFlow Forecasting/algorithms/_statsmodels_template.py
+	deleted:    ../CashFlow Forecasting/algorithms/_vendor.py
+	deleted:    ../CashFlow Forecasting/algorithms/_vendor_etsformer.py
+	deleted:    ../CashFlow Forecasting/algorithms/arimax.py
+	deleted:    ../CashFlow Forecasting/algorithms/autoformer.py
+	deleted:    ../CashFlow Forecasting/algorithms/base.py
+	deleted:    ../CashFlow Forecasting/algorithms/catalog.py
+	deleted:    ../CashFlow Forecasting/algorithms/catboost_module.py
+	deleted:    ../CashFlow Forecasting/algorithms/deepar.py
+	deleted:    ../CashFlow Forecasting/algorithms/deepstate.py
+	deleted:    ../CashFlow Forecasting/algorithms/deepvar.py
+	deleted:    ../CashFlow Forecasting/algorithms/dynamic_regression.py
+	deleted:    ../CashFlow Forecasting/algorithms/elastic_net.py
+	deleted:    ../CashFlow Forecasting/algorithms/etsformer.py
+	deleted:    ../CashFlow Forecasting/algorithms/extra_trees.py
+	deleted:    ../CashFlow Forecasting/algorithms/fedformer.py
+	deleted:    ../CashFlow Forecasting/algorithms/gru.py
+	deleted:    ../CashFlow Forecasting/algorithms/informer.py
+	deleted:    ../CashFlow Forecasting/algorithms/itransformer.py
+	deleted:    ../CashFlow Forecasting/algorithms/knn_regression.py
+	deleted:    ../CashFlow Forecasting/algorithms/lasso.py
+	deleted:    ../CashFlow Forecasting/algorithms/lightgbm_module.py
+	deleted:    ../CashFlow Forecasting/algorithms/linear_regression.py
+	deleted:    ../CashFlow Forecasting/algorithms/lstm.py
+	deleted:    ../CashFlow Forecasting/algorithms/naive_1.py
+	deleted:    ../CashFlow Forecasting/algorithms/nbeats.py
+	deleted:    ../CashFlow Forecasting/algorithms/nf_adapter.py
+	deleted:    ../CashFlow Forecasting/algorithms/nf_pooled.py
+	deleted:    ../CashFlow Forecasting/algorithms/nhits.py
+	deleted:    ../CashFlow Forecasting/algorithms/polynomial_regression.py
+	deleted:    ../CashFlow Forecasting/algorithms/prebuilt.py
+	deleted:    ../CashFlow Forecasting/algorithms/prophet_model.py
+	deleted:    ../CashFlow Forecasting/algorithms/random_forest.py
+	deleted:    ../CashFlow Forecasting/algorithms/ridge.py
+	deleted:    ../CashFlow Forecasting/algorithms/rnn.py
+	deleted:    ../CashFlow Forecasting/algorithms/rolling_fallback.py
+	deleted:    ../CashFlow Forecasting/algorithms/sarimax.py
+	deleted:    ../CashFlow Forecasting/algorithms/seasonal_naive.py
+	deleted:    ../CashFlow Forecasting/algorithms/state_space.py
+	deleted:    ../CashFlow Forecasting/algorithms/structural_ts.py
+	deleted:    ../CashFlow Forecasting/algorithms/svr.py
+	deleted:    ../CashFlow Forecasting/algorithms/tcn.py
+	deleted:    ../CashFlow Forecasting/algorithms/tft.py
+	deleted:    ../CashFlow Forecasting/algorithms/tide.py
+	deleted:    ../CashFlow Forecasting/algorithms/timesfm3.py
+	deleted:    ../CashFlow Forecasting/algorithms/timesnet.py
+	deleted:    ../CashFlow Forecasting/algorithms/torch_base.py
+	deleted:    ../CashFlow Forecasting/algorithms/utils.py
+	deleted:    ../CashFlow Forecasting/algorithms/varmax.py
+	deleted:    ../CashFlow Forecasting/algorithms/wavenet.py
+	deleted:    ../CashFlow Forecasting/algorithms/xgboost_module.py
+	deleted:    ../CashFlow Forecasting/backtest.py
+	deleted:    ../CashFlow Forecasting/calibration/__init__.py
+	deleted:    ../CashFlow Forecasting/calibration/analyze.py
+	deleted:    ../CashFlow Forecasting/calibration/metrics.py
+	deleted:    ../CashFlow Forecasting/calibration/pilot_results.jsonl
+	deleted:    ../CashFlow Forecasting/calibration/proposal.json
+	deleted:    ../CashFlow Forecasting/calibration/proposal.md
+	deleted:    ../CashFlow Forecasting/calibration/reference_worker.py
+	deleted:    ../CashFlow Forecasting/calibration/run_calibration.py
+	deleted:    ../CashFlow Forecasting/calibration/sim.py
+	deleted:    ../CashFlow Forecasting/catboost_info/catboost_training.json
+	deleted:    ../CashFlow Forecasting/catboost_info/learn/events.out.tfevents
+	deleted:    ../CashFlow Forecasting/catboost_info/learn_error.tsv
+	deleted:    ../CashFlow Forecasting/catboost_info/test/events.out.tfevents
+	deleted:    ../CashFlow Forecasting/catboost_info/test_error.tsv
+	deleted:    ../CashFlow Forecasting/catboost_info/time_left.tsv
+	deleted:    ../CashFlow Forecasting/catboost_info/tmp/cat_feature_index.f6a85a4d-8dfe481c-3572cca5-9b6150f7.tmp
+	deleted:    ../CashFlow Forecasting/charts.py
+	deleted:    ../CashFlow Forecasting/config.json
+	deleted:    ../CashFlow Forecasting/config.py
+	deleted:    ../CashFlow Forecasting/contract.py
+	deleted:    ../CashFlow Forecasting/data/exchange_rate.txt
+	deleted:    ../CashFlow Forecasting/demo.py
+	deleted:    ../CashFlow Forecasting/gap_status.py
+	deleted:    ../CashFlow Forecasting/generate_traceability.py
+	deleted:    ../CashFlow Forecasting/mlflow_logging.py
+	deleted:    ../CashFlow Forecasting/monitor.py
+	deleted:    ../CashFlow Forecasting/orchestrator.py
+	deleted:    ../CashFlow Forecasting/parallel.py
+	deleted:    ../CashFlow Forecasting/pipeline.py
+	deleted:    ../CashFlow Forecasting/pooling.py
+	deleted:    ../CashFlow Forecasting/ranking.py
+	deleted:    ../CashFlow Forecasting/registry.py
+	deleted:    ../CashFlow Forecasting/requirements.txt
+	deleted:    ../CashFlow Forecasting/search.py
+	deleted:    ../CashFlow Forecasting/stc_cashflow_delivery.zip
+	deleted:    ../CashFlow Forecasting/tests/conftest.py
+	deleted:    ../CashFlow Forecasting/tests/test_calibration_g42.py
+	deleted:    ../CashFlow Forecasting/tests/test_configurable_frequency.py
+	deleted:    ../CashFlow Forecasting/tests/test_deepar_g25.py
+	deleted:    ../CashFlow Forecasting/tests/test_deepstate_g26_g42.py
+	deleted:    ../CashFlow Forecasting/tests/test_deepvar_g27.py
+	deleted:    ../CashFlow Forecasting/tests/test_docs_status.py
+	deleted:    ../CashFlow Forecasting/tests/test_etsformer_g36.py
+	deleted:    ../CashFlow Forecasting/tests/test_exchange_rate_adapter.py
+	deleted:    ../CashFlow Forecasting/tests/test_force_enabled.py
+	deleted:    ../CashFlow Forecasting/tests/test_future_known_g28_g29.py
+	deleted:    ../CashFlow Forecasting/tests/test_g02_trial_tracking.py
+	deleted:    ../CashFlow Forecasting/tests/test_g03_pooling.py
+	deleted:    ../CashFlow Forecasting/tests/test_gaps_nonneural.py
+	deleted:    ../CashFlow Forecasting/tests/test_itransformer_g32.py
+	deleted:    ../CashFlow Forecasting/tests/test_lifecycle.py
+	deleted:    ../CashFlow Forecasting/tests/test_neural_nf.py
+	deleted:    ../CashFlow Forecasting/tests/test_neural_nf_family.py
+	deleted:    ../CashFlow Forecasting/tests/test_pipeline.py
+	deleted:    ../CashFlow Forecasting/tests/test_tcn_g23.py
+	deleted:    ../CashFlow Forecasting/tests/test_timesfm3_g39.py
+	deleted:    ../CashFlow Forecasting/tests/test_wavenet_g24.py
+	deleted:    ../CashFlow Forecasting/vendor/etsformer/FILES.sha256.json
+	deleted:    ../CashFlow Forecasting/vendor/etsformer/LICENSE.txt
+	deleted:    ../CashFlow Forecasting/vendor/etsformer/NOTICE.md
+	deleted:    ../CashFlow Forecasting/vendor/etsformer/OSS_SCAN.md
+	deleted:    ../CashFlow Forecasting/vendor/etsformer/PROVENANCE.md
+	deleted:    ../CashFlow Forecasting/vendor/etsformer/oss_scan.py
+	deleted:    ../CashFlow Forecasting/vendor/etsformer/src/models/etsformer/__init__.py
+	deleted:    ../CashFlow Forecasting/vendor/etsformer/src/models/etsformer/decoder.py
+	deleted:    ../CashFlow Forecasting/vendor/etsformer/src/models/etsformer/encoder.py
+	deleted:    ../CashFlow Forecasting/vendor/etsformer/src/models/etsformer/exponential_smoothing.py
+	deleted:    ../CashFlow Forecasting/vendor/etsformer/src/models/etsformer/model.py
+	deleted:    ../CashFlow Forecasting/vendor/etsformer/src/models/etsformer/modules.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/LICENSES_neuralforecast/LICENSE
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/STC_PATCH.md
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/__init__.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/__pycache__/__init__.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/__pycache__/tsdataset.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/auto.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/common/__init__.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/common/__pycache__/__init__.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/common/__pycache__/_base_model.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/common/__pycache__/enums.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/common/_base_auto.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/common/_base_model.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/common/_model_checks.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/common/_modules.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/common/_scalers.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/common/enums.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/compat.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/core.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/losses/__init__.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/losses/__pycache__/__init__.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/losses/__pycache__/pytorch.cpython-313.pyc
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/losses/numpy.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/losses/pytorch.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/__init__.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/autoformer.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/bitcn.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/deepar.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/deepnpts.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/dilated_rnn.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/dlinear.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/fedformer.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/gru.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/hint.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/informer.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/itransformer.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/kan.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/lstm.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/mlp.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/mlpmultivariate.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/nbeats.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/nbeatsx.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/nhits.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/nlinear.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/patchtst.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/rmok.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/rnn.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/softs.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/softssharp.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/stemgnn.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/tcn.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/tft.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/tide.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/timellm.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/timemixer.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/timesnet.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/timexer.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/tsmixer.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/tsmixerx.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/vanillatransformer.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/xlinear.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/models/xlstm.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/tsdataset.py
+	deleted:    ../CashFlow Forecasting/vendor/nf_patched/neuralforecast/utils.py
+	deleted:    ../CashFlow Forecasting/versioning.py
+	deleted:    ../zillow_linear/README.md
+	deleted:    ../zillow_linear/__pycache__/common.cpython-313.pyc
+	deleted:    ../zillow_linear/__pycache__/compare.cpython-313.pyc
+	deleted:    ../zillow_linear/__pycache__/eda.cpython-313.pyc
+	deleted:    ../zillow_linear/__pycache__/features.cpython-313.pyc
+	deleted:    ../zillow_linear/__pycache__/solvers.cpython-313.pyc
+	deleted:    ../zillow_linear/common.py
+	deleted:    ../zillow_linear/compare.py
+	deleted:    ../zillow_linear/down_Sample_zillow.csv
+	deleted:    ../zillow_linear/eda.py
+	deleted:    ../zillow_linear/features.py
+	deleted:    ../zillow_linear/methods/__init__.py
+	deleted:    ../zillow_linear/methods/__pycache__/_bootstrap.cpython-313.pyc
+	deleted:    ../zillow_linear/methods/__pycache__/backward_stepwise.cpython-313.pyc
+	deleted:    ../zillow_linear/methods/__pycache__/best_subset.cpython-313.pyc
+	deleted:    ../zillow_linear/methods/__pycache__/dantzig.cpython-313.pyc
+	deleted:    ../zillow_linear/methods/__pycache__/elastic_net.cpython-313.pyc
+	deleted:    ../zillow_linear/methods/__pycache__/forward_stagewise.cpython-313.pyc
+	deleted:    ../zillow_linear/methods/__pycache__/grouped_lasso.cpython-313.pyc
+	deleted:    ../zillow_linear/methods/__pycache__/lar.cpython-313.pyc
+	deleted:    ../zillow_linear/methods/__pycache__/lasso.cpython-313.pyc
+	deleted:    ../zillow_linear/methods/__pycache__/ols.cpython-313.pyc
+	deleted:    ../zillow_linear/methods/__pycache__/pcr.cpython-313.pyc
+	deleted:    ../zillow_linear/methods/__pycache__/pls.cpython-313.pyc
+	deleted:    ../zillow_linear/methods/__pycache__/ridge.cpython-313.pyc
+	deleted:    ../zillow_linear/methods/_bootstrap.py
+	deleted:    ../zillow_linear/methods/backward_stepwise.py
+	deleted:    ../zillow_linear/methods/best_subset.py
+	deleted:    ../zillow_linear/methods/dantzig.py
+	deleted:    ../zillow_linear/methods/elastic_net.py
+	deleted:    ../zillow_linear/methods/forward_stagewise.py
+	deleted:    ../zillow_linear/methods/grouped_lasso.py
+	deleted:    ../zillow_linear/methods/lar.py
+	deleted:    ../zillow_linear/methods/lasso.py
+	deleted:    ../zillow_linear/methods/ols.py
+	deleted:    ../zillow_linear/methods/pcr.py
+	deleted:    ../zillow_linear/methods/pls.py
+	deleted:    ../zillow_linear/methods/ridge.py
+	deleted:    ../zillow_linear/requirements.txt
+	deleted:    ../zillow_linear/results/backward_stepwise/backward_stepwise.log
+	deleted:    ../zillow_linear/results/backward_stepwise/coefficients.csv
+	deleted:    ../zillow_linear/results/backward_stepwise/coefficients_top.png
+	deleted:    ../zillow_linear/results/backward_stepwise/cv_curve.csv
+	deleted:    ../zillow_linear/results/backward_stepwise/cv_curve.png
+	deleted:    ../zillow_linear/results/backward_stepwise/summary.json
+	deleted:    ../zillow_linear/results/backward_stepwise/test_metrics.json
+	deleted:    ../zillow_linear/results/backward_stepwise/test_predictions.npy
+	deleted:    ../zillow_linear/results/backward_stepwise/validation_metrics.json
+	deleted:    ../zillow_linear/results/best_subset/best_subset.log
+	deleted:    ../zillow_linear/results/best_subset/coefficients.csv
+	deleted:    ../zillow_linear/results/best_subset/coefficients_top.png
+	deleted:    ../zillow_linear/results/best_subset/cv_curve.csv
+	deleted:    ../zillow_linear/results/best_subset/cv_curve.png
+	deleted:    ../zillow_linear/results/best_subset/summary.json
+	deleted:    ../zillow_linear/results/best_subset/test_metrics.json
+	deleted:    ../zillow_linear/results/best_subset/test_predictions.npy
+	deleted:    ../zillow_linear/results/best_subset/validation_metrics.json
+	deleted:    ../zillow_linear/results/comparison.csv
+	deleted:    ../zillow_linear/results/comparison_test_mse.png
+	deleted:    ../zillow_linear/results/dantzig/coefficients.csv
+	deleted:    ../zillow_linear/results/dantzig/coefficients_top.png
+	deleted:    ../zillow_linear/results/dantzig/cv_curve.csv
+	deleted:    ../zillow_linear/results/dantzig/cv_curve.png
+	deleted:    ../zillow_linear/results/dantzig/dantzig.log
+	deleted:    ../zillow_linear/results/dantzig/summary.json
+	deleted:    ../zillow_linear/results/dantzig/test_metrics.json
+	deleted:    ../zillow_linear/results/dantzig/test_predictions.npy
+	deleted:    ../zillow_linear/results/dantzig/validation_metrics.json
+	deleted:    ../zillow_linear/results/eda/categorical_cardinality.csv
+	deleted:    ../zillow_linear/results/eda/collinear_pairs_abs_gt_0.9.csv
+	deleted:    ../zillow_linear/results/eda/correlation_heatmap.png
+	deleted:    ../zillow_linear/results/eda/eda_summary.json
+	deleted:    ../zillow_linear/results/eda/geo_logerror.png
+	deleted:    ../zillow_linear/results/eda/logerror_by_month.csv
+	deleted:    ../zillow_linear/results/eda/logerror_by_month.png
+	deleted:    ../zillow_linear/results/eda/logerror_by_split.csv
+	deleted:    ../zillow_linear/results/eda/logerror_distribution.png
+	deleted:    ../zillow_linear/results/eda/logerror_train_stats.csv
+	deleted:    ../zillow_linear/results/eda/missingness.png
+	deleted:    ../zillow_linear/results/eda/missingness_train_pct.csv
+	deleted:    ../zillow_linear/results/eda/numeric_feature_outliers_skew.csv
+	deleted:    ../zillow_linear/results/eda/spearman_with_logerror.png
+	deleted:    ../zillow_linear/results/elastic_net/coefficients.csv
+	deleted:    ../zillow_linear/results/elastic_net/coefficients_top.png
+	deleted:    ../zillow_linear/results/elastic_net/cv_by_alpha.png
+	deleted:    ../zillow_linear/results/elastic_net/cv_curve.csv
+	deleted:    ../zillow_linear/results/elastic_net/cv_curve.png
+	deleted:    ../zillow_linear/results/elastic_net/elastic_net.log
+	deleted:    ../zillow_linear/results/elastic_net/summary.json
+	deleted:    ../zillow_linear/results/elastic_net/test_metrics.json
+	deleted:    ../zillow_linear/results/elastic_net/test_predictions.npy
+	deleted:    ../zillow_linear/results/elastic_net/validation_metrics.json
+	deleted:    ../zillow_linear/results/forward_stagewise/coefficients.csv
+	deleted:    ../zillow_linear/results/forward_stagewise/coefficients_top.png
+	deleted:    ../zillow_linear/results/forward_stagewise/cv_curve.csv
+	deleted:    ../zillow_linear/results/forward_stagewise/cv_curve.png
+	deleted:    ../zillow_linear/results/forward_stagewise/forward_stagewise.log
+	deleted:    ../zillow_linear/results/forward_stagewise/summary.json
+	deleted:    ../zillow_linear/results/forward_stagewise/test_metrics.json
+	deleted:    ../zillow_linear/results/forward_stagewise/test_predictions.npy
+	deleted:    ../zillow_linear/results/forward_stagewise/validation_metrics.json
+	deleted:    ../zillow_linear/results/grouped_lasso/coefficients.csv
+	deleted:    ../zillow_linear/results/grouped_lasso/coefficients_top.png
+	deleted:    ../zillow_linear/results/grouped_lasso/cv_curve.csv
+	deleted:    ../zillow_linear/results/grouped_lasso/cv_curve.png
+	deleted:    ../zillow_linear/results/grouped_lasso/grouped_lasso.log
+	deleted:    ../zillow_linear/results/grouped_lasso/summary.json
+	deleted:    ../zillow_linear/results/grouped_lasso/test_metrics.json
+	deleted:    ../zillow_linear/results/grouped_lasso/test_predictions.npy
+	deleted:    ../zillow_linear/results/grouped_lasso/validation_metrics.json
+	deleted:    ../zillow_linear/results/lar/coefficients.csv
+	deleted:    ../zillow_linear/results/lar/coefficients_top.png
+	deleted:    ../zillow_linear/results/lar/cv_curve.csv
+	deleted:    ../zillow_linear/results/lar/cv_curve.png
+	deleted:    ../zillow_linear/results/lar/lar.log
+	deleted:    ../zillow_linear/results/lar/summary.json
+	deleted:    ../zillow_linear/results/lar/test_metrics.json
+	deleted:    ../zillow_linear/results/lar/test_predictions.npy
+	deleted:    ../zillow_linear/results/lar/validation_metrics.json
+	deleted:    ../zillow_linear/results/lasso/coefficients.csv
+	deleted:    ../zillow_linear/results/lasso/coefficients_top.png
+	deleted:    ../zillow_linear/results/lasso/cv_curve.csv
+	deleted:    ../zillow_linear/results/lasso/cv_curve.png
+	deleted:    ../zillow_linear/results/lasso/lasso.log
+	deleted:    ../zillow_linear/results/lasso/summary.json
+	deleted:    ../zillow_linear/results/lasso/test_metrics.json
+	deleted:    ../zillow_linear/results/lasso/test_predictions.npy
+	deleted:    ../zillow_linear/results/lasso/validation_metrics.json
+	deleted:    ../zillow_linear/results/ols/coefficients.csv
+	deleted:    ../zillow_linear/results/ols/coefficients_top.png
+	deleted:    ../zillow_linear/results/ols/cv_curve.csv
+	deleted:    ../zillow_linear/results/ols/ols.log
+	deleted:    ../zillow_linear/results/ols/summary.json
+	deleted:    ../zillow_linear/results/ols/test_metrics.json
+	deleted:    ../zillow_linear/results/ols/test_predictions.npy
+	deleted:    ../zillow_linear/results/ols/validation_metrics.json
+	deleted:    ../zillow_linear/results/pcr/coefficients.csv
+	deleted:    ../zillow_linear/results/pcr/coefficients_top.png
+	deleted:    ../zillow_linear/results/pcr/cv_curve.csv
+	deleted:    ../zillow_linear/results/pcr/cv_curve.png
+	deleted:    ../zillow_linear/results/pcr/pcr.log
+	deleted:    ../zillow_linear/results/pcr/summary.json
+	deleted:    ../zillow_linear/results/pcr/test_metrics.json
+	deleted:    ../zillow_linear/results/pcr/test_predictions.npy
+	deleted:    ../zillow_linear/results/pcr/validation_metrics.json
+	deleted:    ../zillow_linear/results/pls/coefficients.csv
+	deleted:    ../zillow_linear/results/pls/coefficients_top.png
+	deleted:    ../zillow_linear/results/pls/cv_curve.csv
+	deleted:    ../zillow_linear/results/pls/cv_curve.png
+	deleted:    ../zillow_linear/results/pls/pls.log
+	deleted:    ../zillow_linear/results/pls/summary.json
+	deleted:    ../zillow_linear/results/pls/test_metrics.json
+	deleted:    ../zillow_linear/results/pls/test_predictions.npy
+	deleted:    ../zillow_linear/results/pls/validation_metrics.json
+	deleted:    ../zillow_linear/results/prepared/X_test.npy
+	deleted:    ../zillow_linear/results/prepared/X_train.npy
+	deleted:    ../zillow_linear/results/prepared/X_val.npy
+	deleted:    ../zillow_linear/results/prepared/bundle_blocked_10_42.pkl
+	deleted:    ../zillow_linear/results/prepared/dates_test.npy
+	deleted:    ../zillow_linear/results/prepared/dates_train.npy
+	deleted:    ../zillow_linear/results/prepared/dates_val.npy
+	deleted:    ../zillow_linear/results/prepared/feature_meta.json
+	deleted:    ../zillow_linear/results/prepared/run_config.json
+	deleted:    ../zillow_linear/results/prepared/y_fit_train.npy
+	deleted:    ../zillow_linear/results/prepared/y_fit_val.npy
+	deleted:    ../zillow_linear/results/prepared/y_raw_test.npy
+	deleted:    ../zillow_linear/results/prepared/y_raw_train.npy
+	deleted:    ../zillow_linear/results/prepared/y_raw_val.npy
+	deleted:    ../zillow_linear/results/ridge/coefficients.csv
+	deleted:    ../zillow_linear/results/ridge/coefficients_top.png
+	deleted:    ../zillow_linear/results/ridge/cv_curve.csv
+	deleted:    ../zillow_linear/results/ridge/cv_curve.png
+	deleted:    ../zillow_linear/results/ridge/gcv_and_df.png
+	deleted:    ../zillow_linear/results/ridge/ridge.log
+	deleted:    ../zillow_linear/results/ridge/summary.json
+	deleted:    ../zillow_linear/results/ridge/test_metrics.json
+	deleted:    ../zillow_linear/results/ridge/test_predictions.npy
+	deleted:    ../zillow_linear/results/ridge/validation_metrics.json
+	deleted:    ../zillow_linear/results/run_all.log
+	deleted:    ../zillow_linear/results/winner.json
+	deleted:    ../zillow_linear/results/winner.txt
+	deleted:    ../zillow_linear/run_all.py
+	deleted:    ../zillow_linear/solvers.py
+	deleted:    ../zillow_linear/tests/make_synthetic.py
+	deleted:    ../zillow_linear/tests/test_correctness.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../Agentic Procurement & Harmonization/
+	../Inventory Optimization Engine/
+	../ML/
+	../MLP/
+	../ML_repo/
+	../Multi_agent_prd.md
+	./
+	../Reinforcement Learning/
+	../create_mini_dataset.py
+	../design_and_analysis_of_experiments.md
+	../desktop.ini
+	../skills/
+
+no changes added to commit (use "git add" and/or "git commit -a")

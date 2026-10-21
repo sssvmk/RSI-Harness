@@ -1,0 +1,389 @@
+{
+ "$id": "config.v1",
+ "type": "object",
+ "required": [
+  "profile",
+  "storage",
+  "models",
+  "sandbox",
+  "budgets"
+ ],
+ "properties": {
+  "profile": {
+   "enum": [
+    "core",
+    "standard",
+    "high"
+   ]
+  },
+  "storage": {
+   "type": "object",
+   "required": [
+    "event_log",
+    "blobs"
+   ],
+   "properties": {
+    "event_log": {
+     "type": "object",
+     "required": [
+      "kind",
+      "path"
+     ],
+     "properties": {
+      "kind": {
+       "const": "sqlite"
+      },
+      "path": {
+       "type": "string"
+      }
+     }
+    },
+    "blobs": {
+     "type": "object",
+     "required": [
+      "kind",
+      "root"
+     ],
+     "properties": {
+      "kind": {
+       "const": "fs"
+      },
+      "root": {
+       "type": "string"
+      }
+     }
+    }
+   }
+  },
+  "models": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "type": "object",
+    "required": [
+     "ref",
+     "provider",
+     "model_id",
+     "window"
+    ],
+    "properties": {
+     "ref": {
+      "type": "string"
+     },
+     "provider": {
+      "enum": [
+       "openai",
+       "anthropic",
+       "gemini",
+       "mock"
+      ]
+     },
+     "model_id": {
+      "type": "string"
+     },
+     "endpoint": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "window": {
+      "type": "integer",
+      "minimum": 1000
+     },
+     "price": {
+      "type": "object",
+      "properties": {
+       "in": {
+        "type": "number"
+       },
+       "out": {
+        "type": "number"
+       }
+      }
+     },
+     "secret": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "sandbox": {
+   "type": "object",
+   "required": [
+    "backend"
+   ],
+   "properties": {
+    "backend": {
+     "enum": [
+      "oci",
+      "local"
+     ]
+    },
+    "runtime": {
+     "type": "string"
+    },
+    "executor_sha256": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "egress_sha256": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "allow_dev_tier": {
+     "type": "boolean"
+    },
+    "limits": {
+     "type": "object",
+     "properties": {
+      "cpu_s": {
+       "type": "number",
+       "minimum": 0
+      },
+      "memory_mb": {
+       "type": "number",
+       "minimum": 0
+      }
+     }
+    }
+   }
+  },
+  "egress": {
+   "type": "object",
+   "properties": {
+    "default": {
+     "enum": [
+      "deny",
+      "allow"
+     ]
+    },
+    "upstream_proxy": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "grants": {
+     "type": "array"
+    }
+   }
+  },
+  "budgets": {
+   "type": "object",
+   "properties": {
+    "turns": {
+     "type": "integer"
+    },
+    "tokens": {
+     "type": "integer"
+    },
+    "time_s": {
+     "type": "number"
+    },
+    "cost": {
+     "type": "number"
+    },
+    "tools": {
+     "type": "integer"
+    },
+    "submissions": {
+     "type": "integer"
+    },
+    "concurrency": {
+     "type": "integer"
+    },
+    "compute": {
+     "type": "number"
+    },
+    "warn_fraction": {
+     "type": "number",
+     "exclusiveMinimum": 0,
+     "maximum": 1
+    },
+    "warn_fractions": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+     }
+    },
+    "workers": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "queue": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "safety_margin": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "allocations": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "object"
+     }
+    }
+   }
+  },
+  "context": {
+   "type": "object"
+  },
+  "loop": {
+   "type": "object"
+  },
+  "gateway": {
+   "type": "object"
+  },
+  "tools": {
+   "type": "object"
+  },
+  "recovery": {
+   "type": "object"
+  },
+  "policy": {
+   "type": "object"
+  },
+  "approvals": {
+   "type": "object",
+   "properties": {
+    "channels": {
+     "type": "array",
+     "items": {
+      "enum": [
+       "cli",
+       "http"
+      ]
+     }
+    },
+    "approvers": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "allow_owner_approval": {
+     "type": "boolean"
+    },
+    "expiry_s": {
+     "type": "integer"
+    }
+   }
+  },
+  "auth": {
+   "type": "object"
+  },
+  "observability": {
+   "type": "object"
+  },
+  "evaluator": {
+   "type": "object",
+   "properties": {
+    "independence": {
+     "enum": [
+      "deterministic",
+      "independent_model",
+      "same_model_low_independence"
+     ]
+    }
+   }
+  },
+  "retention": {
+   "type": "object"
+  },
+  "cache": {
+   "type": "object"
+  },
+  "alerts": {
+   "type": "object",
+   "properties": {
+    "selection": {
+     "type": "object",
+     "properties": {
+      "window": {
+       "type": "integer",
+       "minimum": 1
+      },
+      "min_sample": {
+       "type": "integer",
+       "minimum": 1
+      },
+      "warn": {
+       "type": "number",
+       "exclusiveMinimum": 0,
+       "maximum": 1
+      },
+      "critical": {
+       "type": "number",
+       "exclusiveMinimum": 0,
+       "maximum": 1
+      }
+     }
+    }
+   }
+  },
+  "plugins": {
+   "type": "object",
+   "properties": {
+    "load": {
+     "type": "array",
+     "items": {
+      "type": "object"
+     }
+    },
+    "required": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "trusted_in_process": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "max_failures": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "strict": {
+     "type": "boolean"
+    },
+    "verify_errors": {
+     "type": "boolean"
+    }
+   }
+  },
+  "memory": {
+   "type": "object",
+   "properties": {
+    "project": {
+     "type": "object",
+     "properties": {
+      "enabled": {
+       "type": "boolean"
+      }
+     }
+    }
+   }
+  },
+  "integrity": {
+   "type": "object",
+   "properties": {
+    "max_evidence_age_s": {
+     "type": "number",
+     "minimum": 0
+    }
+   }
+  }
+ }
+}

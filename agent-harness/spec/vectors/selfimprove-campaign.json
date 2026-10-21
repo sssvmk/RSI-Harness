@@ -1,0 +1,262 @@
+{
+ "campaign_id": "01JCRASHSWEEP000000000000A",
+ "main_head": "b9ec90e4bd5c0086682bae0d3d969709bacb3f79",
+ "stopped": "rounds_max",
+ "events": [
+  {
+   "seq": 1,
+   "type": "run.created",
+   "hash": "861d4172327b0312f4ca7313ce12e27039520538a55135739de5487f9d8b7835"
+  },
+  {
+   "seq": 2,
+   "type": "campaign.created",
+   "hash": "0458169012adf48942a9ce89bb7f0661d9eb2c95afe6b2fb958a02b272c62ff7"
+  },
+  {
+   "seq": 3,
+   "type": "policy.relaxed",
+   "hash": "83d6786810b9d2c0a7fc9b6353b0a56de33e6ed65d65d3083c0d5f5146925f63"
+  },
+  {
+   "seq": 4,
+   "type": "campaign.state_changed",
+   "hash": "d67b1a1bd57b2509a73f9afae263cc4b395a9331dac75e1978d99fffcc282f93"
+  },
+  {
+   "seq": 5,
+   "type": "surface.integrity_checked",
+   "hash": "831e0bc442f194efb80ab9a3697b2f29101984e16d3353a362a0d0947799598b"
+  },
+  {
+   "seq": 6,
+   "type": "campaign.round_started",
+   "hash": "4bc2f68f5cfde2756a05cfcbd9421af05db8f890ebe283998d1ea25ecf1c15e6"
+  },
+  {
+   "seq": 7,
+   "type": "campaign.state_changed",
+   "hash": "25719857378a1efb2ef390fc78f5542ba1b496b76060853f4068c76244aea6a7"
+  },
+  {
+   "seq": 8,
+   "type": "validation.completed",
+   "hash": "315b3deacb39a0f825cc7be980bef7e44143754df4d8dc6bc7e0d9de3de0992f"
+  },
+  {
+   "seq": 9,
+   "type": "proposal.created",
+   "hash": "ae2509cb00b04adba273b8b33dcae36d68c39e6ffbd9f839da883820f0ba114e"
+  },
+  {
+   "seq": 10,
+   "type": "validation.completed",
+   "hash": "3ad08f4ff5a05b568c0a70626361ecb05bc02df5efacb4bb0ffcd85424eca944"
+  },
+  {
+   "seq": 11,
+   "type": "proposal.created",
+   "hash": "8f60a4a4e888d5a89ceea922c6a7c2b0505d1e64fff328e5d9fedfb04bfb2c7a"
+  },
+  {
+   "seq": 12,
+   "type": "campaign.state_changed",
+   "hash": "6448e22efcf5f3d6f1ec85ef676952fde7725d4c7efe7103a198779435b3ce42"
+  },
+  {
+   "seq": 13,
+   "type": "surface.integrity_checked",
+   "hash": "54f28b48b30eae7277d9eaa3e637427a91ab9ced539cdb1cd65e6fd8ef6ab603"
+  },
+  {
+   "seq": 14,
+   "type": "candidate.evaluated",
+   "hash": "93a5203888c2349e816859c793d53946a95809b343332a4860c946a55d33e24d"
+  },
+  {
+   "seq": 15,
+   "type": "surface.integrity_checked",
+   "hash": "27ffbe249b81ef1bb3da363440f30d1fd704e2e643faac8646d902042ef49634"
+  },
+  {
+   "seq": 16,
+   "type": "candidate.evaluated",
+   "hash": "6e57d03e975caa67f98f7972897e79f0d9ecb61ff16e5790d65c1d753ce4ef07"
+  },
+  {
+   "seq": 17,
+   "type": "surface.integrity_checked",
+   "hash": "46500e6e0debfffecd314238507a6c25bb0d81d8049c3895b4b6ed8f03e5833d"
+  },
+  {
+   "seq": 18,
+   "type": "campaign.state_changed",
+   "hash": "2432c59c0d5a1ea11ebb560f99fb176f399f322aa5f4895906cc1986593dbd68"
+  },
+  {
+   "seq": 19,
+   "type": "heldout.queried",
+   "hash": "19507f68f6405e8529c96d61c9ee6a3477a850e786b3154fe7c787a742dc9610"
+  },
+  {
+   "seq": 20,
+   "type": "gate.decided",
+   "hash": "8788bd98cbb631eaec4eef69a9cfb66115f91166d8431dcd2dc66474df15cc89"
+  },
+  {
+   "seq": 21,
+   "type": "gate.decided",
+   "hash": "4a7ba82127dc31b1edf1bdd9a9342258c3b2d6331f8732697bcde4de4e08bb4d"
+  },
+  {
+   "seq": 22,
+   "type": "campaign.state_changed",
+   "hash": "703c620c3cca37aec454e3d3153df14ab3e021e940c89fda0733bc068d9c6e2a"
+  },
+  {
+   "seq": 23,
+   "type": "promotion.committed",
+   "hash": "dd71cecdf03159f5921bf3f3d007daa78171c6e5bc1fea7677ed69ea88578697"
+  },
+  {
+   "seq": 24,
+   "type": "campaign.round_completed",
+   "hash": "d5bbc581b292a23c126d2d17c11d08d881ed32e82c985b197b863e1e92e8389d"
+  },
+  {
+   "seq": 25,
+   "type": "campaign.round_started",
+   "hash": "cdb60ac1ae23bb7c2a99e043ebd02aa8e3c759f633aa323e69e16b1966cfb24b"
+  },
+  {
+   "seq": 26,
+   "type": "campaign.state_changed",
+   "hash": "de6c070ac0b04e7acdc56667cae928e7cc70c6baaf2398e06a4f0f57fcc44a0c"
+  },
+  {
+   "seq": 27,
+   "type": "validation.completed",
+   "hash": "5c21793b0ddbdcbb3229fd8462cb6ee907532542ac32fcedeea43a3580e285af"
+  },
+  {
+   "seq": 28,
+   "type": "proposal.created",
+   "hash": "e93dc10258ac4b921f9c3f07f1e499836e18710a2607b508175fcb75b61d48f4"
+  },
+  {
+   "seq": 29,
+   "type": "validation.completed",
+   "hash": "a5181216fdd2a734dd415fe623653acc2951fda64aa208f73433c682e01c466e"
+  },
+  {
+   "seq": 30,
+   "type": "proposal.created",
+   "hash": "92ae22f6413813a99e9ccf3a0cd2f9207c153a18cd9208e2899a2dcb567c0da3"
+  },
+  {
+   "seq": 31,
+   "type": "campaign.state_changed",
+   "hash": "5736341821d6b92c1d3467b16ed8465557a08fd99479ebf165937ed7c2cddb38"
+  },
+  {
+   "seq": 32,
+   "type": "surface.integrity_checked",
+   "hash": "623ac657ad5bbf526d65a2e69e99c93875ccb9af6b517250d43fe2caef1d827d"
+  },
+  {
+   "seq": 33,
+   "type": "candidate.evaluated",
+   "hash": "ee12fcff68f17e1125c6cd0d227efee3a9f8929828ae31e6ac6db6c94741b255"
+  },
+  {
+   "seq": 34,
+   "type": "surface.integrity_checked",
+   "hash": "313f9d776ab7b81182e7a9e39dbbe4eda650836da70e1d2007137978ff8654cf"
+  },
+  {
+   "seq": 35,
+   "type": "candidate.evaluated",
+   "hash": "2d86e6a480e46d2b2d2cf60cc1cd83f791fe6a5d103f8122e5a26db0a6639f73"
+  },
+  {
+   "seq": 36,
+   "type": "surface.integrity_checked",
+   "hash": "181a1488b73f16c34564a1b0d78998435e794d0d6bd2c211bbc8ea2cb8bcbbdc"
+  },
+  {
+   "seq": 37,
+   "type": "campaign.state_changed",
+   "hash": "5752d9fcd64f336c2b6bdc996f9e4d8a19d496a4d6212e7b64c878dd85207366"
+  },
+  {
+   "seq": 38,
+   "type": "heldout.queried",
+   "hash": "a071abc7539f48936b6daa716d0d7340fabdf9b75e44b517033a03f2c28e95b2"
+  },
+  {
+   "seq": 39,
+   "type": "gate.decided",
+   "hash": "bf539cd5be43509aa2dd528bb77121d8abfaffc1d28a6a68a33df369c39036b2"
+  },
+  {
+   "seq": 40,
+   "type": "heldout.queried",
+   "hash": "113cd0fbc619244ce0d55e464f56c385f65621e62f80e645d276dedcf369cf79"
+  },
+  {
+   "seq": 41,
+   "type": "gate.decided",
+   "hash": "de44c02c1f0c50deea813c3a902b626ee57a402bd3f0afa3ed36d56bdc5db261"
+  },
+  {
+   "seq": 42,
+   "type": "failure.observed",
+   "hash": "2d2d8cb0ff48860f54c9ff266661c02ef35d96c0fd6cc9bb7b7c266e52235175"
+  },
+  {
+   "seq": 43,
+   "type": "campaign.state_changed",
+   "hash": "67c309e943534db9d35bb06d7d658770f90887a4349f1988d3d5dbff245ca7b3"
+  },
+  {
+   "seq": 44,
+   "type": "promotion.committed",
+   "hash": "ac62f93a40bb0efe76504fa3059ed38b7095145b8885c7c06e3e382aeb25d6ac"
+  },
+  {
+   "seq": 45,
+   "type": "campaign.round_completed",
+   "hash": "d19999949904c82c163bd9f090ebdc433136d73e2bf696126ce96bc38a8ecc0f"
+  },
+  {
+   "seq": 46,
+   "type": "campaign.round_started",
+   "hash": "c47ee0097832ad74192ed93a62e774562fa430c53e5599634f0d0900447eaa73"
+  },
+  {
+   "seq": 47,
+   "type": "campaign.state_changed",
+   "hash": "f4f8a1f412c4e1e8682c9188d254f27d471d6178057bac542c55b43ff661342e"
+  },
+  {
+   "seq": 48,
+   "type": "campaign.round_completed",
+   "hash": "4ed64e590cf5da9c05dd5df0a6c1af2f8e8adb08b4b32e3f4012391d88ef502d"
+  },
+  {
+   "seq": 49,
+   "type": "campaign.state_changed",
+   "hash": "8961e458001a596077c6e6ed80032667bc5cff1d56c7a8081bb4546f78618e34"
+  },
+  {
+   "seq": 50,
+   "type": "campaign.stopped",
+   "hash": "6cdbdcee32dd9cc2bd5e143f7e3c2e07c74c9abb9a3bb5eac050da70537784fc"
+  },
+  {
+   "seq": 51,
+   "type": "campaign.state_changed",
+   "hash": "cd3133cfb7cc741ffe2d46bd5059610760509c57a63158977476938c16cb4405"
+  }
+ ]
+}

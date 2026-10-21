@@ -1,0 +1,313 @@
+{
+ "novelty": [
+  {
+   "edit": "always verify the tool output carefully before you write the final answer to the user",
+   "archive": [
+    "something else entirely about spreadsheets and formulas in detail please",
+    "always verify the tool output carefully before you write the final answer to the user now"
+   ],
+   "expected": 1
+  },
+  {
+   "edit": "a completely new instruction about handling timeouts gracefully in tools",
+   "archive": [
+    "always verify the tool output carefully before you write the final answer to the user"
+   ],
+   "expected": null
+  }
+ ],
+ "weights": {
+  "scores": [
+   0.9,
+   0.5,
+   0.5
+  ],
+  "children": [
+   0,
+   0,
+   3
+  ],
+  "tau": 0.2,
+  "expected": [
+   0.7869860421615984,
+   0.10650697891920073,
+   0.026626744729800183
+  ]
+ },
+ "picks": [
+  {
+   "seed": "0",
+   "expected": 0
+  },
+  {
+   "seed": "1",
+   "expected": 0
+  },
+  {
+   "seed": "2",
+   "expected": 0
+  },
+  {
+   "seed": "3",
+   "expected": 0
+  },
+  {
+   "seed": "4",
+   "expected": 0
+  },
+  {
+   "seed": "5",
+   "expected": 0
+  },
+  {
+   "seed": "6",
+   "expected": 0
+  },
+  {
+   "seed": "7",
+   "expected": 0
+  },
+  {
+   "seed": "8",
+   "expected": 0
+  },
+  {
+   "seed": "9",
+   "expected": 0
+  },
+  {
+   "seed": "10",
+   "expected": 1
+  },
+  {
+   "seed": "11",
+   "expected": 0
+  },
+  {
+   "seed": "12",
+   "expected": 0
+  },
+  {
+   "seed": "13",
+   "expected": 0
+  },
+  {
+   "seed": "14",
+   "expected": 0
+  },
+  {
+   "seed": "15",
+   "expected": 0
+  },
+  {
+   "seed": "16",
+   "expected": 1
+  },
+  {
+   "seed": "17",
+   "expected": 0
+  },
+  {
+   "seed": "18",
+   "expected": 0
+  },
+  {
+   "seed": "19",
+   "expected": 0
+  },
+  {
+   "seed": "20",
+   "expected": 0
+  },
+  {
+   "seed": "21",
+   "expected": 0
+  },
+  {
+   "seed": "22",
+   "expected": 2
+  },
+  {
+   "seed": "23",
+   "expected": 0
+  },
+  {
+   "seed": "24",
+   "expected": 1
+  },
+  {
+   "seed": "25",
+   "expected": 1
+  },
+  {
+   "seed": "26",
+   "expected": 0
+  },
+  {
+   "seed": "27",
+   "expected": 0
+  },
+  {
+   "seed": "28",
+   "expected": 0
+  },
+  {
+   "seed": "29",
+   "expected": 0
+  },
+  {
+   "seed": "30",
+   "expected": 0
+  },
+  {
+   "seed": "31",
+   "expected": 0
+  },
+  {
+   "seed": "32",
+   "expected": 0
+  },
+  {
+   "seed": "33",
+   "expected": 0
+  },
+  {
+   "seed": "34",
+   "expected": 0
+  },
+  {
+   "seed": "35",
+   "expected": 0
+  },
+  {
+   "seed": "36",
+   "expected": 0
+  },
+  {
+   "seed": "37",
+   "expected": 0
+  },
+  {
+   "seed": "38",
+   "expected": 0
+  },
+  {
+   "seed": "39",
+   "expected": 0
+  }
+ ],
+ "pareto": {
+  "points": [
+   {
+    "target": 0.5,
+    "cost": 1,
+    "latency": 1
+   },
+   {
+    "target": 0.6,
+    "cost": 2,
+    "latency": 1
+   },
+   {
+    "target": 0.4,
+    "cost": 3,
+    "latency": 3
+   },
+   {
+    "target": 0.6,
+    "cost": 1,
+    "latency": 1
+   },
+   {
+    "target": 0.7,
+    "cost": 5,
+    "latency": 5
+   }
+  ],
+  "expected": [
+   3,
+   4
+  ]
+ },
+ "similarity": [
+  {
+   "texts": [
+    "always verify the tool output carefully before you write the final answer to the user",
+    "always verify the tool output carefully before you write the final answer to the user"
+   ],
+   "expected": 1.0
+  },
+  {
+   "texts": [
+    "always verify the tool output carefully before you write the final answer to the user",
+    "completely different words here and there across many tokens in this text",
+    "always verify the tool output carefully before you write the final answer to the user please"
+   ],
+   "expected": 0.3055555555555555
+  }
+ ],
+ "eval_seeds": [
+  {
+   "args": [
+    "C",
+    1,
+    "cand",
+    "set"
+   ],
+   "expected": "17093429207183075934"
+  },
+  {
+   "args": [
+    "01JCAMP",
+    3,
+    "01JCAND",
+    "set-h"
+   ],
+   "expected": "3869341268437665278"
+  }
+ ],
+ "jaccard": [
+  {
+   "a": "a b c d e",
+   "b": "a b c d f",
+   "expected": 0.5
+  },
+  {
+   "a": "x y z",
+   "b": "x y z",
+   "expected": 1.0
+  },
+  {
+   "a": "",
+   "b": "",
+   "expected": 1.0
+  }
+ ],
+ "promotion": {
+  "ids": [
+   {
+    "campaign": "C",
+    "candidate": "X",
+    "expected": "P3cb3e37abd9b897d771985736"
+   }
+  ],
+  "unit": [
+   {
+    "s": "run-1",
+    "expected": 0.30624127271585166
+   },
+   {
+    "s": "run-2",
+    "expected": 0.7258521434850991
+   },
+   {
+    "s": "review:Pabc",
+    "expected": 0.8165071967523545
+   },
+   {
+    "s": "",
+    "expected": 0.8894159947521985
+   }
+  ]
+ }
+}

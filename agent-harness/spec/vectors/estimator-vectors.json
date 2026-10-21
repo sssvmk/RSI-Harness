@@ -1,0 +1,12 @@
+[
+ {"name":"empty text","input":{"messages":[{"role":"user","parts":[{"type":"text","text":""}]}]},"expected":0},
+ {"name":"3 ascii bytes","input":{"messages":[{"role":"user","parts":[{"type":"text","text":"abc"}]}]},"expected":1},
+ {"name":"4 ascii bytes rounds up","input":{"messages":[{"role":"user","parts":[{"type":"text","text":"abcd"}]}]},"expected":2},
+ {"name":"multibyte counts utf8 bytes","input":{"messages":[{"role":"user","parts":[{"type":"text","text":"héllo"}]}]},"expected":2},
+ {"name":"emoji 4 bytes","input":{"messages":[{"role":"user","parts":[{"type":"text","text":"😀"}]}]},"expected":2},
+ {"name":"image fixed 1500","input":{"messages":[{"role":"user","parts":[{"type":"image","media_type":"image/png","data_ref":"x"}]}]},"expected":1500},
+ {"name":"tool call counts name and canonical args","input":{"messages":[{"role":"assistant","parts":[{"type":"tool_call","id":"i","name":"fs.read","arguments":{"path":"/workspace/a"}}]}]},"expected":11},
+ {"name":"tool result recurses","input":{"messages":[{"role":"tool","parts":[{"type":"tool_result","call_id":"i","is_error":false,"parts":[{"type":"text","text":"123456"}]}]}]},"expected":2},
+ {"name":"tool schemas counted as canonical JSON bytes","input":{"messages":[],"tools":[{"name":"t","description":"d","input_schema":{"type":"object"}}]},"expected":21},
+ {"name":"custom divisor 4","input":{"messages":[{"role":"user","parts":[{"type":"text","text":"abcdefghi"}]}],"divisor":4},"expected":3}
+]

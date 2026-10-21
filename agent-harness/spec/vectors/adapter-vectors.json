@@ -1,0 +1,1187 @@
+{
+ "request_cases": [
+  {
+   "name": "openai basic with tool round trip",
+   "provider": "openai",
+   "model_id": "gpt-x",
+   "id_map": {},
+   "request": {
+    "model_ref": "main",
+    "messages": [
+     {
+      "role": "system",
+      "parts": [
+       {
+        "type": "text",
+        "text": "You are helpful."
+       }
+      ]
+     },
+     {
+      "role": "user",
+      "parts": [
+       {
+        "type": "text",
+        "text": "Read a.txt"
+       }
+      ]
+     },
+     {
+      "role": "assistant",
+      "parts": [
+       {
+        "type": "text",
+        "text": "Reading."
+       },
+       {
+        "type": "tool_call",
+        "id": "01CALLAAAAAAAAAAAAAAAAAAAA",
+        "name": "fs.read",
+        "arguments": {
+         "path": "/workspace/a.txt"
+        }
+       }
+      ]
+     },
+     {
+      "role": "tool",
+      "parts": [
+       {
+        "type": "tool_result",
+        "call_id": "01CALLAAAAAAAAAAAAAAAAAAAA",
+        "is_error": false,
+        "parts": [
+         {
+          "type": "text",
+          "text": "hello"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "tools": [
+     {
+      "name": "fs.read",
+      "description": "Read a file",
+      "input_schema": {
+       "type": "object",
+       "properties": {
+        "path": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "path"
+       ],
+       "additionalProperties": false
+      }
+     }
+    ],
+    "params": {
+     "max_output_tokens": 1024,
+     "temperature": 0.2
+    },
+    "metadata": {
+     "run_id": "R",
+     "turn": 2
+    }
+   },
+   "expected_wire": {
+    "model": "gpt-x",
+    "max_completion_tokens": 1024,
+    "temperature": 0.2,
+    "messages": [
+     {
+      "role": "system",
+      "content": "You are helpful."
+     },
+     {
+      "role": "user",
+      "content": "Read a.txt"
+     },
+     {
+      "role": "assistant",
+      "content": "Reading.",
+      "tool_calls": [
+       {
+        "id": "01CALLAAAAAAAAAAAAAAAAAAAA",
+        "type": "function",
+        "function": {
+         "name": "fs-read",
+         "arguments": "{\"path\":\"/workspace/a.txt\"}"
+        }
+       }
+      ]
+     },
+     {
+      "role": "tool",
+      "tool_call_id": "01CALLAAAAAAAAAAAAAAAAAAAA",
+      "content": "hello"
+     }
+    ],
+    "tools": [
+     {
+      "type": "function",
+      "function": {
+       "name": "fs-read",
+       "description": "Read a file",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "path": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "path"
+        ],
+        "additionalProperties": false
+       }
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "openai uses recorded provider handle",
+   "provider": "openai",
+   "model_id": "gpt-x",
+   "id_map": {
+    "01CALLAAAAAAAAAAAAAAAAAAAA": "call_abc"
+   },
+   "request": {
+    "model_ref": "main",
+    "messages": [
+     {
+      "role": "system",
+      "parts": [
+       {
+        "type": "text",
+        "text": "You are helpful."
+       }
+      ]
+     },
+     {
+      "role": "user",
+      "parts": [
+       {
+        "type": "text",
+        "text": "Read a.txt"
+       }
+      ]
+     },
+     {
+      "role": "assistant",
+      "parts": [
+       {
+        "type": "text",
+        "text": "Reading."
+       },
+       {
+        "type": "tool_call",
+        "id": "01CALLAAAAAAAAAAAAAAAAAAAA",
+        "name": "fs.read",
+        "arguments": {
+         "path": "/workspace/a.txt"
+        }
+       }
+      ]
+     },
+     {
+      "role": "tool",
+      "parts": [
+       {
+        "type": "tool_result",
+        "call_id": "01CALLAAAAAAAAAAAAAAAAAAAA",
+        "is_error": false,
+        "parts": [
+         {
+          "type": "text",
+          "text": "hello"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "tools": [
+     {
+      "name": "fs.read",
+      "description": "Read a file",
+      "input_schema": {
+       "type": "object",
+       "properties": {
+        "path": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "path"
+       ],
+       "additionalProperties": false
+      }
+     }
+    ],
+    "params": {
+     "max_output_tokens": 1024,
+     "temperature": 0.2
+    },
+    "metadata": {
+     "run_id": "R",
+     "turn": 2
+    }
+   },
+   "expected_wire": {
+    "model": "gpt-x",
+    "max_completion_tokens": 1024,
+    "temperature": 0.2,
+    "messages": [
+     {
+      "role": "system",
+      "content": "You are helpful."
+     },
+     {
+      "role": "user",
+      "content": "Read a.txt"
+     },
+     {
+      "role": "assistant",
+      "content": "Reading.",
+      "tool_calls": [
+       {
+        "id": "call_abc",
+        "type": "function",
+        "function": {
+         "name": "fs-read",
+         "arguments": "{\"path\":\"/workspace/a.txt\"}"
+        }
+       }
+      ]
+     },
+     {
+      "role": "tool",
+      "tool_call_id": "call_abc",
+      "content": "hello"
+     }
+    ],
+    "tools": [
+     {
+      "type": "function",
+      "function": {
+       "name": "fs-read",
+       "description": "Read a file",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "path": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "path"
+        ],
+        "additionalProperties": false
+       }
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "anthropic basic",
+   "provider": "anthropic",
+   "model_id": "claude-x",
+   "id_map": {
+    "01CALLAAAAAAAAAAAAAAAAAAAA": "toolu_1"
+   },
+   "request": {
+    "model_ref": "main",
+    "messages": [
+     {
+      "role": "system",
+      "parts": [
+       {
+        "type": "text",
+        "text": "You are helpful."
+       }
+      ]
+     },
+     {
+      "role": "user",
+      "parts": [
+       {
+        "type": "text",
+        "text": "Read a.txt"
+       }
+      ]
+     },
+     {
+      "role": "assistant",
+      "parts": [
+       {
+        "type": "text",
+        "text": "Reading."
+       },
+       {
+        "type": "tool_call",
+        "id": "01CALLAAAAAAAAAAAAAAAAAAAA",
+        "name": "fs.read",
+        "arguments": {
+         "path": "/workspace/a.txt"
+        }
+       }
+      ]
+     },
+     {
+      "role": "tool",
+      "parts": [
+       {
+        "type": "tool_result",
+        "call_id": "01CALLAAAAAAAAAAAAAAAAAAAA",
+        "is_error": false,
+        "parts": [
+         {
+          "type": "text",
+          "text": "hello"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "tools": [
+     {
+      "name": "fs.read",
+      "description": "Read a file",
+      "input_schema": {
+       "type": "object",
+       "properties": {
+        "path": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "path"
+       ],
+       "additionalProperties": false
+      }
+     }
+    ],
+    "params": {
+     "max_output_tokens": 1024,
+     "temperature": 0.2
+    },
+    "metadata": {
+     "run_id": "R",
+     "turn": 2
+    }
+   },
+   "expected_wire": {
+    "model": "claude-x",
+    "max_tokens": 1024,
+    "temperature": 0.2,
+    "system": "You are helpful.",
+    "messages": [
+     {
+      "role": "user",
+      "content": [
+       {
+        "type": "text",
+        "text": "Read a.txt"
+       }
+      ]
+     },
+     {
+      "role": "assistant",
+      "content": [
+       {
+        "type": "text",
+        "text": "Reading."
+       },
+       {
+        "type": "tool_use",
+        "id": "toolu_1",
+        "name": "fs-read",
+        "input": {
+         "path": "/workspace/a.txt"
+        }
+       }
+      ]
+     },
+     {
+      "role": "user",
+      "content": [
+       {
+        "type": "tool_result",
+        "tool_use_id": "toolu_1",
+        "content": "hello"
+       }
+      ]
+     }
+    ],
+    "tools": [
+     {
+      "name": "fs-read",
+      "description": "Read a file",
+      "input_schema": {
+       "type": "object",
+       "properties": {
+        "path": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "path"
+       ],
+       "additionalProperties": false
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "anthropic merges tool results and guidance into one user turn, results first",
+   "provider": "anthropic",
+   "model_id": "claude-x",
+   "id_map": {},
+   "request": {
+    "model_ref": "main",
+    "messages": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "type": "text",
+        "text": "go"
+       }
+      ]
+     },
+     {
+      "role": "assistant",
+      "parts": [
+       {
+        "type": "tool_call",
+        "id": "01CALLAAAAAAAAAAAAAAAAAAAA",
+        "name": "fs.read",
+        "arguments": {
+         "path": "/workspace/a"
+        }
+       },
+       {
+        "type": "tool_call",
+        "id": "01CALLBBBBBBBBBBBBBBBBBBBB",
+        "name": "fs.read",
+        "arguments": {
+         "path": "/workspace/b"
+        }
+       }
+      ]
+     },
+     {
+      "role": "tool",
+      "parts": [
+       {
+        "type": "tool_result",
+        "call_id": "01CALLBBBBBBBBBBBBBBBBBBBB",
+        "is_error": true,
+        "parts": [
+         {
+          "type": "text",
+          "text": "B failed"
+         }
+        ]
+       },
+       {
+        "type": "tool_result",
+        "call_id": "01CALLAAAAAAAAAAAAAAAAAAAA",
+        "is_error": false,
+        "parts": [
+         {
+          "type": "text",
+          "text": "A ok"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "role": "user",
+      "parts": [
+       {
+        "type": "text",
+        "text": "[harness guidance] hurry"
+       }
+      ]
+     }
+    ],
+    "params": {
+     "max_output_tokens": 256
+    },
+    "metadata": {
+     "run_id": "R",
+     "turn": 3
+    }
+   },
+   "expected_wire": {
+    "model": "claude-x",
+    "max_tokens": 256,
+    "messages": [
+     {
+      "role": "user",
+      "content": [
+       {
+        "type": "text",
+        "text": "go"
+       }
+      ]
+     },
+     {
+      "role": "assistant",
+      "content": [
+       {
+        "type": "tool_use",
+        "id": "01CALLAAAAAAAAAAAAAAAAAAAA",
+        "name": "fs-read",
+        "input": {
+         "path": "/workspace/a"
+        }
+       },
+       {
+        "type": "tool_use",
+        "id": "01CALLBBBBBBBBBBBBBBBBBBBB",
+        "name": "fs-read",
+        "input": {
+         "path": "/workspace/b"
+        }
+       }
+      ]
+     },
+     {
+      "role": "user",
+      "content": [
+       {
+        "type": "tool_result",
+        "tool_use_id": "01CALLBBBBBBBBBBBBBBBBBBBB",
+        "content": "B failed",
+        "is_error": true
+       },
+       {
+        "type": "tool_result",
+        "tool_use_id": "01CALLAAAAAAAAAAAAAAAAAAAA",
+        "content": "A ok"
+       },
+       {
+        "type": "text",
+        "text": "[harness guidance] hurry"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "name": "gemini basic, unsupported schema keywords downgraded",
+   "provider": "gemini",
+   "model_id": "gem-x",
+   "id_map": {},
+   "request": {
+    "model_ref": "main",
+    "messages": [
+     {
+      "role": "system",
+      "parts": [
+       {
+        "type": "text",
+        "text": "You are helpful."
+       }
+      ]
+     },
+     {
+      "role": "user",
+      "parts": [
+       {
+        "type": "text",
+        "text": "Read a.txt"
+       }
+      ]
+     },
+     {
+      "role": "assistant",
+      "parts": [
+       {
+        "type": "text",
+        "text": "Reading."
+       },
+       {
+        "type": "tool_call",
+        "id": "01CALLAAAAAAAAAAAAAAAAAAAA",
+        "name": "fs.read",
+        "arguments": {
+         "path": "/workspace/a.txt"
+        }
+       }
+      ]
+     },
+     {
+      "role": "tool",
+      "parts": [
+       {
+        "type": "tool_result",
+        "call_id": "01CALLAAAAAAAAAAAAAAAAAAAA",
+        "is_error": false,
+        "parts": [
+         {
+          "type": "text",
+          "text": "hello"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "tools": [
+     {
+      "name": "fs.read",
+      "description": "Read a file",
+      "input_schema": {
+       "type": "object",
+       "properties": {
+        "path": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "path"
+       ],
+       "additionalProperties": false
+      }
+     }
+    ],
+    "params": {
+     "max_output_tokens": 1024,
+     "temperature": 0.2
+    },
+    "metadata": {
+     "run_id": "R",
+     "turn": 2
+    }
+   },
+   "expected_wire": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are helpful."
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Read a.txt"
+       }
+      ]
+     },
+     {
+      "role": "model",
+      "parts": [
+       {
+        "text": "Reading."
+       },
+       {
+        "functionCall": {
+         "name": "fs.read",
+         "args": {
+          "path": "/workspace/a.txt"
+         }
+        }
+       }
+      ]
+     },
+     {
+      "role": "user",
+      "parts": [
+       {
+        "functionResponse": {
+         "name": "fs.read",
+         "response": {
+          "result": "hello"
+         }
+        }
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "maxOutputTokens": 1024,
+     "temperature": 0.2
+    },
+    "tools": [
+     {
+      "functionDeclarations": [
+       {
+        "name": "fs.read",
+        "description": "Read a file",
+        "parameters": {
+         "type": "object",
+         "properties": {
+          "path": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "path"
+         ]
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "expected_downgrades": [
+    {
+     "path": "tool:fs.read",
+     "keyword": "additionalProperties"
+    }
+   ]
+  },
+  {
+   "name": "gemini orders functionResponse parts by call order",
+   "provider": "gemini",
+   "model_id": "gem-x",
+   "id_map": {},
+   "request": {
+    "model_ref": "main",
+    "messages": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "type": "text",
+        "text": "go"
+       }
+      ]
+     },
+     {
+      "role": "assistant",
+      "parts": [
+       {
+        "type": "tool_call",
+        "id": "01CALLAAAAAAAAAAAAAAAAAAAA",
+        "name": "fs.read",
+        "arguments": {
+         "path": "/workspace/a"
+        }
+       },
+       {
+        "type": "tool_call",
+        "id": "01CALLBBBBBBBBBBBBBBBBBBBB",
+        "name": "fs.read",
+        "arguments": {
+         "path": "/workspace/b"
+        }
+       }
+      ]
+     },
+     {
+      "role": "tool",
+      "parts": [
+       {
+        "type": "tool_result",
+        "call_id": "01CALLBBBBBBBBBBBBBBBBBBBB",
+        "is_error": true,
+        "parts": [
+         {
+          "type": "text",
+          "text": "B failed"
+         }
+        ]
+       },
+       {
+        "type": "tool_result",
+        "call_id": "01CALLAAAAAAAAAAAAAAAAAAAA",
+        "is_error": false,
+        "parts": [
+         {
+          "type": "text",
+          "text": "A ok"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "role": "user",
+      "parts": [
+       {
+        "type": "text",
+        "text": "[harness guidance] hurry"
+       }
+      ]
+     }
+    ],
+    "params": {
+     "max_output_tokens": 256
+    },
+    "metadata": {
+     "run_id": "R",
+     "turn": 3
+    }
+   },
+   "expected_wire": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "go"
+       }
+      ]
+     },
+     {
+      "role": "model",
+      "parts": [
+       {
+        "functionCall": {
+         "name": "fs.read",
+         "args": {
+          "path": "/workspace/a"
+         }
+        }
+       },
+       {
+        "functionCall": {
+         "name": "fs.read",
+         "args": {
+          "path": "/workspace/b"
+         }
+        }
+       }
+      ]
+     },
+     {
+      "role": "user",
+      "parts": [
+       {
+        "functionResponse": {
+         "name": "fs.read",
+         "response": {
+          "result": "A ok"
+         }
+        }
+       },
+       {
+        "functionResponse": {
+         "name": "fs.read",
+         "response": {
+          "error": "B failed"
+         }
+        }
+       }
+      ]
+     },
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "[harness guidance] hurry"
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "maxOutputTokens": 256
+    }
+   }
+  }
+ ],
+ "response_cases": [
+  {
+   "name": "openai tool call",
+   "provider": "openai",
+   "ids": [
+    "ID1"
+   ],
+   "wire": {
+    "choices": [
+     {
+      "message": {
+       "role": "assistant",
+       "content": null,
+       "tool_calls": [
+        {
+         "id": "call_abc",
+         "type": "function",
+         "function": {
+          "name": "fs-read",
+          "arguments": "{\"path\":\"/workspace/a\"}"
+         }
+        }
+       ]
+      },
+      "finish_reason": "tool_calls"
+     }
+    ],
+    "usage": {
+     "prompt_tokens": 11,
+     "completion_tokens": 7,
+     "prompt_tokens_details": {
+      "cached_tokens": 4
+     }
+    }
+   },
+   "expected": {
+    "message": {
+     "role": "assistant",
+     "parts": [
+      {
+       "type": "tool_call",
+       "id": "ID1",
+       "name": "fs.read",
+       "arguments": {
+        "path": "/workspace/a"
+       }
+      }
+     ]
+    },
+    "finish_reason": "tool_calls",
+    "usage": {
+     "input_tokens": 11,
+     "output_tokens": 7,
+     "cached_input_tokens": 4
+    },
+    "id_map": {
+     "ID1": "call_abc"
+    }
+   }
+  },
+  {
+   "name": "openai length",
+   "provider": "openai",
+   "ids": [],
+   "wire": {
+    "choices": [
+     {
+      "message": {
+       "role": "assistant",
+       "content": "partial"
+      },
+      "finish_reason": "length"
+     }
+    ],
+    "usage": {
+     "prompt_tokens": 1,
+     "completion_tokens": 2
+    }
+   },
+   "expected": {
+    "message": {
+     "role": "assistant",
+     "parts": [
+      {
+       "type": "text",
+       "text": "partial"
+      }
+     ]
+    },
+    "finish_reason": "length",
+    "usage": {
+     "input_tokens": 1,
+     "output_tokens": 2
+    },
+    "id_map": {}
+   }
+  },
+  {
+   "name": "anthropic tool_use",
+   "provider": "anthropic",
+   "ids": [
+    "ID1"
+   ],
+   "wire": {
+    "content": [
+     {
+      "type": "text",
+      "text": "ok"
+     },
+     {
+      "type": "tool_use",
+      "id": "toolu_9",
+      "name": "fs-read",
+      "input": {
+       "path": "/workspace/z"
+      }
+     }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+     "input_tokens": 5,
+     "output_tokens": 6,
+     "cache_read_input_tokens": 2
+    }
+   },
+   "expected": {
+    "message": {
+     "role": "assistant",
+     "parts": [
+      {
+       "type": "text",
+       "text": "ok"
+      },
+      {
+       "type": "tool_call",
+       "id": "ID1",
+       "name": "fs.read",
+       "arguments": {
+        "path": "/workspace/z"
+       }
+      }
+     ]
+    },
+    "finish_reason": "tool_calls",
+    "usage": {
+     "input_tokens": 5,
+     "output_tokens": 6,
+     "cached_input_tokens": 2
+    },
+    "id_map": {
+     "ID1": "toolu_9"
+    }
+   }
+  },
+  {
+   "name": "anthropic refusal maps to content_filter",
+   "provider": "anthropic",
+   "ids": [],
+   "wire": {
+    "content": [],
+    "stop_reason": "refusal",
+    "usage": {
+     "input_tokens": 1,
+     "output_tokens": 0
+    }
+   },
+   "expected": {
+    "message": {
+     "role": "assistant",
+     "parts": []
+    },
+    "finish_reason": "content_filter",
+    "usage": {
+     "input_tokens": 1,
+     "output_tokens": 0
+    },
+    "id_map": {}
+   }
+  },
+  {
+   "name": "gemini calls have no ids: gateway assigns by order, STOP becomes tool_calls",
+   "provider": "gemini",
+   "ids": [
+    "ID1",
+    "ID2"
+   ],
+   "wire": {
+    "candidates": [
+     {
+      "content": {
+       "role": "model",
+       "parts": [
+        {
+         "functionCall": {
+          "name": "fs.read",
+          "args": {
+           "path": "/workspace/a"
+          }
+         }
+        },
+        {
+         "functionCall": {
+          "name": "fs.read",
+          "args": {
+           "path": "/workspace/b"
+          }
+         }
+        }
+       ]
+      },
+      "finishReason": "STOP"
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 20,
+     "candidatesTokenCount": 3,
+     "thoughtsTokenCount": 5
+    }
+   },
+   "expected": {
+    "message": {
+     "role": "assistant",
+     "parts": [
+      {
+       "type": "tool_call",
+       "id": "ID1",
+       "name": "fs.read",
+       "arguments": {
+        "path": "/workspace/a"
+       }
+      },
+      {
+       "type": "tool_call",
+       "id": "ID2",
+       "name": "fs.read",
+       "arguments": {
+        "path": "/workspace/b"
+       }
+      }
+     ]
+    },
+    "finish_reason": "tool_calls",
+    "usage": {
+     "input_tokens": 20,
+     "output_tokens": 8
+    },
+    "id_map": {
+     "ID1": {
+      "name": "fs.read",
+      "index": 0
+     },
+     "ID2": {
+      "name": "fs.read",
+      "index": 1
+     }
+    }
+   }
+  },
+  {
+   "name": "gemini safety",
+   "provider": "gemini",
+   "ids": [],
+   "wire": {
+    "candidates": [
+     {
+      "finishReason": "SAFETY"
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 2,
+     "candidatesTokenCount": 0
+    }
+   },
+   "expected": {
+    "message": {
+     "role": "assistant",
+     "parts": []
+    },
+    "finish_reason": "content_filter",
+    "usage": {
+     "input_tokens": 2,
+     "output_tokens": 0
+    },
+    "id_map": {}
+   }
+  }
+ ]
+}

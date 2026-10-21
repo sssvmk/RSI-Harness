@@ -1,0 +1,689 @@
+{
+ "cases": [
+  {
+   "name": "defaults",
+   "config": null,
+   "environment": null,
+   "fingerprint": "f049f880578989363ddcee8570e823985bfb53f0b6f9cc108f728433d852ef24",
+   "diff": [],
+   "relaxed": 0,
+   "gate_params": {
+    "T0": {
+     "alpha": 0.05,
+     "B": 10000,
+     "holm": true,
+     "margins": {
+      "default": 0.02
+     },
+     "heldout_margin": 0.02,
+     "preserved_margin": 0.02
+    },
+    "T1": {
+     "alpha": 0.05,
+     "B": 10000,
+     "holm": true,
+     "margins": {
+      "default": 0.02
+     },
+     "heldout_margin": 0.02,
+     "preserved_margin": 0.02
+    },
+    "T2": {
+     "alpha": 0.01,
+     "B": 10000,
+     "holm": true,
+     "margins": {
+      "default": 0.02
+     },
+     "heldout_margin": 0.02,
+     "preserved_margin": 0.02
+    }
+   },
+   "review": {
+    "T0": {
+     "mode": "none",
+     "sample_rate": 0.0,
+     "window_h": 72
+    },
+    "T1": {
+     "mode": "sampled",
+     "sample_rate": 0.2,
+     "window_h": 72
+    },
+    "T2": {
+     "mode": "blocking",
+     "sample_rate": 1.0,
+     "window_h": 72
+    }
+   },
+   "canary": {
+    "T0": 0.0,
+    "T1": 0.0,
+    "T2": 0.1
+   }
+  },
+  {
+   "name": "base override only",
+   "config": {
+    "tiers": {
+     "T1": {
+      "alpha": 0.04
+     }
+    },
+    "environments": {
+     "prod": {
+      "tiers": {
+       "T1": {
+        "alpha": 0.01,
+        "review": {
+         "mode": "blocking"
+        }
+       },
+       "T2": {
+        "alpha": 0.001,
+        "canary_fraction": 0.25
+       }
+      }
+     },
+     "dev": {
+      "tiers": {
+       "T1": {
+        "alpha": 0.2,
+        "review": {
+         "mode": "none"
+        }
+       },
+       "T0": {
+        "holm": false
+       },
+       "T2": {
+        "alpha": 0.05
+       }
+      }
+     }
+    }
+   },
+   "environment": null,
+   "fingerprint": "3bf6780e6dac73647162de3988170b6c40a78d0d2e173b9baee2d4f7a338094b",
+   "diff": [
+    {
+     "tier": "T1",
+     "path": "alpha",
+     "default": 0.05,
+     "value": 0.04,
+     "direction": "stricter"
+    }
+   ],
+   "relaxed": 0,
+   "gate_params": {
+    "T0": {
+     "alpha": 0.05,
+     "B": 10000,
+     "holm": true,
+     "margins": {
+      "default": 0.02
+     },
+     "heldout_margin": 0.02,
+     "preserved_margin": 0.02
+    },
+    "T1": {
+     "alpha": 0.04,
+     "B": 10000,
+     "holm": true,
+     "margins": {
+      "default": 0.02
+     },
+     "heldout_margin": 0.02,
+     "preserved_margin": 0.02
+    },
+    "T2": {
+     "alpha": 0.01,
+     "B": 10000,
+     "holm": true,
+     "margins": {
+      "default": 0.02
+     },
+     "heldout_margin": 0.02,
+     "preserved_margin": 0.02
+    }
+   },
+   "review": {
+    "T0": {
+     "mode": "none",
+     "sample_rate": 0.0,
+     "window_h": 72
+    },
+    "T1": {
+     "mode": "sampled",
+     "sample_rate": 0.2,
+     "window_h": 72
+    },
+    "T2": {
+     "mode": "blocking",
+     "sample_rate": 1.0,
+     "window_h": 72
+    }
+   },
+   "canary": {
+    "T0": 0.0,
+    "T1": 0.0,
+    "T2": 0.1
+   }
+  },
+  {
+   "name": "stricter production",
+   "config": {
+    "tiers": {
+     "T1": {
+      "alpha": 0.04
+     }
+    },
+    "environments": {
+     "prod": {
+      "tiers": {
+       "T1": {
+        "alpha": 0.01,
+        "review": {
+         "mode": "blocking"
+        }
+       },
+       "T2": {
+        "alpha": 0.001,
+        "canary_fraction": 0.25
+       }
+      }
+     },
+     "dev": {
+      "tiers": {
+       "T1": {
+        "alpha": 0.2,
+        "review": {
+         "mode": "none"
+        }
+       },
+       "T0": {
+        "holm": false
+       },
+       "T2": {
+        "alpha": 0.05
+       }
+      }
+     }
+    }
+   },
+   "environment": "prod",
+   "fingerprint": "bbdc9cd6ee08e0cf3410b7d9b402fbff329c2f9ba15eaec4a872d45290af3f55",
+   "diff": [
+    {
+     "tier": "T1",
+     "path": "alpha",
+     "default": 0.05,
+     "value": 0.01,
+     "direction": "stricter"
+    },
+    {
+     "tier": "T1",
+     "path": "review.mode",
+     "default": "sampled",
+     "value": "blocking",
+     "direction": "stricter"
+    },
+    {
+     "tier": "T2",
+     "path": "alpha",
+     "default": 0.01,
+     "value": 0.001,
+     "direction": "stricter"
+    },
+    {
+     "tier": "T2",
+     "path": "canary_fraction",
+     "default": 0.1,
+     "value": 0.25,
+     "direction": "changed"
+    }
+   ],
+   "relaxed": 0,
+   "gate_params": {
+    "T0": {
+     "alpha": 0.05,
+     "B": 10000,
+     "holm": true,
+     "margins": {
+      "default": 0.02
+     },
+     "heldout_margin": 0.02,
+     "preserved_margin": 0.02
+    },
+    "T1": {
+     "alpha": 0.01,
+     "B": 10000,
+     "holm": true,
+     "margins": {
+      "default": 0.02
+     },
+     "heldout_margin": 0.02,
+     "preserved_margin": 0.02
+    },
+    "T2": {
+     "alpha": 0.001,
+     "B": 10000,
+     "holm": true,
+     "margins": {
+      "default": 0.02
+     },
+     "heldout_margin": 0.02,
+     "preserved_margin": 0.02
+    }
+   },
+   "review": {
+    "T0": {
+     "mode": "none",
+     "sample_rate": 0.0,
+     "window_h": 72
+    },
+    "T1": {
+     "mode": "blocking",
+     "sample_rate": 0.2,
+     "window_h": 72
+    },
+    "T2": {
+     "mode": "blocking",
+     "sample_rate": 1.0,
+     "window_h": 72
+    }
+   },
+   "canary": {
+    "T0": 0.0,
+    "T1": 0.0,
+    "T2": 0.25
+   }
+  },
+  {
+   "name": "leaner development",
+   "config": {
+    "tiers": {
+     "T1": {
+      "alpha": 0.04
+     }
+    },
+    "environments": {
+     "prod": {
+      "tiers": {
+       "T1": {
+        "alpha": 0.01,
+        "review": {
+         "mode": "blocking"
+        }
+       },
+       "T2": {
+        "alpha": 0.001,
+        "canary_fraction": 0.25
+       }
+      }
+     },
+     "dev": {
+      "tiers": {
+       "T1": {
+        "alpha": 0.2,
+        "review": {
+         "mode": "none"
+        }
+       },
+       "T0": {
+        "holm": false
+       },
+       "T2": {
+        "alpha": 0.05
+       }
+      }
+     }
+    }
+   },
+   "environment": "dev",
+   "fingerprint": "f47be316cc2402764c2f1dc861d0745fadb606d60fc72b163059dc3466c81a26",
+   "diff": [
+    {
+     "tier": "T0",
+     "path": "holm",
+     "default": true,
+     "value": false,
+     "direction": "leaner"
+    },
+    {
+     "tier": "T1",
+     "path": "alpha",
+     "default": 0.05,
+     "value": 0.2,
+     "direction": "leaner"
+    },
+    {
+     "tier": "T1",
+     "path": "review.mode",
+     "default": "sampled",
+     "value": "none",
+     "direction": "leaner"
+    },
+    {
+     "tier": "T2",
+     "path": "alpha",
+     "default": 0.01,
+     "value": 0.05,
+     "direction": "leaner"
+    }
+   ],
+   "relaxed": 4,
+   "gate_params": {
+    "T0": {
+     "alpha": 0.05,
+     "B": 10000,
+     "holm": false,
+     "margins": {
+      "default": 0.02
+     },
+     "heldout_margin": 0.02,
+     "preserved_margin": 0.02
+    },
+    "T1": {
+     "alpha": 0.2,
+     "B": 10000,
+     "holm": true,
+     "margins": {
+      "default": 0.02
+     },
+     "heldout_margin": 0.02,
+     "preserved_margin": 0.02
+    },
+    "T2": {
+     "alpha": 0.05,
+     "B": 10000,
+     "holm": true,
+     "margins": {
+      "default": 0.02
+     },
+     "heldout_margin": 0.02,
+     "preserved_margin": 0.02
+    }
+   },
+   "review": {
+    "T0": {
+     "mode": "none",
+     "sample_rate": 0.0,
+     "window_h": 72
+    },
+    "T1": {
+     "mode": "none",
+     "sample_rate": 0.2,
+     "window_h": 72
+    },
+    "T2": {
+     "mode": "blocking",
+     "sample_rate": 1.0,
+     "window_h": 72
+    }
+   },
+   "canary": {
+    "T0": 0.0,
+    "T1": 0.0,
+    "T2": 0.1
+   }
+  },
+  {
+   "name": "margins and review rate",
+   "config": {
+    "tiers": {
+     "T0": {
+      "margins": {
+       "default": 0.01,
+       "cost": 0.05
+      }
+     },
+     "T1": {
+      "review": {
+       "sample_rate": 0.5,
+       "window_h": 24
+      }
+     }
+    }
+   },
+   "environment": null,
+   "fingerprint": "68419f98a830f327bc77ecee46dea1a626f04c2ee744a37d4bfc2fa509acf635",
+   "diff": [
+    {
+     "tier": "T0",
+     "path": "margins.cost",
+     "default": null,
+     "value": 0.05,
+     "direction": "changed"
+    },
+    {
+     "tier": "T0",
+     "path": "margins.default",
+     "default": 0.02,
+     "value": 0.01,
+     "direction": "stricter"
+    },
+    {
+     "tier": "T1",
+     "path": "review.sample_rate",
+     "default": 0.2,
+     "value": 0.5,
+     "direction": "stricter"
+    },
+    {
+     "tier": "T1",
+     "path": "review.window_h",
+     "default": 72,
+     "value": 24,
+     "direction": "changed"
+    }
+   ],
+   "relaxed": 0,
+   "gate_params": {
+    "T0": {
+     "alpha": 0.05,
+     "B": 10000,
+     "holm": true,
+     "margins": {
+      "default": 0.01,
+      "cost": 0.05
+     },
+     "heldout_margin": 0.02,
+     "preserved_margin": 0.02
+    },
+    "T1": {
+     "alpha": 0.05,
+     "B": 10000,
+     "holm": true,
+     "margins": {
+      "default": 0.02
+     },
+     "heldout_margin": 0.02,
+     "preserved_margin": 0.02
+    },
+    "T2": {
+     "alpha": 0.01,
+     "B": 10000,
+     "holm": true,
+     "margins": {
+      "default": 0.02
+     },
+     "heldout_margin": 0.02,
+     "preserved_margin": 0.02
+    }
+   },
+   "review": {
+    "T0": {
+     "mode": "none",
+     "sample_rate": 0.0,
+     "window_h": 72
+    },
+    "T1": {
+     "mode": "sampled",
+     "sample_rate": 0.5,
+     "window_h": 24
+    },
+    "T2": {
+     "mode": "blocking",
+     "sample_rate": 1.0,
+     "window_h": 72
+    }
+   },
+   "canary": {
+    "T0": 0.0,
+    "T1": 0.0,
+    "T2": 0.1
+   }
+  }
+ ],
+ "errors": [
+  {
+   "name": "alpha zero",
+   "config": {
+    "tiers": {
+     "T1": {
+      "alpha": 0.0
+     }
+    }
+   },
+   "environment": null,
+   "code": "policy.invalid_value"
+  },
+  {
+   "name": "alpha too lean",
+   "config": {
+    "tiers": {
+     "T1": {
+      "alpha": 0.5
+     }
+    }
+   },
+   "environment": null,
+   "code": "policy.invalid_value"
+  },
+  {
+   "name": "T2 non-blocking",
+   "config": {
+    "tiers": {
+     "T2": {
+      "review": {
+       "mode": "none"
+      }
+     }
+    }
+   },
+   "environment": null,
+   "code": "policy.locked"
+  },
+  {
+   "name": "tier above T2",
+   "config": {
+    "tiers": {
+     "T3": {
+      "alpha": 0.01
+     }
+    }
+   },
+   "environment": null,
+   "code": "policy.unknown_tier"
+  },
+  {
+   "name": "unknown setting",
+   "config": {
+    "tiers": {
+     "T1": {
+      "alfa": 0.1
+     }
+    }
+   },
+   "environment": null,
+   "code": "policy.unknown_key"
+  },
+  {
+   "name": "unknown top-level",
+   "config": {
+    "gate": {}
+   },
+   "environment": null,
+   "code": "policy.unknown_key"
+  },
+  {
+   "name": "unknown environment",
+   "config": {
+    "environments": {
+     "a": {
+      "tiers": {}
+     }
+    }
+   },
+   "environment": "b",
+   "code": "policy.unknown_environment"
+  },
+  {
+   "name": "B too small",
+   "config": {
+    "tiers": {
+     "T1": {
+      "B": 50
+     }
+    }
+   },
+   "environment": null,
+   "code": "policy.invalid_value"
+  },
+  {
+   "name": "bad review mode",
+   "config": {
+    "tiers": {
+     "T1": {
+      "review": {
+       "mode": "yes"
+      }
+     }
+    }
+   },
+   "environment": null,
+   "code": "policy.invalid_value"
+  },
+  {
+   "name": "sample rate above 1",
+   "config": {
+    "tiers": {
+     "T1": {
+      "review": {
+       "sample_rate": 1.5
+      }
+     }
+    }
+   },
+   "environment": null,
+   "code": "policy.invalid_value"
+  },
+  {
+   "name": "negative margin",
+   "config": {
+    "tiers": {
+     "T1": {
+      "margins": {
+       "default": -0.1
+      }
+     }
+    }
+   },
+   "environment": null,
+   "code": "policy.invalid_value"
+  },
+  {
+   "name": "holm not boolean",
+   "config": {
+    "tiers": {
+     "T1": {
+      "holm": "yes"
+     }
+    }
+   },
+   "environment": null,
+   "code": "policy.invalid_value"
+  }
+ ]
+}

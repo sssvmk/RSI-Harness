@@ -1,0 +1,11 @@
+# Example extension layer. Copy to app.yaml (the .example suffix keeps it from being loaded) and edit.
+# The agent developer owns this file: it names the application-logic error classes of THIS agent. Keep it in the reviewed config repository, beside failure-rules.yaml.
+# Rules: every code is namespaced `<layer>.<class>` with the layer named below; a layer may not reuse a core name (tool, state, environment, architecture, security, eval_integrity, selfmod);
+# a rule may only emit a class from its own layer; core rules are evaluated first, so an extension cannot change how a core failure is classified.
+layer: app
+classes:
+  - {code: app.order_not_found, description: "the customer asked about an order that does not exist"}
+  - {code: app.refund_over_limit, description: "the agent attempted a refund above the policy limit"}
+rules:
+  - {reason: fatal_error, last_error: "app.order_not_found", class: app, code: app.order_not_found}
+  - {reason: fatal_error, last_error: "app.refund_over_limit", class: app, code: app.refund_over_limit}

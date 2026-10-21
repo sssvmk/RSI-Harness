@@ -1,0 +1,1705 @@
+{
+ "events": [
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 1,
+   "ts": "2026-10-19T08:53:20.000Z",
+   "type": "run.created",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "owner": "alice",
+    "profile": "standard",
+    "task_id": null,
+    "config_commit": "c",
+    "budgets": {
+     "turns": {
+      "limit": 10,
+      "warn_at": 8
+     },
+     "tokens": {
+      "limit": 1000,
+      "warn_at": 800
+     },
+     "time_ms": {
+      "limit": 60000,
+      "warn_at": 48000
+     }
+    },
+    "evaluator_budgets": {
+     "tokens": {
+      "limit": 500,
+      "warn_at": 400
+     }
+    }
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 2,
+   "ts": "2026-10-19T08:53:20.010Z",
+   "type": "run.state_changed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "from": "CREATED",
+    "to": "PROVISIONING",
+    "reason": "x"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 3,
+   "ts": "2026-10-19T08:53:20.020Z",
+   "type": "sandbox.created",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "sandbox_id": "SB1",
+    "role": "work",
+    "backend": "local",
+    "tier": "T-Std"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 4,
+   "ts": "2026-10-19T08:53:20.021Z",
+   "type": "grant.issued",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "grant_id": "G1",
+    "kind": "sandbox",
+    "spec": {
+     "sandbox_id": "SB1"
+    }
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 5,
+   "ts": "2026-10-19T08:53:20.022Z",
+   "type": "grant.issued",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "grant_id": "G2",
+    "kind": "egress",
+    "spec": {
+     "host_glob": "pypi.org"
+    }
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 6,
+   "ts": "2026-10-19T08:53:20.030Z",
+   "type": "run.state_changed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "from": "PROVISIONING",
+    "to": "READY",
+    "reason": "x"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 7,
+   "ts": "2026-10-19T08:53:20.040Z",
+   "type": "user.message",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "message": {
+     "role": "user",
+     "parts": [
+      {
+       "type": "text",
+       "text": "fix the bug"
+      }
+     ]
+    },
+    "trust": "user",
+    "search_text": "fix the bug"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 8,
+   "ts": "2026-10-19T08:53:20.050Z",
+   "type": "run.state_changed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "from": "READY",
+    "to": "RUNNING",
+    "reason": "start"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 9,
+   "ts": "2026-10-19T08:53:20.060Z",
+   "type": "guidance.injected",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "kind": "budget",
+    "text": "wrap up"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 10,
+   "ts": "2026-10-19T08:53:20.070Z",
+   "type": "model.requested",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "turn": 1
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 11,
+   "ts": "2026-10-19T08:53:20.100Z",
+   "type": "model.responded",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "message": {
+     "role": "assistant",
+     "parts": [
+      {
+       "type": "text",
+       "text": "reading"
+      },
+      {
+       "type": "tool_call",
+       "id": "CALL1",
+       "name": "fs.read",
+       "arguments": {
+        "path": "/workspace/a"
+       }
+      }
+     ]
+    },
+    "call_ids": [
+     "CALL1"
+    ],
+    "id_map": {
+     "CALL1": "call_x"
+    },
+    "finish_reason": "tool_calls",
+    "usage": {
+     "input_tokens": 5,
+     "output_tokens": 3
+    }
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 12,
+   "ts": "2026-10-19T08:53:20.101Z",
+   "type": "budget.updated",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "dimension": "turns",
+    "used": 1,
+    "limit": 10,
+    "budget_set": "agent"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 13,
+   "ts": "2026-10-19T08:53:20.102Z",
+   "type": "budget.updated",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "dimension": "tokens",
+    "used": 8,
+    "limit": 1000,
+    "budget_set": "agent"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 14,
+   "ts": "2026-10-19T08:53:20.103Z",
+   "type": "budget.warning",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "dimension": "tokens",
+    "used": 8,
+    "limit": 1000,
+    "budget_set": "agent"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 15,
+   "ts": "2026-10-19T08:53:20.104Z",
+   "type": "budget.updated",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "dimension": "tokens",
+    "used": 3,
+    "limit": 500,
+    "budget_set": "evaluator"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 16,
+   "ts": "2026-10-19T08:53:20.110Z",
+   "type": "tool.call.requested",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "tool_call_id": "CALL1",
+    "tool": "fs.read",
+    "effect_class": "read_only",
+    "idempotency": "idempotent",
+    "args": {
+     "path": "/workspace/a"
+    }
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 17,
+   "ts": "2026-10-19T08:53:20.120Z",
+   "type": "approval.requested",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "approval_id": "AP1",
+    "tool_call_id": "CALL1",
+    "tool": "fs.read",
+    "rule_id": "R1",
+    "scope": {
+     "by": [
+      "tool"
+     ]
+    },
+    "expires_at": "x"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 18,
+   "ts": "2026-10-19T08:53:20.121Z",
+   "type": "run.state_changed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "from": "RUNNING",
+    "to": "AWAITING_APPROVAL",
+    "reason": "ap"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 19,
+   "ts": "2026-10-19T08:53:20.500Z",
+   "type": "approval.decided",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "approval_id": "AP1",
+    "status": "granted",
+    "decided_by": "bob"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 20,
+   "ts": "2026-10-19T08:53:20.501Z",
+   "type": "run.state_changed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "from": "AWAITING_APPROVAL",
+    "to": "RUNNING",
+    "reason": "ap"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 21,
+   "ts": "2026-10-19T08:53:20.510Z",
+   "type": "tool.call.started",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "tool_call_id": "CALL1",
+    "tool": "fs.read",
+    "attempt": 1
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 22,
+   "ts": "2026-10-19T08:53:20.520Z",
+   "type": "tool.call.completed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "tool_call_id": "CALL1",
+    "tool": "fs.read",
+    "message": {
+     "role": "tool",
+     "parts": [
+      {
+       "type": "tool_result",
+       "call_id": "CALL1",
+       "is_error": false,
+       "parts": [
+        {
+         "type": "text",
+         "text": "file body"
+        }
+       ]
+      }
+     ]
+    },
+    "trust": "untrusted",
+    "search_text": "file body"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 23,
+   "ts": "2026-10-19T08:53:20.530Z",
+   "type": "turn.completed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "turn": 1,
+    "signature": "sigA",
+    "idle": false
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 24,
+   "ts": "2026-10-19T08:53:20.540Z",
+   "type": "turn.completed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "turn": 2,
+    "signature": "sigA",
+    "idle": false
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 25,
+   "ts": "2026-10-19T08:53:20.541Z",
+   "type": "stuck_loop.detected",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "signature": "sigA",
+    "count": 2,
+    "action": "guidance"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 26,
+   "ts": "2026-10-19T08:53:20.550Z",
+   "type": "turn.completed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "turn": 3,
+    "signature": null,
+    "idle": true
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 27,
+   "ts": "2026-10-19T08:53:20.551Z",
+   "type": "tools.exposed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "names": [
+     "extra.tool"
+    ]
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 28,
+   "ts": "2026-10-19T08:53:20.552Z",
+   "type": "tools.exposed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "names": [
+     "extra.tool",
+     "other"
+    ]
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 29,
+   "ts": "2026-10-19T08:53:20.553Z",
+   "type": "state.written",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "name": "plan.md",
+    "content_hash": "h1",
+    "path": "/workspace/.harness/state/plan.md"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 30,
+   "ts": "2026-10-19T08:53:20.560Z",
+   "type": "model.responded",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "message": {
+     "role": "assistant",
+     "parts": [
+      {
+       "type": "text",
+       "text": "more"
+      }
+     ]
+    },
+    "call_ids": [],
+    "finish_reason": "stop",
+    "usage": {
+     "input_tokens": 1,
+     "output_tokens": 1
+    }
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 31,
+   "ts": "2026-10-19T08:53:20.561Z",
+   "type": "user.message",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "message": {
+     "role": "user",
+     "parts": [
+      {
+       "type": "text",
+       "text": "also this"
+      }
+     ]
+    },
+    "trust": "user"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 32,
+   "ts": "2026-10-19T08:53:20.562Z",
+   "type": "context.hydrated",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "query": "q",
+    "hit_seqs": [
+     7
+    ],
+    "message": {
+     "role": "user",
+     "parts": [
+      {
+       "type": "text",
+       "text": "[recalled seq 7] fix"
+      }
+     ]
+    },
+    "trust": "user"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 33,
+   "ts": "2026-10-19T08:53:20.563Z",
+   "type": "context.compacted",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "from_seq": 10,
+    "to_seq": 22,
+    "summary": "did things",
+    "est_before": 9,
+    "est_after": 3,
+    "cleared_seqs": []
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 34,
+   "ts": "2026-10-19T08:53:20.570Z",
+   "type": "submission.created",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "submission_id": "S1",
+    "snapshot_id": null
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 35,
+   "ts": "2026-10-19T08:53:20.571Z",
+   "type": "run.state_changed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "from": "RUNNING",
+    "to": "SCORING",
+    "reason": "s"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 36,
+   "ts": "2026-10-19T08:53:20.600Z",
+   "type": "snapshot.created",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "snapshot_id": "SN1",
+    "submission_id": "S1",
+    "manifest_hash": "m",
+    "chain_head": "h"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 37,
+   "ts": "2026-10-19T08:53:20.610Z",
+   "type": "judge.started",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "submission_id": "S1",
+    "sandbox_id": "SB2"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 38,
+   "ts": "2026-10-19T08:53:20.700Z",
+   "type": "judge.completed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "submission_id": "S1",
+    "valid": true,
+    "primary": 0.8,
+    "score_report_ref": "r1"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 39,
+   "ts": "2026-10-19T08:53:20.710Z",
+   "type": "feedback.delivered",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "submission_id": "S1",
+    "level": "score",
+    "bytes": 9
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 40,
+   "ts": "2026-10-19T08:53:20.711Z",
+   "type": "run.state_changed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "from": "SCORING",
+    "to": "RUNNING",
+    "reason": "s"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 41,
+   "ts": "2026-10-19T08:53:20.799Z",
+   "type": "completion.proposed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "summary": "done",
+    "via": "finish"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 42,
+   "ts": "2026-10-19T08:53:20.800Z",
+   "type": "run.state_changed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "from": "RUNNING",
+    "to": "COMPLETING",
+    "reason": "c"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 43,
+   "ts": "2026-10-19T08:53:20.810Z",
+   "type": "verification.completed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "passed": false,
+    "detail": "no",
+    "evidence_ref": "e"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 44,
+   "ts": "2026-10-19T08:53:20.811Z",
+   "type": "run.state_changed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "from": "COMPLETING",
+    "to": "RUNNING",
+    "reason": "v"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 45,
+   "ts": "2026-10-19T08:53:20.900Z",
+   "type": "run.recovered",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "resumed_from_seq": 43,
+    "downtime_ms": 5000,
+    "downtime_cause": "harness_failure",
+    "excluded_ms": 5000
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 46,
+   "ts": "2026-10-19T08:53:20.999Z",
+   "type": "completion.proposed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "summary": "done",
+    "via": "finish"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 47,
+   "ts": "2026-10-19T08:53:21.000Z",
+   "type": "run.state_changed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "from": "RUNNING",
+    "to": "COMPLETING",
+    "reason": "c"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 48,
+   "ts": "2026-10-19T08:53:21.010Z",
+   "type": "verification.completed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "passed": true,
+    "detail": "ok",
+    "evidence_ref": "e2"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 49,
+   "ts": "2026-10-19T08:53:21.011Z",
+   "type": "grant.revoked",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "grant_id": "G2",
+    "kind": "egress"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 50,
+   "ts": "2026-10-19T08:53:21.012Z",
+   "type": "sandbox.destroyed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "sandbox_id": "SB1"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 51,
+   "ts": "2026-10-19T08:53:21.020Z",
+   "type": "run.state_changed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "from": "COMPLETING",
+    "to": "COMPLETED",
+    "reason": "v"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 52,
+   "ts": "2026-10-19T08:53:21.020Z",
+   "type": "budget.reserved",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "reservation_id": "r1",
+    "deltas": {
+     "turns": 1,
+     "tokens": 300
+    },
+    "agent_id": null,
+    "budget_set": "agent"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 53,
+   "ts": "2026-10-19T08:53:21.020Z",
+   "type": "budget.committed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "reservation_id": "r1",
+    "actual": {
+     "turns": 1,
+     "tokens": 120
+    },
+    "agent_id": null,
+    "unreconciled": false,
+    "reconciles": false,
+    "budget_set": "agent"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 54,
+   "ts": "2026-10-19T08:53:21.020Z",
+   "type": "budget.updated",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "dimension": "tokens",
+    "used": 120,
+    "limit": 1000,
+    "budget_set": "agent"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 55,
+   "ts": "2026-10-19T08:53:21.020Z",
+   "type": "budget.reserved",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "reservation_id": "r2",
+    "deltas": {
+     "tokens": 200
+    },
+    "agent_id": null,
+    "budget_set": "agent"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 56,
+   "ts": "2026-10-19T08:53:21.020Z",
+   "type": "budget.released",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "reservation_id": "r2",
+    "reason": "call did not run",
+    "budget_set": "agent"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 57,
+   "ts": "2026-10-19T08:53:21.020Z",
+   "type": "budget.allocated",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "agent_id": "research",
+    "limits": {
+     "tokens": 400
+    },
+    "budget_set": "agent"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 58,
+   "ts": "2026-10-19T08:53:21.020Z",
+   "type": "budget.reserved",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "reservation_id": "r3",
+    "deltas": {
+     "tokens": 150
+    },
+    "agent_id": "research",
+    "budget_set": "agent"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 59,
+   "ts": "2026-10-19T08:53:21.020Z",
+   "type": "budget.committed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "reservation_id": "r3",
+    "actual": {
+     "tokens": 150
+    },
+    "agent_id": "research",
+    "unreconciled": true,
+    "reconciles": false,
+    "budget_set": "agent"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 60,
+   "ts": "2026-10-19T08:53:21.020Z",
+   "type": "budget.unreconciled",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "reservation_id": "r3",
+    "estimate": {
+     "tokens": 150
+    },
+    "budget_set": "agent"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 61,
+   "ts": "2026-10-19T08:53:21.020Z",
+   "type": "budget.reserved",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "reservation_id": "r4",
+    "deltas": {
+     "tokens": 50
+    },
+    "agent_id": "research",
+    "budget_set": "agent"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 62,
+   "ts": "2026-10-19T08:53:21.020Z",
+   "type": "budget.allocation_ended",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "agent_id": "research",
+    "budget_set": "agent"
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 63,
+   "ts": "2026-10-19T08:53:21.020Z",
+   "type": "reconcile.state_changed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "subject": "workspace_file:/w/a",
+    "action_id": "a1",
+    "event": "unreadable",
+    "authoritative": false
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 64,
+   "ts": "2026-10-19T08:53:21.020Z",
+   "type": "reconcile.state_changed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "subject": "workspace_file:/w/a",
+    "action_id": "a2",
+    "event": "verified",
+    "authoritative": false
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 65,
+   "ts": "2026-10-19T08:53:21.020Z",
+   "type": "reconcile.state_changed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "subject": "workspace_file:/w/a",
+    "action_id": "a3",
+    "event": "verified",
+    "authoritative": true
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 66,
+   "ts": "2026-10-19T08:53:21.020Z",
+   "type": "reconcile.state_changed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "subject": "workspace_file:/w/b",
+    "action_id": "b1",
+    "event": "mismatch",
+    "authoritative": true
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 67,
+   "ts": "2026-10-19T08:53:21.020Z",
+   "type": "reconcile.state_changed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "subject": "workspace_file:/w/b",
+    "action_id": "b2",
+    "event": "verified",
+    "authoritative": true
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 68,
+   "ts": "2026-10-19T08:53:21.020Z",
+   "type": "reconcile.state_changed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "subject": "workspace_file:/w/c",
+    "action_id": "c1",
+    "event": "verified",
+    "authoritative": true
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 69,
+   "ts": "2026-10-19T08:53:21.020Z",
+   "type": "reconcile.state_changed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "subject": "workspace_file:/w/c",
+    "action_id": "c2",
+    "event": "denied",
+    "authoritative": false
+   }
+  },
+  {
+   "run_id": "01J8ZABCDEFGHJKMNPQRSTVWXY",
+   "seq": 70,
+   "ts": "2026-10-19T08:53:21.020Z",
+   "type": "reconcile.state_changed",
+   "actor": {
+    "kind": "control_plane",
+    "id": "h"
+   },
+   "causation_seq": null,
+   "correlation_id": null,
+   "schema_version": 1,
+   "payload": {
+    "subject": "workspace_file:/w/d",
+    "action_id": "d1",
+    "event": "mismatch",
+    "authoritative": true
+   }
+  }
+ ],
+ "versions": {
+  "run_state": 1,
+  "budgets": 2,
+  "reconcile": 1,
+  "conversation": 1,
+  "approvals_open": 1,
+  "tool_calls": 1,
+  "submissions": 1,
+  "grants_active": 1,
+  "sandboxes": 1,
+  "ephemeral": 1,
+  "working_state": 1,
+  "loop": 1
+ },
+ "expected": {
+  "run_state": {
+   "state": "COMPLETED",
+   "terminal_reason": "v",
+   "owner": "alice",
+   "profile": "standard",
+   "active_ms": 970,
+   "active_since_ms": null,
+   "excluded_ms": 5000,
+   "entered_completing_seq": 47,
+   "verified_seq": 48,
+   "verification_failures": 1
+  },
+  "budgets": {
+   "agent": {
+    "turns": {
+     "limit": 10,
+     "used": 1,
+     "reserved": 0,
+     "unreconciled": 0,
+     "warn_at": 8,
+     "warned": false,
+     "exhausted": false
+    },
+    "tokens": {
+     "limit": 1000,
+     "used": 120,
+     "reserved": 50,
+     "unreconciled": 150,
+     "warn_at": 800,
+     "warned": true,
+     "exhausted": false
+    },
+    "time_ms": {
+     "limit": 60000,
+     "used": 0,
+     "reserved": 0,
+     "unreconciled": 0,
+     "warn_at": 48000,
+     "warned": false,
+     "exhausted": false
+    }
+   },
+   "evaluator": {
+    "tokens": {
+     "limit": 500,
+     "used": 3,
+     "reserved": 0,
+     "unreconciled": 0,
+     "warn_at": 400,
+     "warned": false,
+     "exhausted": false
+    }
+   },
+   "reservations": {
+    "r4": {
+     "set": "agent",
+     "deltas": {
+      "tokens": 50
+     },
+     "agent_id": "research"
+    }
+   },
+   "allocations": {
+    "research": {
+     "set": "agent",
+     "ended": true,
+     "dims": {
+      "tokens": {
+       "limit": 400,
+       "used": 150,
+       "reserved": 50
+      }
+     }
+    }
+   },
+   "unreconciled": {
+    "r3": {
+     "set": "agent",
+     "deltas": {
+      "tokens": 150
+     }
+    }
+   }
+  },
+  "reconcile": {
+   "subjects": {
+    "workspace_file:/w/a": {
+     "state": "consistent",
+     "action_id": "a3",
+     "seq": 65
+    },
+    "workspace_file:/w/b": {
+     "state": "consistent",
+     "action_id": "b2",
+     "seq": 67
+    },
+    "workspace_file:/w/c": {
+     "state": "blocked",
+     "action_id": "c2",
+     "seq": 69
+    },
+    "workspace_file:/w/d": {
+     "state": "drift_detected",
+     "action_id": "d1",
+     "seq": 70
+    }
+   }
+  },
+  "conversation": {
+   "entries": [
+    {
+     "seq": 7,
+     "type": "user.message",
+     "trust": "user",
+     "message": {
+      "role": "user",
+      "parts": [
+       {
+        "type": "text",
+        "text": "fix the bug"
+       }
+      ]
+     },
+     "message_ref": null,
+     "cleared": false,
+     "call_ids": [],
+     "call_id": null,
+     "tool": null,
+     "id_map": {}
+    },
+    {
+     "seq": 33,
+     "type": "summary",
+     "trust": "untrusted",
+     "summary": "did things",
+     "summary_ref": null,
+     "from_seq": 10,
+     "to_seq": 22,
+     "cleared": false,
+     "call_ids": [],
+     "call_id": null,
+     "tool": null,
+     "message": null,
+     "message_ref": null,
+     "id_map": {
+      "CALL1": "call_x"
+     }
+    },
+    {
+     "seq": 30,
+     "type": "model.responded",
+     "trust": "tool_trusted",
+     "message": {
+      "role": "assistant",
+      "parts": [
+       {
+        "type": "text",
+        "text": "more"
+       }
+      ]
+     },
+     "message_ref": null,
+     "cleared": false,
+     "call_ids": [],
+     "call_id": null,
+     "tool": null,
+     "id_map": {}
+    },
+    {
+     "seq": 31,
+     "type": "user.message",
+     "trust": "user",
+     "message": {
+      "role": "user",
+      "parts": [
+       {
+        "type": "text",
+        "text": "also this"
+       }
+      ]
+     },
+     "message_ref": null,
+     "cleared": false,
+     "call_ids": [],
+     "call_id": null,
+     "tool": null,
+     "id_map": {}
+    },
+    {
+     "seq": 32,
+     "type": "recalled",
+     "trust": "user",
+     "message": {
+      "role": "user",
+      "parts": [
+       {
+        "type": "text",
+        "text": "[recalled seq 7] fix"
+       }
+      ]
+     },
+     "message_ref": null,
+     "cleared": false,
+     "call_ids": [],
+     "call_id": null,
+     "tool": null,
+     "id_map": {},
+     "hit_seqs": [
+      7
+     ]
+    }
+   ]
+  },
+  "approvals_open": {},
+  "tool_calls": {
+   "CALL1": {
+    "tool": "fs.read",
+    "status": "completed",
+    "seq": 16,
+    "effect_class": "read_only",
+    "idempotency": "idempotent",
+    "attempt": 1,
+    "args": {
+     "path": "/workspace/a"
+    },
+    "args_ref": null,
+    "started_seq": 21
+   }
+  },
+  "submissions": {
+   "S1": {
+    "seq": 1,
+    "created_seq": 34,
+    "snapshot_id": "SN1",
+    "status": "feedback",
+    "valid": true,
+    "primary": 0.8,
+    "report_ref": "r1"
+   }
+  },
+  "grants_active": {
+   "G1": {
+    "kind": "sandbox",
+    "spec": {
+     "sandbox_id": "SB1"
+    },
+    "issued_seq": 4
+   }
+  },
+  "sandboxes": {},
+  "ephemeral": {
+   "guidance": []
+  },
+  "working_state": {
+   "plan.md": {
+    "hash": "h1",
+    "seq": 29
+   }
+  },
+  "loop": {
+   "turn": 3,
+   "idle_streak": 1,
+   "last_signature": "sigA",
+   "repeat_count": 2,
+   "stuck_warned": true,
+   "exposed_tools": [
+    "extra.tool",
+    "other"
+   ],
+   "completion_pending": null
+  }
+ }
+}
